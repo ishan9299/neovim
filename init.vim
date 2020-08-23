@@ -3,6 +3,7 @@
 " ----- General Settings -----{{{1
 set nu rnu
 let mapleader      = ' '
+colorscheme seoul256
 
 " Highlight the yanked part
 augroup highlight_yank
