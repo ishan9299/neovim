@@ -1,8 +1,46 @@
 " vim: foldmethod=marker
 
 " ----- General Settings -----{{{1
+" Activate matchit plugin
+runtime! macros/matchit.vim
+
+" Activate man page plugin
+runtime! ftplugin/man.vim
+
+"{ Builtin options and settings
+if !has('nvim')
+    " Change cursor shapes based on whether we are in insert mode,
+    " see https://vi.stackexchange.com/questions/9131/i-cant-switch-to-cursor-in-insert-mode
+    let &t_SI = "\<esc>[6 q"
+    let &t_EI = "\<esc>[2 q"
+    if exists("&t_SR")
+        let &t_SR = "\<esc>[4 q"
+    endif
+
+    " The number of color to use
+    set t_Co=256
+endif
+
+filetype plugin indent on
+syntax enable
+
+" Use list mode and customized listchars
+set list listchars=tab:▸\ ,extends:❯,precedes:❮,nbsp:+
+
+" Set height of status line
+set laststatus=2
+
+" Changing fillchars for folding, so there is no garbage charactes
+set fillchars=fold:\ ,vert:\|
+
+" Do not load netrw by default since I do not use it, see
+" https://github.com/bling/dotvim/issues/4
+let g:loaded_netrwPlugin = 1
+
+" Do not load tohtml.vim
+let g:loaded_2html_plugin = 1
+
 set nu rnu
-let mapleader      = ' '
 set path+=**
 
 " seoul256 (dark):
@@ -23,11 +61,44 @@ augroup highlight_yank
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
 augroup END
 
+" Ignore certain files and folders when globbing
+set wildignore+=*.o,*.obj,*.bin,*.dll,*.exe
+set wildignore+=*/.git/*,*/.svn/*,*/__pycache__/*,*/build/**
+set wildignore+=*.pyc
+set wildignore+=*.DS_Store
+set wildignore+=*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.pdf
+
+" ----- Mappings -----{{{2
+
+let mapleader      = ' '
+
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 map <leader>ew :e %%
 map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
+"}}}
+
+" ----- Terminal -----{{{2
+if exists("##TermOpen")
+    augroup term_settings
+        autocmd!
+        " Do not use number and relative number for terminal inside nvim
+        autocmd TermOpen * setlocal norelativenumber nonumber
+        " Go to insert mode by default to start typing command
+        autocmd TermOpen * startinsert
+    augroup END
+endif
+"}}}
+
+" ----- Focus ----- {{{2
+set winhighlight=NormalNC:ColorColumn
+augroup number_toggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &number | set relativenumber | endif
+    autocmd BufLeave,FocusLost,InsertEnter,WinLeave * if &number | set norelativenumber | endif
+augroup END
+"  }}}
 
 " ----- Minpac -----{{{1
 function! PackInit() abort
@@ -36,6 +107,9 @@ function! PackInit() abort
   call minpac#init()
   call minpac#add('k-takata/minpac', {'type': 'opt'})
 
+" ----- Functionality -----{{{2
+  call minpac#add('junegunn/fzf')
+  call minpac#add('junegunn/fzf.vim')
   " Snippets {{{2
   call minpac#add('SirVer/ultisnips')
   call minpac#add('honza/vim-snippets')
@@ -98,9 +172,6 @@ augroup pandoc_syntax
     au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
 augroup END
 
-" ----- Deoplete ----- {{{2
-let g:deoplete#enable_at_startup = 1
-
 " ----- Completion -----{{{2
 "chain completion
 let g:completion_chain_complete_list = [
@@ -139,6 +210,19 @@ augroup completion_nvim
     autocmd BufEnter * lua require'completion'.on_attach()
 augroup END
 
+" ----- FZF -----{{{2
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
+nnoremap <leader>fb :Buffers<CR>
+nnoremap <leader>gf :GFiles<CR>
 " }}}
 
 " LSP settings
