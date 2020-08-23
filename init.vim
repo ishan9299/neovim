@@ -42,6 +42,8 @@ function! PackInit() abort
   call minpac#add('godlygeek/tabular')
 
   " Programming {{{2
+  " LSP
+  call minpac#add('neovim/nvim-lsp', {'type': 'opt'})
   " Direnv
   call minpac#add('direnv/direnv.vim')
   "LeaderF 
@@ -123,4 +125,5 @@ let g:Lf_DefaultMode = 'NameOnly'
 let g:Lf_UseVersionControlTool = 0
 " }}}
 " LSP settings
- luafile ~/.config/nvim/init.lua
+packadd nvim-lsp
+luafile ~/.config/nvim/init.lua
