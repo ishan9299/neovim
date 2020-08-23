@@ -1,26 +1,20 @@
+local on_attach_vim = function()
+  require'completion'.on_attach()
+  require'diagnostic'.on_attach()
+end
 local nvim_lsp = require('nvim_lsp')
 
-local on_attach = function(_, bufnr)
-	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-	require'diagnostic'.on_attach()
-	require'completion'.on_attach()
+-- C/C++
+nvim_lsp.clangd.setup{
+	on_attach=on_attach_vim
+}
 
-	-- Mappings.
-	local opts = { noremap=true, silent=true }
-	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', '<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>', opts)
-end
+-- Rust
+nvim_lsp.rust_analyzer.setup{
+	on_attach=on_attach_vim
+}
 
-local servers = {'rust_analyzer', 'vimls', 'clangd'}
-for _, lsp in ipairs(servers) do
-	nvim_lsp[lsp].setup {
-		on_attach = on_attach,
-	}
-end
+-- Vimls
+nvim_lsp.vimls.setup{
+	on_attach=on_attach_vim
+}
