@@ -2,6 +2,13 @@
 
 " ----- General Settings -----{{{1
 set nu rnu
+let mapleader      = ' '
+
+" Highlight the yanked part
+augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
+augroup END
 
 " ----- Minpac -----{{{1
 function! PackInit() abort
