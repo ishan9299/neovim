@@ -29,11 +29,6 @@ function! PackInit() abort
   call minpac#init()
   call minpac#add('k-takata/minpac', {'type': 'opt'})
 
-  " ColorSchemes
-  call minpac#add('junegunn/seoul256.vim', {'type': 'opt'})
-  call minpac#add('alexanderjeurissen/lumiere.vim', {'type': 'opt'})
-  call minpac#add('rakr/vim-one', {'type': 'opt'})
-
   " Snippets {{{2
   call minpac#add('SirVer/ultisnips')
   call minpac#add('honza/vim-snippets')
@@ -47,8 +42,6 @@ function! PackInit() abort
   call minpac#add('godlygeek/tabular')
 
   " Programming {{{2
-  " LSP
-  call minpac#add('neovim/nvim-lsp')
   " Direnv
   call minpac#add('direnv/direnv.vim')
   "LeaderF 
@@ -128,5 +121,6 @@ let g:Lf_DefaultMode = 'NameOnly'
 " Do not use version control tool to list files under a directory since
 " submodules are not searched by default.
 let g:Lf_UseVersionControlTool = 0
-
-luafile ~/.config/nvim/init.lua
+" }}}
+" LSP settings
+ luafile ~/.config/nvim/init.lua
