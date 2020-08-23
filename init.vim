@@ -53,9 +53,10 @@ function! PackInit() abort
   call minpac#add('direnv/direnv.vim')
   "LeaderF 
   call minpac#add('Yggdroot/LeaderF', {'do': './install.sh'})
-  "Deoplete
-  call minpac#add('Shougo/deoplete.nvim', {'do': 'UpdateRemotePlugins' })
-  call minpac#add('Shougo/deoplete-lsp')
+  "Completion nvim
+  call minpac#add('nvim-lua/completion-nvim')
+  "Diagnostic nvim
+  call minpac#add('nvim-lua/diagnostic-nvim')
   " }}}
 
 endfunction
@@ -127,3 +128,5 @@ let g:Lf_DefaultMode = 'NameOnly'
 " Do not use version control tool to list files under a directory since
 " submodules are not searched by default.
 let g:Lf_UseVersionControlTool = 0
+
+luafile ~/.config/nvim/init.lua
