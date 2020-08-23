@@ -18,3 +18,8 @@ nvim_lsp.rust_analyzer.setup{
 nvim_lsp.vimls.setup{
 	on_attach=on_attach_vim
 }
+
+-- Lua
+nvim_lsp.sumneko_lua.setup{
+	on_attach=on_attach_vim
+}
