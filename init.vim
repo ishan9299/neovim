@@ -1,8 +1,9 @@
-" vim: set foldmethod=marker
+" vim: foldmethod=marker
 
 " ----- General Settings -----{{{1
 set nu rnu
 let mapleader      = ' '
+set path+=**
 
 " seoul256 (dark):
 "   Range:   233 (darkest) ~ 239 (lightest)
@@ -21,6 +22,12 @@ augroup highlight_yank
     autocmd!
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
 augroup END
+
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+map <leader>ew :e %%
+map <leader>es :sp %%
+map <leader>ev :vsp %%
+map <leader>et :tabe %%
 
 " ----- Minpac -----{{{1
 function! PackInit() abort
@@ -46,8 +53,6 @@ function! PackInit() abort
   call minpac#add('neovim/nvim-lsp', {'type': 'opt'})
   " Direnv
   call minpac#add('direnv/direnv.vim')
-  "LeaderF 
-  call minpac#add('Yggdroot/LeaderF', {'do': './install.sh'})
   "Completion nvim
   call minpac#add('nvim-lua/completion-nvim')
   "Diagnostic nvim
@@ -95,34 +100,6 @@ augroup END
 
 " ----- Deoplete ----- {{{2
 let g:deoplete#enable_at_startup = 1
-
-" ----- LeaderF ----- {{{2
-" don't show the help in normal mode
-" popup mode
-let g:Lf_WindowPosition = 'popup'
-let g:Lf_ShowDevIcons = 0
-
-let g:Lf_ShortcutF = "<leader>ff"
-noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
-noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
-noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
-noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
-
-" Ignore certain files and directories when searching files
-let g:Lf_WildIgnore = {
-    \ 'dir': ['.git', '__pycache__', '.DS_Store'],
-    \ 'file': ['*.exe', '*.dll', '*.so', '*.o', '*.pyc', '*.jpg', '*.png',
-    \ '*.gif', '*.db', '*.tgz', '*.tar.gz', '*.gz', '*.zip', '*.bin', '*.pptx',
-    \ '*.xlsx', '*.docx', '*.pdf', '*.tmp', '*.wmv', '*.mkv', '*.mp4',
-    \ '*.rmvb']
-    \}
-
-" Only fuzzy-search files names
-let g:Lf_DefaultMode = 'NameOnly'
-
-" Do not use version control tool to list files under a directory since
-" submodules are not searched by default.
-let g:Lf_UseVersionControlTool = 0
 
 " ----- Completion -----{{{2
 "chain completion
