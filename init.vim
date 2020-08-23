@@ -30,11 +30,16 @@ function! PackInit() abort
   " For Tables and alignment {{{2
   call minpac#add('godlygeek/tabular')
 
-  " Functionality {{{2
+  " Programming {{{2
+  " LSP
+  call minpac#add('neovim/nvim-lsp')
+  " Direnv
+  call minpac#add('direnv/direnv.vim')
   "LeaderF 
-  call minpac#add('Yggdroot/LeaderF', {'do': '!sh install.sh'})
+  call minpac#add('Yggdroot/LeaderF', {'do': './install.sh'})
   "Deoplete
   call minpac#add('Shougo/deoplete.nvim', {'do': 'UpdateRemotePlugins' })
+  call minpac#add('Shougo/deoplete-lsp')
   " }}}
 
 endfunction
