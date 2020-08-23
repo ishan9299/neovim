@@ -28,6 +28,12 @@ function! PackInit() abort
   call minpac#add('elzr/vim-json')
   " For Tables and alignment {{{2
   call minpac#add('godlygeek/tabular')
+
+  " Functionality {{{2
+  "LeaderF 
+  call minpac#add('Yggdroot/LeaderF', {'do': '!sh install.sh'})
+  "Deoplete
+  call minpac#add('Shougo/deoplete.nvim', {'do': 'UpdateRemotePlugins' })
   " }}}
 
 endfunction
@@ -68,3 +74,34 @@ let g:vim_markdown_json_frontmatter = 1  " for JSON format
 augroup pandoc_syntax
     au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
 augroup END
+
+" ----- Deoplete ----- {{{2
+let g:deoplete#enable_at_startup = 1
+
+" ----- LeaderF ----- {{{2
+" don't show the help in normal mode
+" popup mode
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_ShowDevIcons = 0
+
+let g:Lf_ShortcutF = "<leader>ff"
+noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+
+" Ignore certain files and directories when searching files
+let g:Lf_WildIgnore = {
+    \ 'dir': ['.git', '__pycache__', '.DS_Store'],
+    \ 'file': ['*.exe', '*.dll', '*.so', '*.o', '*.pyc', '*.jpg', '*.png',
+    \ '*.gif', '*.db', '*.tgz', '*.tar.gz', '*.gz', '*.zip', '*.bin', '*.pptx',
+    \ '*.xlsx', '*.docx', '*.pdf', '*.tmp', '*.wmv', '*.mkv', '*.mp4',
+    \ '*.rmvb']
+    \}
+
+" Only fuzzy-search files names
+let g:Lf_DefaultMode = 'NameOnly'
+
+" Do not use version control tool to list files under a directory since
+" submodules are not searched by default.
+let g:Lf_UseVersionControlTool = 0
