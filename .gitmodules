@@ -1,3 +1,9 @@
 [submodule "minpac"]
 	path = pack/minpac/opt/minpac
 	url = https://github.com/k-takata/minpac.git
+[submodule "lumiere"]
+	path = pack/minpac/opt/lumiere
+	url = https://github.com/alexanderjeurissen/lumiere.vim
+[submodule "seoul256"]
+	path = pack/minpac/opt/seoul256
+	url = https://github.com/junegunn/seoul256.vim.git
