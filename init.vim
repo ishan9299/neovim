@@ -3,7 +3,18 @@
 " ----- General Settings -----{{{1
 set nu rnu
 let mapleader      = ' '
+
+" seoul256 (dark):
+"   Range:   233 (darkest) ~ 239 (lightest)
+"   Default: 237
+let g:seoul256_background = 235
+" seoul256 (light):
+"   Range:   252 (darkest) ~ 256 (lightest)
+"   Default: 253
+"   let g:seoul256_background = 253
 colorscheme seoul256
+
+set guifont=Source\ Code\ Pro:h15
 
 " Highlight the yanked part
 augroup highlight_yank
@@ -17,6 +28,11 @@ function! PackInit() abort
 
   call minpac#init()
   call minpac#add('k-takata/minpac', {'type': 'opt'})
+
+  " ColorSchemes
+  call minpac#add('junegunn/seoul256.vim', {'type': 'opt'})
+  call minpac#add('alexanderjeurissen/lumiere.vim', {'type': 'opt'})
+  call minpac#add('rakr/vim-one', {'type': 'opt'})
 
   " Snippets {{{2
   call minpac#add('SirVer/ultisnips')
