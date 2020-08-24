@@ -1,13 +1,10 @@
 " vim: foldmethod=marker
 
 " ----- General Settings -----{{{1
-" Activate matchit plugin
-runtime! macros/matchit.vim
+let mapleader      = ' '
+lua require('settings')
+lua require('mappings')
 
-" Activate man page plugin
-runtime! ftplugin/man.vim
-
-"{ Builtin options and settings
 if !has('nvim')
     " Change cursor shapes based on whether we are in insert mode,
     " see https://vi.stackexchange.com/questions/9131/i-cant-switch-to-cursor-in-insert-mode
@@ -16,44 +13,7 @@ if !has('nvim')
     if exists("&t_SR")
         let &t_SR = "\<esc>[4 q"
     endif
-
-    " The number of color to use
-    set t_Co=256
 endif
-
-filetype plugin indent on
-syntax enable
-
-" Use list mode and customized listchars
-set list listchars=tab:▸\ ,extends:❯,precedes:❮,nbsp:+
-
-" Set height of status line
-set laststatus=2
-
-" Changing fillchars for folding, so there is no garbage charactes
-set fillchars=fold:\ ,vert:\|
-
-" Do not load netrw by default since I do not use it, see
-" https://github.com/bling/dotvim/issues/4
-let g:loaded_netrwPlugin = 1
-
-" Do not load tohtml.vim
-let g:loaded_2html_plugin = 1
-
-set nu rnu
-set path+=**
-
-" seoul256 (dark):
-"   Range:   233 (darkest) ~ 239 (lightest)
-"   Default: 237
-let g:seoul256_background = 235
-" seoul256 (light):
-"   Range:   252 (darkest) ~ 256 (lightest)
-"   Default: 253
-"   let g:seoul256_background = 253
-colorscheme seoul256
-
-set guifont=Source\ Code\ Pro:h15
 
 " Highlight the yanked part
 augroup highlight_yank
@@ -61,23 +21,6 @@ augroup highlight_yank
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
 augroup END
 
-" Ignore certain files and folders when globbing
-set wildignore+=*.o,*.obj,*.bin,*.dll,*.exe
-set wildignore+=*/.git/*,*/.svn/*,*/__pycache__/*,*/build/**
-set wildignore+=*.pyc
-set wildignore+=*.DS_Store
-set wildignore+=*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.pdf
-
-" ----- Mappings -----{{{2
-
-let mapleader      = ' '
-
-cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
-map <leader>ew :e %%
-map <leader>es :sp %%
-map <leader>ev :vsp %%
-map <leader>et :tabe %%
-"}}}
 
 " ----- Terminal -----{{{2
 if exists("##TermOpen")
@@ -91,15 +34,6 @@ if exists("##TermOpen")
 endif
 "}}}
 
-" ----- Focus ----- {{{2
-set winhighlight=NormalNC:ColorColumn
-augroup number_toggle
-    autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &number | set relativenumber | endif
-    autocmd BufLeave,FocusLost,InsertEnter,WinLeave * if &number | set norelativenumber | endif
-augroup END
-"  }}}
-
 " ----- Minpac -----{{{1
 function! PackInit() abort
   packadd minpac
@@ -107,7 +41,7 @@ function! PackInit() abort
   call minpac#init()
   call minpac#add('k-takata/minpac', {'type': 'opt'})
 
-" ----- Functionality -----{{{2
+" Functionality {{{2
   call minpac#add('junegunn/fzf')
   call minpac#add('junegunn/fzf.vim')
   " Snippets {{{2
@@ -145,29 +79,11 @@ command! PackStatus packadd minpac | call minpac#status()
 
 " ----- Plugin Settings ----- {{{1
 " Settings for my plugins
-
-" ----- Ultisnips ----- {{{2
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"  " use <Tab> to trigger autocompletion
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+lua require('Ultisnips')
+lua require('markdown')
+lua require('lsp')
 
 " ----- Markdown ----- {{{2
-" disable header folding
-let g:vim_markdown_folding_disabled = 1
-
-" do not use conceal feature, the implementation is not so good
-let g:vim_markdown_conceal = 0
-
-" disable math tex conceal feature
-let g:tex_conceal = ""
-let g:vim_markdown_math = 1
-
-" support front matter of various format
-let g:vim_markdown_frontmatter = 1  " for YAML format
-let g:vim_markdown_toml_frontmatter = 1  " for TOML format
-let g:vim_markdown_json_frontmatter = 1  " for JSON format
-
 augroup pandoc_syntax
     au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
 augroup END
@@ -224,7 +140,3 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 nnoremap <leader>fb :Buffers<CR>
 nnoremap <leader>gf :GFiles<CR>
 " }}}
-
-" LSP settings
-packadd nvim-lsp
-luafile ~/.config/nvim/init.lua
