@@ -97,7 +97,9 @@ command! -buffer -nargs=0 LspShowLineDiagnostics lua require'jumpLoc'.openLineDi
 nnoremap <buffer><silent> <C-h> <Cmd>LspShowLineDiagnostics<CR>
  
 let g:diagnostic_auto_popup_while_jump = 1
- 
+let g:diagnostic_enable_underline = 0
+let g:diagnostic_insert_delay = 1
+
 command! Format  execute 'lua vim.lsp.buf.formatting()'
  
 " Use <Tab> and <S-Tab> to navigate through popup menu
