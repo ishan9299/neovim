@@ -1,7 +1,12 @@
-vim.cmd('packadd nvim-lsp')
-local nvim_lsp = require('nvim_lsp')
+-- vim: foldmethod=marker
+
 local nvim_buf_set_keymap = vim.api.nvim_buf_set_keymap
 local nvim_buf_set_option = vim.api.nvim_buf_set_option
+local nvim_set_var = vim.api.nvim_set_var
+
+-- LSP {{{1
+vim.cmd('packadd nvim-lsp')
+local nvim_lsp = require('nvim_lsp')
 
 local on_attach = function(_, bufnr)
 	nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -27,3 +32,29 @@ for _, lsp in ipairs(servers) do
 		on_attach = on_attach,
 	}
 end
+
+-- Ultisnips{{{1
+-- Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+nvim_set_var('UltiSnipsExpandTrigger', '<tab>') -- Use <Tab> to trigger autocompletion
+nvim_set_var('UltiSnipsJumpForwardTrigger', '<tab>')
+nvim_set_var('UltiSnipsJumpBackwardTrigger', '<s-tab>')
+
+
+-- Markdown {{{1
+-- Disable header folding
+nvim_set_var('vim_markdown_folding_disabled', 1) 
+
+
+-- do not use conceal feature, the implementation is not so good
+nvim_set_var('vim_markdown_conceal', 0)
+
+
+-- disable math tex conceal feature
+nvim_set_var('tex_conceal', "")
+nvim_set_var('vim_markdown_math', 1)
+
+
+-- support front matter of various format
+nvim_set_var('vim_markdown_frontmatter', 1)  -- for YAML format
+nvim_set_var('vim_markdown_toml_frontmatter', 1) -- for TOML format
+nvim_set_var('vim_markdown_json_frontmatter', 1) -- for JSON format
