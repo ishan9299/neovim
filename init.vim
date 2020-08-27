@@ -53,11 +53,6 @@ command! PackStatus packadd minpac | call minpac#status()
 " Settings for my plugins
 lua require('plugins')
 
-" ----- Markdown ----- {{{2
-augroup pandoc_syntax
-    au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
-augroup END
-
 " ----- Completion -----{{{2
 " Use completion-nvim in every buffer
 augroup completion_nvim
@@ -73,10 +68,6 @@ let g:diagnostic_enable_underline = 0
 let g:diagnostic_insert_delay = 1
 
 command! Format  execute 'lua vim.lsp.buf.formatting()'
- 
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
  
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
