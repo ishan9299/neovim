@@ -1,38 +1,7 @@
 " vim: foldmethod=marker
 
 " ----- General Settings -----{{{1
-let mapleader      = ' '
-lua require('settings')
-lua require('mappings')
-
-if !has('nvim')
-    " Change cursor shapes based on whether we are in insert mode,
-    " see https://vi.stackexchange.com/questions/9131/i-cant-switch-to-cursor-in-insert-mode
-    let &t_SI = "\<esc>[6 q"
-    let &t_EI = "\<esc>[2 q"
-    if exists("&t_SR")
-        let &t_SR = "\<esc>[4 q"
-    endif
-endif
-
-" Highlight the yanked part
-augroup highlight_yank
-    autocmd!
-    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
-augroup END
-
-
-" ----- Terminal -----{{{2
-if exists("##TermOpen")
-    augroup term_settings
-        autocmd!
-        " Do not use number and relative number for terminal inside nvim
-        autocmd TermOpen * setlocal norelativenumber nonumber
-        " Go to insert mode by default to start typing command
-        autocmd TermOpen * startinsert
-    augroup END
-endif
-"}}}
+lua require('core')
 
 " ----- Minpac -----{{{1
 function! PackInit() abort
