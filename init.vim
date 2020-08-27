@@ -13,6 +13,9 @@ function! PackInit() abort
 " Functionality {{{2
   call minpac#add('junegunn/fzf')
   call minpac#add('junegunn/fzf.vim')
+  call minpac#add('justinmk/vim-dirvish')
+  call minpac#add('tpope/vim-surround')
+  call minpac#add('tpope/vim-repeat')
   " Snippets {{{2
   call minpac#add('SirVer/ultisnips')
   call minpac#add('honza/vim-snippets')
