@@ -11,6 +11,7 @@ local on_attach = function(_, bufnr)
 	require'completion'.on_attach()
 
 	-- Mappings.
+	-- These mappings are local to a buffer where lsp is running
 	local opts = { noremap=true, silent=true }
 	api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 	api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
