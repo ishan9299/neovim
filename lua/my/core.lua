@@ -1,7 +1,7 @@
 -- vim: foldmethod=marker
 
 local api = vim.api
-require('autocmds') 
+require('utils') 
 
 local opts = { silent = true, noremap = true }
 
@@ -28,11 +28,11 @@ api.nvim_set_keymap('n', '<A-l>', '<C-w>l', opts)
 -- }}}
 
 -- Terminal {{{2
-api.nvim_set_keymap('t', '<esc>', '<C-\\><C-N>', opts)
-api.nvim_set_keymap('t', '<A-h>', '<C-\\><C-N><C-w>h', opts)
-api.nvim_set_keymap('t', '<A-j>', '<C-\\><C-N><C-w>j', opts)
-api.nvim_set_keymap('t', '<A-k>', '<C-\\><C-N><C-w>k', opts)
-api.nvim_set_keymap('t', '<A-l>', '<C-\\><C-N><C-w>l', opts)
+api.nvim_set_keymap('t', '<esc>', [[<C-\><C-N>]], opts)
+api.nvim_set_keymap('t', '<A-h>', [[<C-\><C-N><C-w>h]], opts)
+api.nvim_set_keymap('t', '<A-j>', [[<C-\><C-N><C-w>j]], opts)
+api.nvim_set_keymap('t', '<A-k>', [[<C-\><C-N><C-w>k]], opts)
+api.nvim_set_keymap('t', '<A-l>', [[<C-\><C-N><C-w>l]], opts)
 -- }}}
 
 --- }}}
@@ -54,10 +54,11 @@ function toggle_light_dark()
 	end
 end
 api.nvim_set_keymap('n', '<F5>', '<cmd>lua toggle_light_dark()<CR>', opts)
-api.nvim_command('colorscheme one')
+api.nvim_command('colorscheme PaperColor')
 
 -- Relative line numbers
 vim.wo.relativenumber = true
+vim.wo.number = true
 
 -- Termguicolors
 api.nvim_set_option('termguicolors',true)
@@ -132,5 +133,9 @@ nvim_create_augroups(autocmds)
 --- }}}
 
 --- Terminal {{{1
+api.nvim_set_keymap('n', '<f7>', [[<cmd>lua package.loaded['window']=false; require'window'.create_win('botright split',0.45,nil,'silent! lcd %:h | term')<cr>]], opts)
+--- }}}
 
+--- Dirvish {{{1
+api.nvim_set_keymap('n', '<C-e>', [[<cmd>lua package.loaded['window']=false; require'window'.create_win('vsplit',nil,0.25,'silent! lcd %:h | Dirvish')<cr>]], opts)
 --- }}}

@@ -1,7 +1,6 @@
 " vim: foldmethod=marker
 
-" ----- General Settings -----{{{1
-lua require('core')
+lua require('my.core')
 
 " ----- Minpac -----{{{1
 function! PackInit() abort
@@ -51,7 +50,9 @@ command! PackStatus packadd minpac | call minpac#status()
 
 " ----- Plugin Settings ----- {{{1
 " Settings for my plugins
-lua require('plugins')
+lua require('my.plugins.lsp')
+lua require('my.plugins.markdown')
+lua require('my.plugins.Ultisnips')
 
 " ----- Completion -----{{{2
 " Use completion-nvim in every buffer
