@@ -16,3 +16,6 @@
 [submodule "jellybean"]
 	path = pack/colorschemes/opt/jellybean
 	url = https://github.com/nanotech/jellybeans.vim.git
+[submodule "colorbuddy"]
+	path = pack/colorschemes/opt/colorbuddy
+	url = https://github.com/tjdevries/colorbuddy.vim
