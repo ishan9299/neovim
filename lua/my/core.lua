@@ -124,6 +124,13 @@ local autocmds = {
 		{"TermOpen", "*", "setlocal norelativenumber nonumber"};
 		{"TermOpen", "*", "startinsert"};
 	};
+
+	completion = {
+		{ " Filetype " , " c     , cpp " , " setl omnifunc=v:lua.vim.lsp.omnifunc " };
+		{ " Filetype " , " rust        " , " setl omnifunc=v:lua.vim.lsp.omnifunc " };
+		{ " Filetype " , " lua         " , " setl omnifunc=v:lua.vim.lsp.omnifunc " };
+		{ " Filetype " , " vim         " , " setl omnifunc=v:lua.vim.lsp.omnifunc " };
+	};
 }
 
 nvim_create_augroups(autocmds)
@@ -133,9 +140,22 @@ nvim_create_augroups(autocmds)
 --- }}}
 
 --- Terminal {{{1
-api.nvim_set_keymap('n', '<f7>', [[<cmd>lua package.loaded['window']=false; require'window'.create_win('botright split',0.45,nil,'silent! lcd %:h | term')<cr>]], opts)
+terminal = {
+	position = 'botright split',
+	width = nil,
+	height = 0.25,
+	command = 'silent! lcd %:h | term'
+}
+
+api.nvim_set_keymap('n', '<f7>', [[<cmd>lua require'window'.create_win(terminal)<cr>]], opts)
 --- }}}
 
 --- Dirvish {{{1
-api.nvim_set_keymap('n', '<C-e>', [[<cmd>lua package.loaded['window']=false; require'window'.create_win('vsplit',nil,0.25,'silent! lcd %:h | Dirvish')<cr>]], opts)
+dirvish = {
+	position = 'vsplit',
+	width = 0.25,
+	height = nil,
+	command = 'silent! lcd %h | Dirvish'
+}
+api.nvim_set_keymap('n', '<C-e>', [[<cmd>lua require'window'.create_win(dirvish)<cr>]], opts)
 --- }}}
