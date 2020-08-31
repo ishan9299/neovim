@@ -45,16 +45,15 @@ api.nvim_set_keymap('t', '<A-l>', [[<C-\><C-N><C-w>l]], opts)
 api.nvim_set_option('winhighlight','NormalNC:ColorColumn')
 
 -- Colorschemes
-function toggle_light_dark()
-	local background = api.nvim_get_option('bg')
-	if background == 'light' then
-		api.nvim_set_option('bg','dark')
-	else
-		api.nvim_set_option('bg','light')
-	end
-end
-api.nvim_set_keymap('n', '<F5>', '<cmd>lua toggle_light_dark()<CR>', opts)
-api.nvim_command('colorscheme PaperColor')
+-- function toggle_light_dark()
+-- 	local background = api.nvim_get_option('bg')
+-- 	if background == 'light' then
+-- 		api.nvim_set_option('bg','dark')
+-- 	else
+-- 		api.nvim_set_option('bg','light')
+-- 	end
+-- end
+-- api.nvim_set_keymap('n', '<F5>', '<cmd>lua toggle_light_dark()<CR>', opts)
 
 -- Relative line numbers
 vim.wo.relativenumber = true
