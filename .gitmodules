@@ -1,0 +1,54 @@
+[submodule "vim-dirvish"]
+	path = pack/packages/opt/vim-dirvish
+	url = https://github.com/justinmk/vim-dirvish
+[submodule "nvim-lsp"]
+	path = pack/packages/opt/nvim-lsp
+	url = https://github.com/neovim/nvim-lsp
+[submodule "tabular"]
+	path = pack/packages/opt/tabular
+	url = https://github.com/godlygeek/tabular
+[submodule "fzf"]
+	path = pack/packages/opt/fzf
+	url = https://github.com/junegunn/fzf
+[submodule "fzf.vim"]
+	path = pack/packages/opt/fzf.vim
+	url = https://github.com/junegunn/fzf.vim
+[submodule "goyo.vim"]
+	path = pack/packages/opt/goyo.vim
+	url = https://github.com/junegunn/goyo.vim
+[submodule "completion-nvim"]
+	path = pack/packages/opt/completion-nvim
+	url = https://github.com/nvim-lua/completion-nvim
+[submodule "diagnostic-nvim"]
+	path = pack/packages/opt/diagnostic-nvim
+	url = https://github.com/nvim-lua/diagnostic-nvim
+[submodule "vim-waikiki"]
+	path = pack/packages/opt/vim-waikiki
+	url = https://github.com/fcpg/vim-waikiki
+[submodule "vim-repeat"]
+	path = pack/packages/opt/vim-repeat
+	url = https://github.com/tpope/vim-repeat
+[submodule "vim-surround"]
+	path = pack/packages/opt/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule "vim-commentary"]
+	path = pack/packages/opt/vim-commentary
+	url = https://github.com/tpope/vim-commentary
+[submodule "nvim-colorizer.lua"]
+	path = pack/packages/opt/nvim-colorizer.lua
+	url = https://github.com/norcalli/nvim-colorizer.lua
+[submodule "vim-snippets"]
+	path = pack/packages/opt/vim-snippets
+	url = https://github.com/honza/vim-snippets
+[submodule "direnv.vim"]
+	path = pack/packages/opt/direnv.vim
+	url = https://github.com/direnv/direnv.vim
+[submodule "colorbuddy.vim"]
+	path = pack/packages/opt/colorbuddy.vim
+	url = https://github.com/tjdevries/colorbuddy.vim
+[submodule "vim-pandoc-syntax"]
+	path = pack/packages/opt/vim-pandoc-syntax
+	url = https://github.com/vim-pandoc/vim-pandoc-syntax
+[submodule "vim-markdown"]
+	path = pack/packages/opt/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown

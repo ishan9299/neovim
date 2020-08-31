@@ -1,4 +1,3 @@
-vim.cmd('packadd colorbuddy')
 vim.cmd('highlight clear')
 vim.cmd('syntax reset')
 
