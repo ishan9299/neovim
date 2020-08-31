@@ -1,4 +1,6 @@
 vim.cmd('packadd colorbuddy')
+vim.cmd('highlight clear')
+vim.cmd('syntax reset')
 local Color, colors, Group, groups, styles = require("colorbuddy").setup()
 
 
@@ -197,22 +199,23 @@ Color.new("cyan_fringe_bg"    , "#0068a0")
 -- the window divider colours apply to faces with just an fg value
 --
 -- all pairs are combinable with themselves
-Color.new("bg_hl_line" , "#151823")
-Color.new("bg_paren_match" , "#5f362f")
-Color.new("bg_paren_match_intense" , "#255650")
-Color.new("bg_region" , "#3c3c3c")
 
-Color.new("bg_tab_bar" , "#2c2c2c")
-Color.new("bg_tab_active" , "#0e0e0e")
+Color.new("bg_hl_line"             , "#151823")
+Color.new("bg_paren_match"         , "#5f362f")
+Color.new("bg_paren_match_intense" , "#255650")
+Color.new("bg_region"              , "#3c3c3c")
+
+Color.new("bg_tab_bar"      , "#2c2c2c")
+Color.new("bg_tab_active"   , "#0e0e0e")
 Color.new("bg_tab_inactive" , "#3d3d3d")
-Color.new("fg_tab_active" , "#5ac3cf")
+Color.new("fg_tab_active"   , "#5ac3cf")
 
 Color.new("fg_escape_char_construct" , "#e7a59a")
 Color.new("fg_escape_char_backslash" , "#abab00")
 
-Color.new("fg_lang_error" , "#ef8690")
+Color.new("fg_lang_error"   , "#ef8690")
 Color.new("fg_lang_warning" , "#b0aa00")
-Color.new("fg_lang_note" , "#9d9def")
+Color.new("fg_lang_note"    , "#9d9def")
 
 Color.new("fg_window_divider_inner" , "#646464")
 Color.new("fg_window_divider_outer" , "#969696")
@@ -225,27 +228,27 @@ Color.new("fg_header" , "#dddddd")
 Color.new("bg_whitespace" , "#170016") 
 Color.new("fg_whitespace" , "#a4959f")
 
-Color.new("bg_diff_heading" , "#304466") 
+Color.new("bg_diff_heading" , "#304466")
 Color.new("fg_diff_heading" , "#dadffe")
-Color.new("bg_diff_added" , "#0a280a") 
-Color.new("fg_diff_added" , "#94ba94")
-Color.new("bg_diff_changed" , "#2a2000") 
+Color.new("bg_diff_added"   , "#0a280a")
+Color.new("fg_diff_added"   , "#94ba94")
+Color.new("bg_diff_changed" , "#2a2000")
 Color.new("fg_diff_changed" , "#b0ba9f")
-Color.new("bg_diff_removed" , "#40160f") 
+Color.new("bg_diff_removed" , "#40160f")
 Color.new("fg_diff_removed" , "#c6adaa")
 
-Color.new("bg_diff_refine_added" , "#005a36") 
-Color.new("fg_diff_refine_added" , "#e0f6e0")
-Color.new("bg_diff_refine_changed" , "#585800") 
+Color.new("bg_diff_refine_added"   , "#005a36")
+Color.new("fg_diff_refine_added"   , "#e0f6e0")
+Color.new("bg_diff_refine_changed" , "#585800")
 Color.new("fg_diff_refine_changed" , "#ffffcc")
-Color.new("bg_diff_refine_removed" , "#852828") 
+Color.new("bg_diff_refine_removed" , "#852828")
 Color.new("fg_diff_refine_removed" , "#ffd9eb")
 
-Color.new("bg_diff_focus_added" , "#203d20") 
-Color.new("fg_diff_focus_added" , "#b4ddb4")
-Color.new("bg_diff_focus_changed" , "#4a3a10") 
+Color.new("bg_diff_focus_added"   , "#203d20")
+Color.new("fg_diff_focus_added"   , "#b4ddb4")
+Color.new("bg_diff_focus_changed" , "#4a3a10")
 Color.new("fg_diff_focus_changed" , "#d0daaf")
-Color.new("bg_diff_focus_removed" , "#5e2526") 
+Color.new("bg_diff_focus_removed" , "#5e2526")
 Color.new("fg_diff_focus_removed" , "#eebdba")
 
 Color.new("bg_diff_neutral_0" , "#575757") 
@@ -263,63 +266,63 @@ Color.new("bg_mark_alt" , "#3f2210")
 Color.new("fg_mark_alt" , "#f0aa20")
 
 
-Group.new('Normal'                , colors.fg                , colors.bg)
-Group.new('Function'              , colors.magenta           , colors.none)
-Group.new('Error'                 , colors.fg                , colors.red_intense_bg                 , styles.bold)
-Group.new('ErrorMsg'              , colors.fg                , colors.red_intense_bg)
-Group.new('Warning'               , colors.yellow_alt        , colors.none)
-Group.new('Boolean'               , colors.fg                , colors.none) --change
-Group.new('Character'             , colors.fg                , colors.none) --change
-Group.new('Comment'               , colors.fg_alt            , colors.none                           , styles.italic)
-Group.new('Conditional'           , colors.fg                , colors.none) --change
-Group.new('Constant'              , colors.blue_alt_other    , colors.none)
-Group.new("Define"                , colors.fg                , colors.none                           , styles.NONE)
-Group.new("Delimiter"             , colors.fg                , colors.none                           , styles.NONE)
-Group.new("Exception"             , colors.fg                , colors.none                           , styles.NONE)
-Group.new('Float'                 , colors.fg                , colors.none)
-Group.new("Identifier"            , colors.fg                , colors.none                           , styles.NONE) --change
-Group.new("Include"               , colors.fg                , colors.none                           , styles.NONE) --change
-Group.new('Keyworkd'              , colors.magenta_alt_other , colors.none)
-Group.new("Label"                 , colors.fg                , colors.none                           , styles.NONE) --change
-Group.new('Number'                , colors.fg                , colors.none)
-Group.new("Operator"              , colors.fg                , colors.none                           , styles.NONE) --change
-Group.new('PreProc'               , colors.red_alt_other     , colors.none)
-Group.new("Repeat"                , colors.fg                , colors.none                           , styles.NONE) --change
-Group.new("Special"               , colors.fg                , colors.none                           , styles.NONE) --change
-Group.new("SpecialChar"           , colors.fg                , colors.none                           , styles.NONE) --change
-Group.new("SpecialComment"        , colors.fg                , colors.none                           , styles.NONE) --change
-Group.new("Statement"             , colors.fg                , colors.none                           , styles.NONE) --change
-Group.new("StorageClass"          , colors.fg                , colors.none                           , styles.NONE) --change
-Group.new("String"                , colors.fg                , colors.none                           , styles.NONE) --change
-Group.new("Structure"             , colors.fg                , colors.none                           , styles.NONE) --change
-Group.new("Tag"                   , colors.fg                , colors.none                           , styles.NONE) --change
-Group.new("Title"                 , colors.fg                , colors.none)                 --change
-Group.new("Todo"                  , colors.fg                , colors.none                           , styles.bold) --change
-Group.new("Type"                  , colors.fg                , colors.none                           , styles.NONE) --change
-Group.new("Typedef"               , colors.fg                , colors.none                           , styles.NONE) --change
-Group.new('Visual'                , colors.fg                , colors.magenta_intense_bg)
-Group.new('String'                , colors.blue_alt          , colors.none)
-Group.new('Type'                  , colors.magenta_alt       , colors.none)
-Group.new('TabLine'               , colors.fg_dim            , colors.bg_tab_inactive)
-Group.new('TabLineSel'            , colors.fg                , colors.bg_tab_active)
-Group.new('Search'                , colors.fg                , colors.green_intense_bg)
-Group.new('EndOfBuffer'           , colors.fg_inactive       , colors.none)
+Group.new('Normal'         , colors.fg                , colors.bg)
+Group.new('Function'       , colors.magenta           , colors.none)
+Group.new('Error'          , colors.fg                , colors.red_intense_bg      , styles.bold)
+Group.new('ErrorMsg'       , colors.fg                , colors.red_intense_bg)
+Group.new('Warning'        , colors.yellow_alt        , colors.none)
+Group.new('Boolean'        , colors.blue              , colors.none)
+Group.new('Character'      , colors.blue_alt          , colors.none)
+Group.new('Comment'        , colors.fg_alt            , colors.none                , styles.italic)
+Group.new('Conditional'    , colors.magenta_alt_other , colors.none)
+Group.new('Constant'       , colors.blue_alt_other    , colors.none)
+Group.new("Define"         , colors.fg                , colors.none                , styles.NONE)
+Group.new("Delimiter"      , colors.fg                , colors.none                , styles.NONE)
+Group.new("Directory"      , colors.blue              , colors.none                , styles.none)
+Group.new("Exception"      , colors.magenta_alt_other , colors.none                , styles.NONE)
+Group.new('Float'          , colors.fg                , colors.none)
+Group.new("Identifier"     , colors.blue              , colors.none                , styles.NONE)
+Group.new("Include"        , colors.red               , colors.none                , styles.NONE)
+Group.new('Keyword'        , colors.magenta_alt_other , colors.none)
+Group.new("Label"          , colors.cyan              , colors.none                , styles.NONE)
+Group.new('Number'         , colors.fg                , colors.none)
+Group.new("Operator"       , groups.Normal            , colors.none                , styles.NONE)
+Group.new('PreProc'        , colors.red_alt_other     , colors.none)
+Group.new("Repeat"         , colors.magenta_alt_other , colors.none                , styles.NONE)
+Group.new("Special"        , colors.fg                , colors.none                , styles.NONE) --change
+Group.new("SpecialChar"    , colors.blue_alt_other    , colors.none                , styles.NONE)
+Group.new("SpecialComment" , colors.fg_alt            , colors.none                , styles.NONE)
+Group.new("Statement"      , colors.magenta_alt_other , colors.none                , styles.NONE)
+Group.new("StorageClass"   , colors.magenta_alt_other , colors.none                , styles.NONE)
+Group.new("String"         , colors.blue_alt          , colors.none                , styles.NONE)
+Group.new("Structure"      , colors.magenta_alt_other , colors.none                , styles.NONE)
+Group.new("Tag"            , colors.magenta_active    , colors.none                , styles.NONE)
+Group.new("Title"          , colors.cyan_nuanced      , colors.none                , styles.bold)
+Group.new("Todo"           , colors.magenta           , colors.none                , styles.bold)
+Group.new("Type"           , colors.magenta_alt       , colors.none                , styles.NONE)
+Group.new("Typedef"        , colors.magenta_alt       , colors.none                , styles.NONE)
+Group.new('Visual'         , colors.fg                , colors.magenta_intense_bg)
+Group.new('Type'           , colors.magenta_alt       , colors.none)
+Group.new('TabLine'        , colors.fg_dim            , colors.bg_tab_inactive)
+Group.new('TabLineSel'     , colors.fg                , colors.bg_tab_active)
+Group.new('Search'         , colors.fg                , colors.green_intense_bg)
+Group.new('EndOfBuffer'    , colors.fg_inactive       , colors.none)
 -- Statusline
-Group.new('StatusLine'            , colors.fg_alt            , colors.bg_active)
-Group.new('StatusLineNC'          , colors.bg_region         , colors.bg_active)
+Group.new('StatusLine'     , colors.fg_alt            , colors.bg_active)
+Group.new('StatusLineNC'   , colors.bg_region         , colors.bg_active)
 -- Line Numbers
-Group.new('LineNr'                , colors.fg_alt            , colors.bg_dim)
-Group.new('CursorLineNr'          , colors.fg_active         , colors.bg_active                      , styles.bold)
-Group.new('CursorLine'            , colors.none              , colors.bg_inactive)
-Group.new('SignColumn'            , colors.none              , colors.bg_inactive)
-Group.new('VertSplit'             , colors.fg                , colors.none)
+Group.new('LineNr'         , colors.fg_alt            , colors.bg_dim)
+Group.new('CursorLineNr'   , colors.fg_active         , colors.bg_active           , styles.bold)
+Group.new('CursorLine'     , colors.none              , colors.bg_inactive)
+Group.new('SignColumn'     , colors.none              , colors.bg_inactive)
+Group.new('VertSplit'      , colors.fg                , colors.none)
 -- Parenthesis
-Group.new('MatchParen'            , colors.fg                , colors.bg_paren_match)
+Group.new('MatchParen'     , colors.fg                , colors.bg_paren_match)
 -- Completion(Pmenu)
-Group.new('Pmenu'                 , colors.fg_active         , colors.bg_active)
-Group.new('PmenuSel'              , colors.fg_dim            , colors.bg_dim)
-Group.new('PmenuSbar'             , colors.none              , colors.bg_inactive)
-Group.new('PmenuThumb'            , colors.none              , colors.fg)
+Group.new('Pmenu'          , colors.fg_active         , colors.bg_active)
+Group.new('PmenuSel'       , colors.fg_dim            , colors.bg_dim)
+Group.new('PmenuSbar'      , colors.none              , colors.bg_inactive)
+Group.new('PmenuThumb'     , colors.none              , colors.fg)
 
 
 -- vim
@@ -338,5 +341,6 @@ Group.new('nvimMap'               , groups.vimMap            , colors.none)
 
 
 -- built_in LSP
-Group.new("LSPDiagnosticsWarning" , colors.yellow_active     , colors.none)
-Group.new("LSPDiagnosticsError"   , colors.red_active        , colors.none)
+Group.new("LSPDiagnosticsWarning" , colors.fg_lang_error   , colors.none)
+Group.new("LSPDiagnosticsError"   , colors.fg_lang_warning , colors.none)
+Group.new("LSPDiagnosticsHint"    , colors.fg_lang_note    , colors.none)
