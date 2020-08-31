@@ -347,3 +347,25 @@ Group.new('nvimMap'               , groups.vimMap            , colors.none)
 Group.new("LSPDiagnosticsWarning" , colors.fg_lang_error   , colors.none)
 Group.new("LSPDiagnosticsError"   , colors.fg_lang_warning , colors.none)
 Group.new("LSPDiagnosticsHint"    , colors.fg_lang_note    , colors.none)
+
+-- Spellings
+Group.new("SpellBad" , colors.fg_lang_error , colors.none , styles.none)
+Group.new("SpellCap" , colors.fg_lang_error , colors.none , styles.none)
+
+-- Markdown
+Group.new("markdownH1"            , colors.fg              , colors.magenta_nuanced_bg , styles.bold)
+Group.new("markdownH2"            , colors.fg_special_warm , colors.red_nuanced_bg     , styles.bold)
+Group.new("markdownH3"            , colors.fg_special_cold , colors.blue_nuanced_bg    , styles.bold)
+Group.new("markdownH4"            , colors.fg_special_mild , colors.cyan_nuanced_bg    , styles.bold)
+Group.new("markdownH5"            , colors.fg_special_calm , colors.none               , styles.bold)
+Group.new("markdownH6"            , colors.yellow_nuanced  , colors.none               , styles.bold)
+
+Group.new("markdownCodeDelimiter" , colors.green_alt_other , colors.none   , styles.bold)
+Group.new("markdownCode"	  , colors.fg_special_mild , colors.bg_dim   , styles.none)
+Group.new("markdownCodeBlock"	  , colors.fg_special_mild , colors.bg_dim   , styles.none)
+
+
+Group.new("markdownLinkText"      , colors.fg_special_cold , colors.none               , styles.italic)
+Group.new("markdownUrl"           , colors.blue            , colors.none               , styles.underline)
+
+Group.new("markdownFootnote"      , colors.blue_alt        , colors.none               , styles.underline)

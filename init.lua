@@ -7,17 +7,36 @@ local opts = { silent = true, noremap = true }
 
 vim.g.mapleader = ' '
 
+-- Plugins
+api.nvim_command('packadd! vim-dirvish')
+api.nvim_command('packadd! vim-repeat')
+api.nvim_command('packadd! vim-commentary')
+api.nvim_command('packadd! vim-snippets')
+api.nvim_command('packadd! ultisnips')
+api.nvim_command('packadd! nvim-lsp')
+api.nvim_command('packadd! completion-nvim')
+api.nvim_command('packadd! diagnostic-nvim')
+api.nvim_command('packadd! colorbuddy.vim')
+api.nvim_command('packadd! nvim-colorizer.lua')
+api.nvim_command('packadd! direnv.vim')
+api.nvim_command('packadd! fzf')
+api.nvim_command('packadd! fzf.vim')
+api.nvim_command('packadd! vim-waikiki')
+
+-- Colorizer
+require'colorizer'.setup()
+
 --- Mappings {{{1
 -- Edit command
-api.nvim_set_keymap('n', '<leader>ew', ':e <C-R>=expand("%:p:h") . "/" <CR>', { silent = false, noremap = true })
-api.nvim_set_keymap('n', '<leader>es', ':sp <C-R>=expand("%:p:h") . "/" <CR>', { silent = false, noremap = true })
-api.nvim_set_keymap('n', '<leader>ev', ':vsp <C-R>=expand("%:p:h") . "/" <CR>', { silent = false, noremap = true })
-api.nvim_set_keymap('n', '<leader>et', ':tabe <C-R>=expand("%:p:h") . "/" <CR>', { silent = false, noremap = true })
+api.nvim_set_keymap('n', '<leader>ew', ':e    <C-R>=expand("%:p:h") . "/" <CR>' , { silent = false, noremap = true })
+api.nvim_set_keymap('n', '<leader>es', ':sp   <C-R>=expand("%:p:h") . "/" <CR>'	, { silent = false, noremap = true })
+api.nvim_set_keymap('n', '<leader>ev', ':vsp  <C-R>=expand("%:p:h") . "/" <CR>' , { silent = false, noremap = true })
+api.nvim_set_keymap('n', '<leader>et', ':tabe <C-R>=expand("%:p:h") . "/" <CR>' , { silent = false, noremap = true })
 
 -- Tabs
-api.nvim_set_keymap('n' , 'tn' , ':tabnew<CR>'  , opts)
-api.nvim_set_keymap('n' , 'tj' , ':tabprev<CR>' , opts)
-api.nvim_set_keymap('n' , 'tn' , ':tabNext<CR>' , opts)
+api.nvim_set_keymap('n' , 'tn' , ':tabnew  <CR>'  , opts)
+api.nvim_set_keymap('n' , 'tj' , ':tabprev <CR>'  , opts)
+api.nvim_set_keymap('n' , 'tk' , ':tabNext <CR>'  , opts)
 
 -- Buffers
 api.nvim_set_keymap('n' , '<leader>bd'       , ':bd <CR>' , opts)
@@ -49,15 +68,26 @@ api.nvim_set_keymap('n', '<f10>' , [[:echo "hi<" . synIDattr(synID(line("."),col
 -- Winhighlight command
 api.nvim_set_option('winhighlight','NormalNC:ColorColumn')
 
+-- Termguicolors
+api.nvim_set_option('termguicolors',true)
+
 -- Colorschemes
-require('modus-operandi')
+
+-- local background = api.nvim_get_option('bg')
+-- function toggle_theme(background)
+-- 	if background == 'light' then
+-- 		require('modus-vivendi')
+-- 	else
+-- 		require('modus-operandi')
+-- 	end
+-- end
+
+require('modus-vivendi')
+api.nvim_set_keymap('n', '<f5>', [[<cmd> lua toggle_theme <cr>]] , opts)
 
 -- Relative line numbers
 vim.wo.relativenumber = true
 vim.wo.number = true
-
--- Termguicolors
-api.nvim_set_option('termguicolors',true)
 
 -- Show unwanted tabs and spaces
 api.nvim_set_option('listchars','tab:▸ ,extends:❯,precedes:❮,nbsp:+')
@@ -139,7 +169,6 @@ terminal = {
 	height   = 0.25,
 	command  = 'silent! lcd %:h | term'
 }
-
 api.nvim_set_keymap('n', '<f7>', [[<cmd>lua require'window'.create_win(terminal)<cr>]], opts)
 
 
@@ -151,23 +180,3 @@ dirvish = {
 	command  = 'silent! lcd %h | Dirvish'
 }
 api.nvim_set_keymap('n', '<C-e>', [[<cmd>lua require'window'.create_win(dirvish)<cr>]], opts)
-
-
--- Plugins
-api.nvim_command('packadd! vim-dirvish')
-api.nvim_command('packadd! vim-repeat')
-api.nvim_command('packadd! vim-commentary')
-api.nvim_command('packadd! vim-snippets')
-api.nvim_command('packadd! ultisnips')
-api.nvim_command('packadd! nvim-lsp')
-api.nvim_command('packadd! completion-nvim')
-api.nvim_command('packadd! diagnostic-nvim')
-api.nvim_command('packadd! colorbuddy.vim')
-api.nvim_command('packadd! nvim-colorizer.lua')
-api.nvim_command('packadd! direnv.vim')
-api.nvim_command('packadd! fzf')
-api.nvim_command('packadd! fzf.vim')
-api.nvim_command('packadd! vim-waikiki')
-
--- Colorizer
-require'colorizer'.setup()
