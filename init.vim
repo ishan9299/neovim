@@ -1,6 +1,15 @@
 " vim: foldmethod=marker
 
+" Tabs
+nmap tj :tabprevious<cr>
+nmap tk :tabNext<cr>
+nmap tn :tabnew<cr>
+
+" For colorschemes
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+
 lua require('my.core')
+lua require('modus-operandi')
 
 " ----- Minpac -----{{{1
 function! PackInit() abort
@@ -15,6 +24,7 @@ function! PackInit() abort
   call minpac#add('justinmk/vim-dirvish')
   call minpac#add('tpope/vim-surround')
   call minpac#add('tpope/vim-repeat')
+  call minpac#add('norcalli/nvim-colorizer.lua', {'type': 'opt'})
   " Snippets {{{2
   call minpac#add('SirVer/ultisnips')
   call minpac#add('honza/vim-snippets')
@@ -137,3 +147,8 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 nnoremap <leader>fb :Buffers<CR>
 nnoremap <leader>gf :GFiles<CR>
 " }}}
+
+" }}}
+"
+packadd! nvim-colorizer.lua
+lua require'colorizer'.setup()
