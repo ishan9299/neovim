@@ -285,14 +285,24 @@ Group.new("Identifier"     , colors.blue              , colors.none             
 Group.new("Include"        , colors.red               , colors.none                , styles.NONE)
 Group.new('Keyword'        , colors.magenta_alt_other , colors.none)
 Group.new("Label"          , colors.cyan              , colors.none                , styles.NONE)
+-- Parenthesis
+Group.new('MatchParen'     , colors.fg                , colors.bg_paren_match)
 Group.new('Number'         , colors.fg                , colors.none)
 Group.new("Operator"       , groups.Normal            , colors.none                , styles.NONE)
+-- Completion(Pmenu)
+Group.new('Pmenu'          , colors.fg_active         , colors.bg_active)
+Group.new('PmenuSel'       , colors.fg_dim            , colors.bg_dim)
+Group.new('PmenuSbar'      , colors.none              , colors.bg_inactive)
+Group.new('PmenuThumb'     , colors.none              , colors.fg)
 Group.new('PreProc'        , colors.red_alt_other     , colors.none)
 Group.new("Repeat"         , colors.magenta_alt_other , colors.none                , styles.NONE)
 Group.new("Special"        , colors.fg                , colors.none                , styles.NONE) --change
 Group.new("SpecialChar"    , colors.blue_alt_other    , colors.none                , styles.NONE)
 Group.new("SpecialComment" , colors.fg_alt            , colors.none                , styles.NONE)
 Group.new("Statement"      , colors.magenta_alt_other , colors.none                , styles.NONE)
+-- Statusline
+Group.new('StatusLine'     , colors.fg_alt            , colors.bg_active)
+Group.new('StatusLineNC'   , colors.bg_region         , colors.bg_active)
 Group.new("StorageClass"   , colors.magenta_alt_other , colors.none                , styles.NONE)
 Group.new("String"         , colors.blue_alt          , colors.none                , styles.NONE)
 Group.new("Structure"      , colors.magenta_alt_other , colors.none                , styles.NONE)
@@ -307,22 +317,12 @@ Group.new('TabLine'        , colors.fg_dim            , colors.bg_tab_inactive)
 Group.new('TabLineSel'     , colors.fg                , colors.bg_tab_active)
 Group.new('Search'         , colors.fg                , colors.green_intense_bg)
 Group.new('EndOfBuffer'    , colors.fg_inactive       , colors.none)
--- Statusline
-Group.new('StatusLine'     , colors.fg_alt            , colors.bg_active)
-Group.new('StatusLineNC'   , colors.bg_region         , colors.bg_active)
 -- Line Numbers
 Group.new('LineNr'         , colors.fg_alt            , colors.bg_dim)
 Group.new('CursorLineNr'   , colors.fg_active         , colors.bg_active           , styles.bold)
 Group.new('CursorLine'     , colors.none              , colors.bg_inactive)
 Group.new('SignColumn'     , colors.none              , colors.bg_inactive)
 Group.new('VertSplit'      , colors.fg                , colors.none)
--- Parenthesis
-Group.new('MatchParen'     , colors.fg                , colors.bg_paren_match)
--- Completion(Pmenu)
-Group.new('Pmenu'          , colors.fg_active         , colors.bg_active)
-Group.new('PmenuSel'       , colors.fg_dim            , colors.bg_dim)
-Group.new('PmenuSbar'      , colors.none              , colors.bg_inactive)
-Group.new('PmenuThumb'     , colors.none              , colors.fg)
 
 
 -- vim
@@ -341,6 +341,11 @@ Group.new('nvimMap'               , groups.vimMap            , colors.none)
 
 
 -- built_in LSP
-Group.new("LSPDiagnosticsWarning" , colors.fg_lang_error   , colors.none)
-Group.new("LSPDiagnosticsError"   , colors.fg_lang_warning , colors.none)
-Group.new("LSPDiagnosticsHint"    , colors.fg_lang_note    , colors.none)
+Group.new("LSPDiagnosticsWarning" , colors.yellow_active , colors.none)
+Group.new("LSPDiagnosticsError"   , colors.red_active    , colors.none)
+Group.new("LSPDiagnosticsHint"    , colors.green_active  , colors.none)
+
+
+-- Spellings
+Group.new("SpellBad" , colors.fg_lang_error , colors.none , styles.none)
+Group.new("SpellCap" , colors.fg_lang_error , colors.none , styles.none)
