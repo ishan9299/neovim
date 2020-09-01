@@ -22,6 +22,7 @@ api.nvim_command('packadd! direnv.vim')
 api.nvim_command('packadd! fzf')
 api.nvim_command('packadd! fzf.vim')
 api.nvim_command('packadd! vim-waikiki')
+api.nvim_command('packadd! tabular')
 
 -- Colorizer
 require'colorizer'.setup()
@@ -140,6 +141,10 @@ local autocmds = {
 
 	markdown_syntax = {
 		{"BufNewFile,BufFilePre,BufRead", "*.md", "set filetype=markdown"};
+	};
+
+	nix_syntax = {
+		{"BufNewFile,BufFilePre,BufRead", "*.nix", "set filetype=nix"};
 	};
 
 	terminal = {
