@@ -239,26 +239,13 @@ Color.new("fg_diff_changed" , "#b0ba9f")
 Color.new("bg_diff_removed" , "#40160f")
 Color.new("fg_diff_removed" , "#c6adaa")
 
-Color.new("bg_diff_refine_added"   , "#005a36")
-Color.new("fg_diff_refine_added"   , "#e0f6e0")
-Color.new("bg_diff_refine_changed" , "#585800")
-Color.new("fg_diff_refine_changed" , "#ffffcc")
-Color.new("bg_diff_refine_removed" , "#852828")
-Color.new("fg_diff_refine_removed" , "#ffd9eb")
-
-Color.new("bg_diff_focus_added"   , "#203d20")
-Color.new("fg_diff_focus_added"   , "#b4ddb4")
-Color.new("bg_diff_focus_changed" , "#4a3a10")
-Color.new("fg_diff_focus_changed" , "#d0daaf")
-Color.new("bg_diff_focus_removed" , "#5e2526")
-Color.new("fg_diff_focus_removed" , "#eebdba")
-
-Color.new("bg_diff_neutral_0" , "#575757") 
-Color.new("fg_diff_neutral_0" , "#fcfcfc")
-Color.new("bg_diff_neutral_1" , "#454545") 
-Color.new("fg_diff_neutral_1" , "#dddddd")
-Color.new("bg_diff_neutral_2" , "#313131") 
-Color.new("fg_diff_neutral_2" , "#bfbfbf")
+-- Might added if there is a plugin
+-- Color.new("bg_diff_focus_added"   , "#203d20")
+-- Color.new("fg_diff_focus_added"   , "#b4ddb4")
+-- Color.new("bg_diff_focus_changed" , "#4a3a10")
+-- Color.new("fg_diff_focus_changed" , "#d0daaf")
+-- Color.new("bg_diff_focus_removed" , "#5e2526")
+-- Color.new("fg_diff_focus_removed" , "#eebdba")
 
 Color.new("bg_mark_sel" , "#002f2f") 
 Color.new("fg_mark_sel" , "#60cfa2")
@@ -331,7 +318,7 @@ Group.new('SignColumn'     , colors.none              , colors.bg_inactive)
 Group.new('VertSplit'      , colors.fg                , colors.none)
 Group.new('luaStatement'   , groups.Statement         , colors.none)
 
--- vim
+-- vim/nvim
 Group.new('vimcommand'            , groups.Statement         , colors.none)
 Group.new('vimLet'                , groups.vimcommand        , colors.none)
 Group.new('vimFuncVar'            , groups.identifier        , colors.none)
@@ -344,12 +331,14 @@ Group.new('vimNotation'           , colors.fg                , colors.none)
 Group.new('vimBracket'            , groups.Delimiter         , colors.none)
 Group.new('vimMap'                , groups.vimcommand        , colors.none)
 Group.new('nvimMap'               , groups.vimMap            , colors.none)
+Group.new('NvimPlainAssignment'   , colors.magenta_alt       , colors.none)
+Group.new('NvimIdentifier'	  , colors.cyan_alt          , colors.none)
 
 -- Diff
-Group.new("DiffAdd"    , colors.fg_diff_refine_added   , colors.bg_diff_added          , styles.none)
-Group.new("DiffChange" , colors.fg_diff_refine_changed , colors.bg_diff_changed        , styles.none)
-Group.new("DiffDelete" , colors.fg_diff_refine_removed , colors.bg_diff_removed        , styles.none)
-Group.new("DiffText"   , colors.fg_diff_refine_changed , colors.bg_diff_refine_changed , styles.none)
+Group.new("DiffAdd"    , colors.fg_diff_added   , colors.bg_diff_added          , styles.none)
+Group.new("DiffChange" , colors.fg_diff_changed , colors.bg_diff_changed        , styles.none)
+Group.new("DiffDelete" , colors.fg_diff_removed , colors.bg_diff_removed        , styles.none)
+Group.new("DiffText"   , colors.fg_diff_changed , colors.bg_diff_changed , styles.none)
 
 -- built_in LSP
 Group.new("LSPDiagnosticsWarning" , colors.yellow_intense_bg , colors.none)

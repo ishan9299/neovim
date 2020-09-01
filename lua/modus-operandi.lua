@@ -6,22 +6,25 @@ local Color, colors, Group, groups, styles = require("colorbuddy").setup()
 
 vim.api.nvim_set_option('bg','light')
 
-Color.new("bg" , "#ffffff") 
-Color.new("fg" , "#000000")
-Color.new("bg_alt" , "#f0f0f0") 
+Color.new("bg"     , "#ffffff")
+Color.new("fg"     , "#000000")
+Color.new("bg_alt" , "#f0f0f0")
 Color.new("fg_alt" , "#505050")
-Color.new("bg_dim" , "#f8f8f8") 
+Color.new("bg_dim" , "#f8f8f8")
 Color.new("fg_dim" , "#282828")
--- specifically for on/off states (e.g. `mode_line')
+
+-- specifically for on/off states (e.g. `statusline`)
 --
 -- must be combined with themselves
+
 Color.new("bg_active" , "#e0e0e0") 
 Color.new("fg_active" , "#191919")
 Color.new("bg_inactive" , "#efedef") 
 Color.new("fg_inactive" , "#424242")
+
 -- special base values, used only for cases where the above
--- Color.new__ fg_* or bg_* cannot or should not be used (to avoid confusion)
--- must be combined with: {fg,bg}_{main,alt,dim}
+-- fg_* or bg_* cannot or should not be used (to avoid confusion)
+-- must be combined with: {fg,bg}_{alt,dim}
 
 Color.new("bg_special_cold" , "#dde3f4") 
 Color.new("fg_special_cold" , "#093060")
@@ -31,37 +34,45 @@ Color.new("bg_special_warm" , "#f0e0d4")
 Color.new("fg_special_warm" , "#5d3026")
 Color.new("bg_special_calm" , "#f8ddea") 
 Color.new("fg_special_calm" , "#61284f")
+
 -- styles for the main constructs
 --
--- must be combined with: `bg_main', `bg_alt', `bg_dim'
+-- must be combined with: `bg', `bg_alt', `bg_dim'
+
 Color.new("red" , "#a60000") 
 Color.new("green" , "#005e00")
 Color.new("yellow" , "#813e00") 
 Color.new("blue" , "#0030a6")
 Color.new("magenta" , "#721045") 
 Color.new("cyan" , "#00538b")
+
 -- styles for common, but still specialised constructs
 --
 -- must be combined with: `bg_main', `bg_alt', `bg_dim'
+
 Color.new("red_alt" , "#972500") 
 Color.new("green_alt" , "#315b00")
 Color.new("yellow_alt" , "#70480f") 
 Color.new("blue_alt" , "#223fbf")
 Color.new("magenta_alt" , "#8f0075") 
 Color.new("cyan_alt" , "#30517f")
+
 -- same purpose as above, just slight differences
 --
 -- must be combined with: `bg_main', `bg_alt', `bg_dim'
+
 Color.new("red_alt_other" , "#a0132f") 
 Color.new("green_alt_other" , "#145c33")
 Color.new("yellow_alt_other" , "#863927") 
 Color.new("blue_alt_other" , "#0000bb")
 Color.new("magenta_alt_other" , "#5317ac") 
 Color.new("cyan_alt_other" , "#005a5f")
+
 -- styles for desaturated foreground text, intended for use with
 -- the `modus_operandi_theme_faint_syntax' option
 --
 -- must be combined with: `bg_main', `bg_alt', `bg_dim'
+
 Color.new("red_faint" , "#7f1010") 
 Color.new("green_faint" , "#104410")
 Color.new("yellow_faint" , "#5f4400") 
@@ -82,59 +93,71 @@ Color.new("yellow_alt_other_faint" , "#5e3a20")
 Color.new("blue_alt_other_faint" , "#1f2f6f")
 Color.new("magenta_alt_other_faint" , "#5f3f7f") 
 Color.new("cyan_alt_other_faint" , "#2e584f")
+
 -- styles for elements that should be very subtle, yet accented
 --
 -- must be combined with: `bg_main', `bg_alt', `bg_dim' or any of
 -- the "nuanced" backgrounds
+
 Color.new("red_nuanced" , "#5f0000") 
 Color.new("green_nuanced" , "#004000")
 Color.new("yellow_nuanced" , "#3f3000") 
 Color.new("blue_nuanced" , "#201f55")
 Color.new("magenta_nuanced" , "#541f4f") 
 Color.new("cyan_nuanced" , "#0f3360")
+
 -- styles for slightly accented background
 --
 -- must be combined with any of the above foreground values
+
 Color.new("red_nuanced_bg" , "#fff1f0") 
 Color.new("green_nuanced_bg" , "#ecf7ed")
 Color.new("yellow_nuanced_bg" , "#fff3da") 
 Color.new("blue_nuanced_bg" , "#f3f3ff")
 Color.new("magenta_nuanced_bg" , "#fdf0ff") 
 Color.new("cyan_nuanced_bg" , "#ebf6fa")
+
 -- styles for elements that should draw attention to themselves
 --
 -- must be combined with: `bg_main'
+
 Color.new("red_intense" , "#b60000") 
 Color.new("green_intense" , "#006800")
 Color.new("yellow_intense" , "#904200") 
 Color.new("blue_intense" , "#1111ee")
 Color.new("magenta_intense" , "#7000e0") 
 Color.new("cyan_intense" , "#205b93")
+
 -- styles for background elements that should be visible yet
 -- subtle
 --
 -- must be combined with: `fg_dim'
+
 Color.new("red_subtle_bg" , "#f2b0a2") 
 Color.new("green_subtle_bg" , "#aecf90")
 Color.new("yellow_subtle_bg" , "#e4c340") 
 Color.new("blue_subtle_bg" , "#b5d0ff")
 Color.new("magenta_subtle_bg" , "#f0d3ff") 
 Color.new("cyan_subtle_bg" , "#c0efff")
+
 -- styles for background elements that should be visible and
 -- distinguishable
 --
 -- must be combined with: `fg_main'
+
 Color.new("red_intense_bg" , "#ff8892") 
 Color.new("green_intense_bg" , "#5ada88")
 Color.new("yellow_intense_bg" , "#f5df23") 
 Color.new("blue_intense_bg" , "#6aaeff")
 Color.new("magenta_intense_bg" , "#d5baff") 
 Color.new("cyan_intense_bg" , "#42cbd4")
+
 -- styles for refined contexts where both the foreground and the
 -- background need to have the same/similar hue
 --
 -- must be combined with themselves OR the foregrounds can be
 -- combined with any of the base backgrounds
+
 Color.new("red_refine_bg" , "#ffcccc") 
 Color.new("red_refine_fg" , "#780000")
 Color.new("green_refine_bg" , "#aceaac") 
@@ -147,25 +170,30 @@ Color.new("magenta_refine_bg" , "#ffccff")
 Color.new("magenta_refine_fg" , "#770077")
 Color.new("cyan_refine_bg" , "#8eecf4") 
 Color.new("cyan_refine_fg" , "#004850")
+
 -- styles that are meant exclusively for the mode line
 --
 -- must be combined with: `bg_active', `bg_inactive'
+
 Color.new("red_active" , "#930000") 
 Color.new("green_active" , "#005300")
 Color.new("yellow_active" , "#703700") 
 Color.new("blue_active" , "#0033c0")
 Color.new("magenta_active" , "#6320a0") 
 Color.new("cyan_active" , "#004882")
+
 -- styles that are meant exclusively for the fringes
 --
 -- must have a minimum contrast ratio of 1.5:1 with `bg_inactive'
 -- and be combined with `fg_main' or `fg_dim'
+
 Color.new("red_fringe_bg" , "#ff9a9a") 
 Color.new("green_fringe_bg" , "#86cf86")
 Color.new("yellow_fringe_bg" , "#e0c050") 
 Color.new("blue_fringe_bg" , "#82afff")
 Color.new("magenta_fringe_bg" , "#f0a3ff") 
 Color.new("cyan_fringe_bg" , "#00d6e0")
+
 -- styles reserved for specific faces
 
 
@@ -241,26 +269,13 @@ Color.new("fg_diff_changed" , "#524200")
 Color.new("bg_diff_removed" , "#ffe8ef") 
 Color.new("fg_diff_removed" , "#691616")
 
-Color.new("bg_diff_refine_added" , "#94cf94") 
-Color.new("fg_diff_refine_added" , "#002a00")
-Color.new("bg_diff_refine_changed" , "#cccf8f") 
-Color.new("fg_diff_refine_changed" , "#302010")
-Color.new("bg_diff_refine_removed" , "#daa2b0") 
-Color.new("fg_diff_refine_removed" , "#400000")
-
-Color.new("bg_diff_focus_added" , "#bbeabb") 
-Color.new("fg_diff_focus_added" , "#002c00")
-Color.new("bg_diff_focus_changed" , "#ecdfbf") 
-Color.new("fg_diff_focus_changed" , "#392900")
-Color.new("bg_diff_focus_removed" , "#efcbcf") 
-Color.new("fg_diff_focus_removed" , "#4a0000")
-
-Color.new("bg_diff_neutral_0" , "#979797") 
-Color.new("fg_diff_neutral_0" , "#040404")
-Color.new("bg_diff_neutral_1" , "#b0b0b0") 
-Color.new("fg_diff_neutral_1" , "#252525")
-Color.new("bg_diff_neutral_2" , "#cccccc") 
-Color.new("fg_diff_neutral_2" , "#3a3a3a")
+-- Will add this if I find a plugin
+-- Color.new("bg_diff_focus_added" , "#bbeabb") 
+-- Color.new("fg_diff_focus_added" , "#002c00")
+-- Color.new("bg_diff_focus_changed" , "#ecdfbf") 
+-- Color.new("fg_diff_focus_changed" , "#392900")
+-- Color.new("bg_diff_focus_removed" , "#efcbcf") 
+-- Color.new("fg_diff_focus_removed" , "#4a0000")
 
 Color.new("bg_mark_sel" , "#a0f0cf") 
 Color.new("fg_mark_sel" , "#005040")
@@ -277,6 +292,7 @@ Group.new('Warning'        , colors.yellow_alt        , colors.none)
 Group.new('Boolean'        , colors.blue              , colors.none)
 Group.new('Character'      , colors.blue_alt          , colors.none)
 Group.new('Comment'        , colors.fg_alt            , colors.none                , styles.italic)
+Group.new('Conceal'        , colors.fg_special_warm   , colors.bg_dim              , styles.bold)
 Group.new('Conditional'    , colors.magenta_alt_other , colors.none)
 Group.new('Constant'       , colors.blue_alt_other    , colors.none)
 Group.new("Define"         , colors.fg                , colors.none                , styles.NONE)
@@ -284,18 +300,30 @@ Group.new("Delimiter"      , colors.fg                , colors.none             
 Group.new("Directory"      , colors.blue              , colors.none                , styles.none)
 Group.new("Exception"      , colors.magenta_alt_other , colors.none                , styles.NONE)
 Group.new('Float'          , colors.fg                , colors.none)
-Group.new("Identifier"     , colors.blue              , colors.none                , styles.NONE)
-Group.new("Include"        , colors.red               , colors.none                , styles.NONE)
+Group.new("Identifier"     , colors.blue_alt_other    , colors.none                , styles.NONE)
+Group.new("Include"        , colors.red_alt_other     , colors.none                , styles.NONE)
 Group.new('Keyword'        , colors.magenta_alt_other , colors.none)
 Group.new("Label"          , colors.cyan              , colors.none                , styles.NONE)
+-- Parenthesis
+Group.new('MatchParen'     , colors.fg                , colors.bg_paren_match)
 Group.new('Number'         , colors.fg                , colors.none)
 Group.new("Operator"       , groups.Normal            , colors.none                , styles.NONE)
+
+-- Completion(Pmenu)
+Group.new('Pmenu'          , colors.fg_active         , colors.bg_active)
+Group.new('PmenuSel'       , colors.fg_dim            , colors.bg_dim)
+Group.new('PmenuSbar'      , colors.none              , colors.bg_inactive)
+Group.new('PmenuThumb'     , colors.none              , colors.fg)
 Group.new('PreProc'        , colors.red_alt_other     , colors.none)
 Group.new("Repeat"         , colors.magenta_alt_other , colors.none                , styles.NONE)
 Group.new("Special"        , colors.fg                , colors.none                , styles.NONE) --change
 Group.new("SpecialChar"    , colors.blue_alt_other    , colors.none                , styles.NONE)
 Group.new("SpecialComment" , colors.fg_alt            , colors.none                , styles.NONE)
 Group.new("Statement"      , colors.magenta_alt_other , colors.none                , styles.NONE)
+
+-- Statusline
+Group.new('StatusLine'     , colors.fg_alt            , colors.bg_active)
+Group.new('StatusLineNC'   , colors.bg_region         , colors.bg_active)
 Group.new("StorageClass"   , colors.magenta_alt_other , colors.none                , styles.NONE)
 Group.new("String"         , colors.blue_alt          , colors.none                , styles.NONE)
 Group.new("Structure"      , colors.magenta_alt_other , colors.none                , styles.NONE)
@@ -305,28 +333,18 @@ Group.new("Todo"           , colors.magenta           , colors.none             
 Group.new("Type"           , colors.magenta_alt       , colors.none                , styles.NONE)
 Group.new("Typedef"        , colors.magenta_alt       , colors.none                , styles.NONE)
 Group.new('Visual'         , colors.fg                , colors.magenta_intense_bg)
-Group.new('Type'           , colors.magenta_alt       , colors.none)
 Group.new('TabLine'        , colors.fg_dim            , colors.bg_tab_inactive)
 Group.new('TabLineSel'     , colors.fg                , colors.bg_tab_active)
 Group.new('Search'         , colors.fg                , colors.green_intense_bg)
 Group.new('EndOfBuffer'    , colors.fg_inactive       , colors.none)
--- Statusline
-Group.new('StatusLine'     , colors.fg_alt            , colors.bg_active)
-Group.new('StatusLineNC'   , colors.bg_region         , colors.bg_active)
+
 -- Line Numbers
 Group.new('LineNr'         , colors.fg_alt            , colors.bg_dim)
 Group.new('CursorLineNr'   , colors.fg_active         , colors.bg_active           , styles.bold)
 Group.new('CursorLine'     , colors.none              , colors.bg_inactive)
 Group.new('SignColumn'     , colors.none              , colors.bg_inactive)
 Group.new('VertSplit'      , colors.fg                , colors.none)
--- Parenthesis
-Group.new('MatchParen'     , colors.fg                , colors.bg_paren_match)
--- Completion(Pmenu)
-Group.new('Pmenu'          , colors.fg_active         , colors.bg_active)
-Group.new('PmenuSel'       , colors.fg_dim            , colors.bg_dim)
-Group.new('PmenuSbar'      , colors.none              , colors.bg_inactive)
-Group.new('PmenuThumb'     , colors.none              , colors.fg)
-Group.new('luaStatement'   , groups.Statement          , colors.none)
+Group.new('luaStatement'   , groups.Statement         , colors.none)
 
 -- vim
 Group.new('vimcommand'            , groups.Statement         , colors.none)
@@ -341,12 +359,19 @@ Group.new('vimNotation'           , colors.fg                , colors.none)
 Group.new('vimBracket'            , groups.Delimiter         , colors.none)
 Group.new('vimMap'                , groups.vimcommand        , colors.none)
 Group.new('nvimMap'               , groups.vimMap            , colors.none)
-
+Group.new('NvimPlainAssignment'   , colors.magenta_alt       , colors.none)
+Group.new('NvimIdentifier'	  , colors.cyan_alt          , colors.none)
+-- Diff
+Group.new("DiffAdd"    , colors.fg_diff_added   , colors.bg_diff_added          , styles.none)
+Group.new("DiffChange" , colors.fg_diff_changed , colors.bg_diff_changed        , styles.none)
+Group.new("DiffDelete" , colors.fg_diff_removed , colors.bg_diff_removed        , styles.none)
+Group.new("DiffText"   , colors.fg_diff_changed , colors.bg_diff_changed , styles.none)
 
 -- built_in LSP
-Group.new("LSPDiagnosticsWarning" , colors.fg_lang_error   , colors.none)
-Group.new("LSPDiagnosticsError"   , colors.fg_lang_warning , colors.none)
-Group.new("LSPDiagnosticsHint"    , colors.fg_lang_note    , colors.none)
+Group.new("LSPDiagnosticsWarning" , colors.yellow_intense_bg , colors.none)
+Group.new("LSPDiagnosticsError"   , colors.red_intense_bg    , colors.none)
+Group.new("LSPDiagnosticsHint"    , colors.green_intense_bg  , colors.none)
+
 
 -- Spellings
 Group.new("SpellBad" , colors.fg_lang_error , colors.none , styles.none)
@@ -359,13 +384,67 @@ Group.new("markdownH3"            , colors.fg_special_cold , colors.blue_nuanced
 Group.new("markdownH4"            , colors.fg_special_mild , colors.cyan_nuanced_bg    , styles.bold)
 Group.new("markdownH5"            , colors.fg_special_calm , colors.none               , styles.bold)
 Group.new("markdownH6"            , colors.yellow_nuanced  , colors.none               , styles.bold)
-
+-- Code
 Group.new("markdownCodeDelimiter" , colors.green_alt_other , colors.none   , styles.bold)
 Group.new("markdownCode"	  , colors.fg_special_mild , colors.bg_dim   , styles.none)
 Group.new("markdownCodeBlock"	  , colors.fg_special_mild , colors.bg_dim   , styles.none)
-
-
+-- Link
 Group.new("markdownLinkText"      , colors.fg_special_cold , colors.none               , styles.italic)
 Group.new("markdownUrl"           , colors.blue            , colors.none               , styles.underline)
-
 Group.new("markdownFootnote"      , colors.blue_alt        , colors.none               , styles.underline)
+
+
+-- For Pandoc
+-- Code Blocks
+Group.new("pandocDelimitedCodeBlockStart"    , colors.fg_special_mild               , colors.bg_alt , styles.bold)
+Group.new("pandocDelimitedCodeBlockLanguage" , colors.fg_special_mild               , colors.bg_alt , styles.bold)
+Group.new("pandocDelimitedCodeBlock"         , colors.fg_special_mild               , colors.none   , styles.none)
+Group.new("pandocDelimitedCodeBlockEnd"      , groups.pandocDelimitedCodeBlockStart , colors.bg_alt , styles.bold)
+-- Header
+Group.new("pandocAtxStart"      , colors.fg_special_mild , colors.bg_alt          , styles.bold)
+Group.new("pandocAtxHeader"     , colors.fg_special_mild , colors.bg_alt          , styles.bold)
+Group.new("pandocSetexHeader"   , colors.fg_special_mild , colors.bg_alt          , styles.bold )
+Group.new("pandocAtxHeaderAttr" , groups.pandocAtxHeader , groups.pandocAtxHeader , styles.bold)
+-- Links
+Group.new("pandocReferenceLabel" , colors.blue , colors.none , styles.italic)
+Group.new("pandocReferenceURL"   , colors.blue , colors.none , styles.none)
+-- Item Lists
+Group.new("pandocUListItemBullet" , colors.fg_special_mild , colors.bg_alt , styles.bold)
+Group.new("pandocListItemBullet"  , colors.fg_special_mild , colors.bg_alt , styles.bold)
+-- comments
+Group.new("pandocHTMLCommentStart" , groups.Comment , colors.none , styles.italic)
+Group.new("pandocHTMLCommentEnd" , groups.Comment , colors.none , styles.italic)
+-- Subscripts
+Group.new("pandocSubscriptMark", colors.fg_special_cold , colors.none , styles.none)
+Group.new("pandocSuperscriptMark", colors.fg_special_cold , colors.none , styles.none)
+Group.new("pandocStrikeoutMark", colors.fg , colors.none , styles.none)
+
+
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
