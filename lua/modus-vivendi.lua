@@ -1,9 +1,12 @@
-vim.cmd('highlight clear')
-vim.cmd('syntax reset')
+local api = vim.api
+api.nvim_set_option('bg','dark')
+
+api.nvim_command('highlight clear')
+api.nvim_command('syntax reset')
+
 local Color, colors, Group, groups, styles = require("colorbuddy").setup()
 
 
-vim.api.nvim_set_option('bg','dark')
 
 Color.new("bg"     , "#000000")
 Color.new("fg"     , "#ffffff")
@@ -301,6 +304,7 @@ Group.new("Special"        , colors.fg                , colors.none             
 Group.new("SpecialChar"    , colors.blue_alt_other    , colors.none                , styles.NONE)
 Group.new("SpecialComment" , colors.fg_alt            , colors.none                , styles.NONE)
 Group.new("Statement"      , colors.magenta_alt_other , colors.none                , styles.NONE)
+
 -- Statusline
 Group.new('StatusLine'     , colors.fg_alt            , colors.bg_active)
 Group.new('StatusLineNC'   , colors.bg_region         , colors.bg_active)
@@ -318,13 +322,14 @@ Group.new('TabLine'        , colors.fg_dim            , colors.bg_tab_inactive)
 Group.new('TabLineSel'     , colors.fg                , colors.bg_tab_active)
 Group.new('Search'         , colors.fg                , colors.green_intense_bg)
 Group.new('EndOfBuffer'    , colors.fg_inactive       , colors.none)
+
 -- Line Numbers
 Group.new('LineNr'         , colors.fg_alt            , colors.bg_dim)
 Group.new('CursorLineNr'   , colors.fg_active         , colors.bg_active           , styles.bold)
 Group.new('CursorLine'     , colors.none              , colors.bg_inactive)
 Group.new('SignColumn'     , colors.none              , colors.bg_inactive)
 Group.new('VertSplit'      , colors.fg                , colors.none)
-Group.new('luaStatement'   , groups.Statement          , colors.none)
+Group.new('luaStatement'   , groups.Statement         , colors.none)
 
 -- vim
 Group.new('vimcommand'            , groups.Statement         , colors.none)
@@ -340,11 +345,16 @@ Group.new('vimBracket'            , groups.Delimiter         , colors.none)
 Group.new('vimMap'                , groups.vimcommand        , colors.none)
 Group.new('nvimMap'               , groups.vimMap            , colors.none)
 
+-- Diff
+Group.new("DiffAdd"    , colors.fg_diff_refine_added   , colors.bg_diff_added          , styles.none)
+Group.new("DiffChange" , colors.fg_diff_refine_changed , colors.bg_diff_changed        , styles.none)
+Group.new("DiffDelete" , colors.fg_diff_refine_removed , colors.bg_diff_removed        , styles.none)
+Group.new("DiffText"   , colors.fg_diff_refine_changed , colors.bg_diff_refine_changed , styles.none)
 
 -- built_in LSP
-Group.new("LSPDiagnosticsWarning" , colors.yellow_active , colors.none)
-Group.new("LSPDiagnosticsError"   , colors.red_active    , colors.none)
-Group.new("LSPDiagnosticsHint"    , colors.green_active  , colors.none)
+Group.new("LSPDiagnosticsWarning" , colors.yellow_intense_bg , colors.none)
+Group.new("LSPDiagnosticsError"   , colors.red_intense_bg    , colors.none)
+Group.new("LSPDiagnosticsHint"    , colors.green_intense_bg  , colors.none)
 
 
 -- Spellings
