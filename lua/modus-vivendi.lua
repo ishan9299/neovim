@@ -1,3 +1,8 @@
+--[[
+--Note that the colorscheme set for markdown here conflicts with the plasticboy-markdown plugin
+--The pandoc syntac also conflicts with it.
+]]--
+
 local api = vim.api
 api.nvim_set_option('bg','dark')
 
@@ -14,16 +19,20 @@ Color.new("bg_alt" , "#181a20")
 Color.new("fg_alt" , "#a8a8a8")
 Color.new("bg_dim" , "#110b11")
 Color.new("fg_dim" , "#e0e6f0")
+
 -- specifically for on/off states (e.g. `mode_line')
 --
 -- must be combined with themselves
+
 Color.new("bg_active"   , "#2f2f2f")
 Color.new("fg_active"   , "#f5f5f5")
 Color.new("bg_inactive" , "#202020")
 Color.new("fg_inactive" , "#bebebe")
+
 -- special base values, used only for cases where the above
 -- fg_* or bg_* cannot or should not be used (to avoid confusion)
 -- must be combined with: {fg,bg}_{main,alt,dim}
+
 Color.new("bg_special_cold" , "#203448") 
 Color.new("fg_special_cold" , "#c6eaff")
 Color.new("bg_special_mild" , "#00322e") 
@@ -32,37 +41,45 @@ Color.new("bg_special_warm" , "#382f27")
 Color.new("fg_special_warm" , "#f8dec0")
 Color.new("bg_special_calm" , "#392a48") 
 Color.new("fg_special_calm" , "#fbd6f4")
+
 -- styles for the main constructs
 --
 -- must be combined with: `bg_main', `bg_alt', `bg_dim'
+
 Color.new("red"     , "#ff8059")
 Color.new("green"   , "#44bc44")
 Color.new("yellow"  , "#eecc00")
 Color.new("blue"    , "#29aeff")
 Color.new("magenta" , "#feacd0")
 Color.new("cyan"    , "#00d3d0")
+
 -- styles for common, but still specialised constructs
 --
 -- must be combined with: `bg_main', `bg_alt', `bg_dim'
+
 Color.new("red_alt"     , "#f4923b")
 Color.new("green_alt"   , "#80d200")
 Color.new("yellow_alt"  , "#cfdf30")
 Color.new("blue_alt"    , "#72a4ff")
 Color.new("magenta_alt" , "#f78fe7")
 Color.new("cyan_alt"    , "#4ae8fc")
+
 -- same purpose as above, just slight differences
 --
 -- must be combined with: `bg_main', `bg_alt', `bg_dim'
+
 Color.new("red_alt_other"     , "#ff9977")
 Color.new("green_alt_other"   , "#00cd68")
 Color.new("yellow_alt_other"  , "#f0ce43")
 Color.new("blue_alt_other"    , "#00bdfa")
 Color.new("magenta_alt_other" , "#b6a0ff")
 Color.new("cyan_alt_other"    , "#6ae4b9")
+
 -- styles for desaturated foreground text, intended for use with
 -- the `modus_vivendi_theme_faint_syntax' option
 --
 -- must be combined with: `bg_main', `bg_alt', `bg_dim'
+
 Color.new("red_faint"               , "#ffa0a0")
 Color.new("green_faint"             , "#88cf88")
 Color.new("yellow_faint"            , "#d2b580")
@@ -83,59 +100,71 @@ Color.new("yellow_alt_other_faint"  , "#d0ba95")
 Color.new("blue_alt_other_faint"    , "#8fc5ff")
 Color.new("magenta_alt_other_faint" , "#d0b4ff")
 Color.new("cyan_alt_other_faint"    , "#a4d0bb")
+
 -- styles for elements that should be very subtle, yet accented
 --
 -- must be combined with: `bg_main', `bg_alt', `bg_dim' or any of
 -- the "nuanced" backgrounds
+
 Color.new("red_nuanced"     , "#ffcccc")
 Color.new("green_nuanced"   , "#b8e2b8")
 Color.new("yellow_nuanced"  , "#dfdfb0")
 Color.new("blue_nuanced"    , "#bfd9ff")
 Color.new("magenta_nuanced" , "#e5cfef")
 Color.new("cyan_nuanced"    , "#a8e5e5")
+
 -- styles for slightly accented background
 --
 -- must be combined with any of the above foreground values
+
 Color.new("red_nuanced_bg"     , "#2c0614")
 Color.new("green_nuanced_bg"   , "#001904")
 Color.new("yellow_nuanced_bg"  , "#221000")
 Color.new("blue_nuanced_bg"    , "#0f0e39")
 Color.new("magenta_nuanced_bg" , "#230631")
 Color.new("cyan_nuanced_bg"    , "#041529")
+
 -- styles for elements that should draw attention to themselves
 --
 -- must be combined with: `bg_main'
+
 Color.new("red_intense"     , "#fb6859")
 Color.new("green_intense"   , "#00fc50")
 Color.new("yellow_intense"  , "#ffdd00")
 Color.new("blue_intense"    , "#00a2ff")
 Color.new("magenta_intense" , "#ff8bd4")
 Color.new("cyan_intense"    , "#30ffc0")
+
 -- styles for background elements that should be visible yet
 -- subtle
 --
 -- must be combined with: `fg_dim'
+
 Color.new("red_subtle_bg"     , "#762422")
 Color.new("green_subtle_bg"   , "#2f4a00")
 Color.new("yellow_subtle_bg"  , "#604200")
 Color.new("blue_subtle_bg"    , "#10387c")
 Color.new("magenta_subtle_bg" , "#49366e")
 Color.new("cyan_subtle_bg"    , "#00415e")
+
 -- styles for background elements that should be visible and
 -- distinguishable
 --
 -- must be combined with: `fg_main'
+
 Color.new("red_intense_bg"     , "#a4202a")
 Color.new("green_intense_bg"   , "#006800")
 Color.new("yellow_intense_bg"  , "#874900")
 Color.new("blue_intense_bg"    , "#2a40b8")
 Color.new("magenta_intense_bg" , "#7042a2")
 Color.new("cyan_intense_bg"    , "#005f88")
+
 -- styles for refined contexts where both the foreground and the
 -- background need to have the same/similar hue
 --
 -- must be combined with themselves OR the foregrounds can be
 -- combined with any of the base backgrounds
+
 Color.new("red_refine_bg"     , "#77002a")
 Color.new("red_refine_fg"     , "#ffb9ab")
 Color.new("green_refine_bg"   , "#00422a")
@@ -148,25 +177,30 @@ Color.new("magenta_refine_bg" , "#71206a")
 Color.new("magenta_refine_fg" , "#ffcaf0")
 Color.new("cyan_refine_bg"    , "#004065")
 Color.new("cyan_refine_fg"    , "#8ae4f2")
+
 -- styles that are meant exclusively for the mode line
 --
 -- must be combined with: `bg_active', `bg_inactive'
+
 Color.new("red_active"     , "#ffa49e")
 Color.new("green_active"   , "#70e030")
 Color.new("yellow_active"  , "#efdf00")
 Color.new("blue_active"    , "#00ccff")
 Color.new("magenta_active" , "#d0acff")
 Color.new("cyan_active"    , "#00ddc0")
+
 -- styles that are meant exclusively for the fringes
 --
 -- must have a minimum contrast ratio of 1.5:1 with `bg_inactive'
 -- and be combined with `fg_main' or `fg_dim'
+
 Color.new("red_fringe_bg"     , "#8f0040")
 Color.new("green_fringe_bg"   , "#006000")
 Color.new("yellow_fringe_bg"  , "#6f4a00")
 Color.new("blue_fringe_bg"    , "#3a30ab")
 Color.new("magenta_fringe_bg" , "#692089")
 Color.new("cyan_fringe_bg"    , "#0068a0")
+
 -- styles reserved for specific faces
 --
 -- `bg_hl_line' is between `bg_dim' and `bg_alt', so it should
@@ -266,6 +300,7 @@ Group.new('Comment'        , colors.fg_alt            , colors.none             
 Group.new('Conceal'        , colors.fg_special_warm   , colors.bg_dim              , styles.bold)
 Group.new('Conditional'    , colors.magenta_alt_other , colors.none)
 Group.new('Constant'       , colors.blue_alt_other    , colors.none)
+Group.new('CursorLine'	   , colors.bg_hl_line	      , colors.none	 	   , styles.NONE)
 Group.new("Define"         , colors.fg                , colors.none                , styles.NONE)
 Group.new("Delimiter"      , colors.fg                , colors.none                , styles.NONE)
 Group.new("Directory"      , colors.blue              , colors.none                , styles.none)
@@ -293,22 +328,23 @@ Group.new("SpecialComment" , colors.fg_alt            , colors.none             
 Group.new("Statement"      , colors.magenta_alt_other , colors.none                , styles.NONE)
 
 -- Statusline
-Group.new('StatusLine'     , colors.fg_alt            , colors.bg_active)
-Group.new('StatusLineNC'   , colors.bg_region         , colors.bg_active)
-Group.new("StorageClass"   , colors.magenta_alt_other , colors.none                , styles.NONE)
-Group.new("String"         , colors.blue_alt          , colors.none                , styles.NONE)
-Group.new("Structure"      , colors.magenta_alt_other , colors.none                , styles.NONE)
-Group.new("Tag"            , colors.magenta_active    , colors.none                , styles.NONE)
-Group.new("Title"          , colors.cyan_nuanced      , colors.none                , styles.bold)
-Group.new("Todo"           , colors.magenta           , colors.none                , styles.bold)
-Group.new("Type"           , colors.magenta_alt       , colors.none                , styles.NONE)
-Group.new("Typedef"        , colors.magenta_alt       , colors.none                , styles.NONE)
-Group.new('Visual'         , colors.fg                , colors.magenta_intense_bg)
-Group.new('Type'           , colors.magenta_alt       , colors.none)
-Group.new('TabLine'        , colors.fg_dim            , colors.bg_tab_inactive)
-Group.new('TabLineSel'     , colors.fg                , colors.bg_tab_active)
-Group.new('Search'         , colors.fg                , colors.green_intense_bg)
-Group.new('EndOfBuffer'    , colors.fg_inactive       , colors.none)
+Group.new('StatusLine'   , colors.fg_alt            , colors.bg_active)
+Group.new('StatusLineNC' , colors.bg_region         , colors.bg_active)
+Group.new("StorageClass" , colors.magenta_alt_other , colors.none                , styles.NONE)
+Group.new("String"       , colors.blue_alt          , colors.none                , styles.NONE)
+Group.new("Structure"    , colors.magenta_alt_other , colors.none                , styles.NONE)
+Group.new("Tag"          , colors.magenta_active    , colors.none                , styles.NONE)
+Group.new("Title"        , colors.fg_special_cold   , colors.none                , styles.bold)
+Group.new("Todo"         , colors.magenta           , colors.none                , styles.bold)
+Group.new("Type"         , colors.magenta_alt       , colors.none                , styles.NONE)
+Group.new("Typedef"      , colors.magenta_alt       , colors.none                , styles.NONE)
+Group.new("Underlined"   , colors.none              , colors.blue_nuanced_bg     , styles.underline)
+Group.new('Visual'       , colors.fg                , colors.magenta_intense_bg)
+Group.new('Type'         , colors.magenta_alt       , colors.none)
+Group.new('TabLine'      , colors.fg_dim            , colors.bg_tab_inactive)
+Group.new('TabLineSel'   , colors.fg                , colors.bg_tab_active)
+Group.new('Search'       , colors.fg                , colors.green_intense_bg)
+Group.new('EndOfBuffer'  , colors.fg_inactive       , colors.none)
 
 -- Line Numbers
 Group.new('LineNr'         , colors.fg_alt            , colors.bg_dim)
@@ -351,73 +387,31 @@ Group.new("SpellBad" , colors.fg_lang_error , colors.none , styles.none)
 Group.new("SpellCap" , colors.fg_lang_error , colors.none , styles.none)
 
 -- Markdown
-Group.new("markdownH1"            , colors.fg              , colors.magenta_nuanced_bg , styles.bold)
-Group.new("markdownH2"            , colors.fg_special_warm , colors.red_nuanced_bg     , styles.bold)
-Group.new("markdownH3"            , colors.fg_special_cold , colors.blue_nuanced_bg    , styles.bold)
-Group.new("markdownH4"            , colors.fg_special_mild , colors.cyan_nuanced_bg    , styles.bold)
-Group.new("markdownH5"            , colors.fg_special_calm , colors.none               , styles.bold)
-Group.new("markdownH6"            , colors.yellow_nuanced  , colors.none               , styles.bold)
+Group.new("markdownH1"                 , colors.fg              , colors.magenta_nuanced_bg , styles.bold)
+Group.new("markdownH2"                 , colors.fg_special_warm , colors.red_nuanced_bg     , styles.bold)
+Group.new("markdownH3"                 , colors.fg_special_cold , colors.blue_nuanced_bg    , styles.bold)
+Group.new("markdownH4"                 , colors.fg_special_mild , colors.cyan_nuanced_bg    , styles.bold)
+Group.new("markdownH5"                 , colors.fg_special_calm , colors.none               , styles.bold)
+Group.new("markdownH6"                 , colors.yellow_nuanced  , colors.none               , styles.bold)
+Group.new("markdownRule"               , groups.markdownH2      , groups.markdownH2         , styles.bold)
+-- Italics and Bold
+Group.new("markdownItalic"             , colors.fg_special_cold , colors.none               , styles.italic)
+Group.new("markdownBold"               , colors.fg              , colors.none               , styles.bold)
+Group.new("markdownBoldItalic"         , colors.fg              , colors.none               , styles.bold + styles.italic)
 -- Code
-Group.new("markdownCodeDelimiter" , colors.green_alt_other , colors.none   , styles.bold)
-Group.new("markdownCode"	  , colors.fg_special_mild , colors.bg_dim   , styles.none)
-Group.new("markdownCodeBlock"	  , colors.fg_special_mild , colors.bg_dim   , styles.none)
+Group.new("markdownCodeDelimiter"      , colors.green_alt_other , colors.none               , styles.bold)
+Group.new("markdownCode"               , colors.fg_special_mild , colors.bg_dim             , styles.none)
+Group.new("markdownCodeBlock"          , colors.fg_special_mild , colors.bg_dim             , styles.none)
 -- Link
-Group.new("markdownLinkText"      , colors.fg_special_cold , colors.none               , styles.italic)
-Group.new("markdownUrl"           , colors.blue            , colors.none               , styles.underline)
-Group.new("markdownFootnote"      , colors.blue_alt        , colors.none               , styles.underline)
-
-
--- For Pandoc
--- Code Blocks
-Group.new("pandocDelimitedCodeBlockStart"    , colors.fg_special_mild               , colors.bg_alt , styles.bold)
-Group.new("pandocDelimitedCodeBlockLanguage" , colors.fg_special_mild               , colors.bg_alt , styles.bold)
-Group.new("pandocDelimitedCodeBlock"         , colors.fg_special_mild               , colors.none   , styles.none)
-Group.new("pandocDelimitedCodeBlockEnd"      , groups.pandocDelimitedCodeBlockStart , colors.bg_alt , styles.bold)
--- Header
-Group.new("pandocAtxStart"      , colors.fg_special_mild , colors.bg_alt          , styles.bold)
-Group.new("pandocAtxHeader"     , colors.fg_special_mild , colors.bg_alt          , styles.bold)
-Group.new("pandocSetexHeader"   , colors.fg_special_mild , colors.bg_alt          , styles.bold )
-Group.new("pandocAtxHeaderAttr" , groups.pandocAtxHeader , groups.pandocAtxHeader , styles.bold)
--- Links
-Group.new("pandocReferenceLabel" , colors.blue , colors.none , styles.italic)
-Group.new("pandocReferenceURL"   , colors.blue , colors.none , styles.none)
--- Item Lists
-Group.new("pandocUListItemBullet" , colors.fg_special_mild , colors.bg_alt , styles.bold)
-Group.new("pandocListItemBullet"  , colors.fg_special_mild , colors.bg_alt , styles.bold)
--- comments
-Group.new("pandocHTMLCommentStart" , groups.Comment , colors.none , styles.italic)
-Group.new("pandocHTMLCommentEnd" , groups.Comment , colors.none , styles.italic)
--- Subscripts
-Group.new("pandocSubscriptMark", colors.fg_special_cold , colors.none , styles.none)
-Group.new("pandocSuperscriptMark", colors.fg_special_cold , colors.none , styles.none)
-Group.new("pandocStrikeoutMark", colors.fg , colors.none , styles.none)
-
-
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
+Group.new("markdownLinkText"           , colors.blue            , colors.none               , styles.italic)
+--[[Not using the underline as I have not figured out how to apply it correctly]]--
+Group.new("markdownUrl"                , colors.blue            , colors.none               , styles.none)
+Group.new("markdownFootnote"           , colors.cyan_alt        , colors.none               , styles.italic)
+Group.new("markdownFootnoteDefinition" , colors.fg              , colors.none               , styles.italic)
+-- Lists
+Group.new("markdownListMarker"         , colors.fg_alt          , colors.none               , styles.bold)
+-- Quotes
+Group.new("markdownBlockquote"         , colors.magenta         , colors.none               , styles.bold)
+-- Line Break
+-- Underline is you want you can disable it
+Group.new("markdownLineBreak"          , colors.cyan_refine_fg  , colors.cyan_refine_bg     , styles.underline)
