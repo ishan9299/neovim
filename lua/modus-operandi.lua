@@ -1,10 +1,16 @@
-vim.cmd('highlight clear')
-vim.cmd('syntax reset')
+--[[
+--Note that the colorscheme set for markdown here conflicts with the plasticboy-markdown plugin
+--The pandoc syntac also conflicts with it.
+]]--
+
+local api = vim.api
+api.nvim_set_option('bg','light')
+
+api.nvim_command('highlight clear')
+api.nvim_command('syntax reset')
 
 local Color, colors, Group, groups, styles = require("colorbuddy").setup()
 
-
-vim.api.nvim_set_option('bg','light')
 
 Color.new("bg"     , "#ffffff")
 Color.new("fg"     , "#000000")
@@ -295,6 +301,7 @@ Group.new('Comment'        , colors.fg_alt            , colors.none             
 Group.new('Conceal'        , colors.fg_special_warm   , colors.bg_dim              , styles.bold)
 Group.new('Conditional'    , colors.magenta_alt_other , colors.none)
 Group.new('Constant'       , colors.blue_alt_other    , colors.none)
+Group.new('CursorLine'	   , colors.bg_hl_line	      , colors.none	 	   , styles.NONE)
 Group.new("Define"         , colors.fg                , colors.none                , styles.NONE)
 Group.new("Delimiter"      , colors.fg                , colors.none                , styles.NONE)
 Group.new("Directory"      , colors.blue              , colors.none                , styles.none)
@@ -322,21 +329,23 @@ Group.new("SpecialComment" , colors.fg_alt            , colors.none             
 Group.new("Statement"      , colors.magenta_alt_other , colors.none                , styles.NONE)
 
 -- Statusline
-Group.new('StatusLine'     , colors.fg_alt            , colors.bg_active)
-Group.new('StatusLineNC'   , colors.bg_region         , colors.bg_active)
-Group.new("StorageClass"   , colors.magenta_alt_other , colors.none                , styles.NONE)
-Group.new("String"         , colors.blue_alt          , colors.none                , styles.NONE)
-Group.new("Structure"      , colors.magenta_alt_other , colors.none                , styles.NONE)
-Group.new("Tag"            , colors.magenta_active    , colors.none                , styles.NONE)
-Group.new("Title"          , colors.cyan_nuanced      , colors.none                , styles.bold)
-Group.new("Todo"           , colors.magenta           , colors.none                , styles.bold)
-Group.new("Type"           , colors.magenta_alt       , colors.none                , styles.NONE)
-Group.new("Typedef"        , colors.magenta_alt       , colors.none                , styles.NONE)
-Group.new('Visual'         , colors.fg                , colors.magenta_intense_bg)
-Group.new('TabLine'        , colors.fg_dim            , colors.bg_tab_inactive)
-Group.new('TabLineSel'     , colors.fg                , colors.bg_tab_active)
-Group.new('Search'         , colors.fg                , colors.green_intense_bg)
-Group.new('EndOfBuffer'    , colors.fg_inactive       , colors.none)
+Group.new('StatusLine'   , colors.fg_alt            , colors.bg_active)
+Group.new('StatusLineNC' , colors.bg_region         , colors.bg_active)
+Group.new("StorageClass" , colors.magenta_alt_other , colors.none                , styles.NONE)
+Group.new("String"       , colors.blue_alt          , colors.none                , styles.NONE)
+Group.new("Structure"    , colors.magenta_alt_other , colors.none                , styles.NONE)
+Group.new("Tag"          , colors.magenta_active    , colors.none                , styles.NONE)
+Group.new("Title"        , colors.fg_special_cold   , colors.none                , styles.bold)
+Group.new("Todo"         , colors.magenta           , colors.none                , styles.bold)
+Group.new("Type"         , colors.magenta_alt       , colors.none                , styles.NONE)
+Group.new("Typedef"      , colors.magenta_alt       , colors.none                , styles.NONE)
+Group.new("Underlined"   , colors.none              , colors.blue_nuanced_bg     , styles.underline)
+Group.new('Visual'       , colors.fg                , colors.magenta_intense_bg)
+Group.new('Type'         , colors.magenta_alt       , colors.none)
+Group.new('TabLine'      , colors.fg_dim            , colors.bg_tab_inactive)
+Group.new('TabLineSel'   , colors.fg                , colors.bg_tab_active)
+Group.new('Search'       , colors.fg                , colors.green_intense_bg)
+Group.new('EndOfBuffer'  , colors.fg_inactive       , colors.none)
 
 -- Line Numbers
 Group.new('LineNr'         , colors.fg_alt            , colors.bg_dim)
@@ -346,7 +355,7 @@ Group.new('SignColumn'     , colors.none              , colors.bg_inactive)
 Group.new('VertSplit'      , colors.fg                , colors.none)
 Group.new('luaStatement'   , groups.Statement         , colors.none)
 
--- vim
+-- vim/nvim
 Group.new('vimcommand'            , groups.Statement         , colors.none)
 Group.new('vimLet'                , groups.vimcommand        , colors.none)
 Group.new('vimFuncVar'            , groups.identifier        , colors.none)
@@ -361,6 +370,7 @@ Group.new('vimMap'                , groups.vimcommand        , colors.none)
 Group.new('nvimMap'               , groups.vimMap            , colors.none)
 Group.new('NvimPlainAssignment'   , colors.magenta_alt       , colors.none)
 Group.new('NvimIdentifier'	  , colors.cyan_alt          , colors.none)
+
 -- Diff
 Group.new("DiffAdd"    , colors.fg_diff_added   , colors.bg_diff_added          , styles.none)
 Group.new("DiffChange" , colors.fg_diff_changed , colors.bg_diff_changed        , styles.none)
@@ -378,73 +388,31 @@ Group.new("SpellBad" , colors.fg_lang_error , colors.none , styles.none)
 Group.new("SpellCap" , colors.fg_lang_error , colors.none , styles.none)
 
 -- Markdown
-Group.new("markdownH1"            , colors.fg              , colors.magenta_nuanced_bg , styles.bold)
-Group.new("markdownH2"            , colors.fg_special_warm , colors.red_nuanced_bg     , styles.bold)
-Group.new("markdownH3"            , colors.fg_special_cold , colors.blue_nuanced_bg    , styles.bold)
-Group.new("markdownH4"            , colors.fg_special_mild , colors.cyan_nuanced_bg    , styles.bold)
-Group.new("markdownH5"            , colors.fg_special_calm , colors.none               , styles.bold)
-Group.new("markdownH6"            , colors.yellow_nuanced  , colors.none               , styles.bold)
+Group.new("markdownH1"                 , colors.fg              , colors.magenta_nuanced_bg , styles.bold)
+Group.new("markdownH2"                 , colors.fg_special_warm , colors.red_nuanced_bg     , styles.bold)
+Group.new("markdownH3"                 , colors.fg_special_cold , colors.blue_nuanced_bg    , styles.bold)
+Group.new("markdownH4"                 , colors.fg_special_mild , colors.cyan_nuanced_bg    , styles.bold)
+Group.new("markdownH5"                 , colors.fg_special_calm , colors.none               , styles.bold)
+Group.new("markdownH6"                 , colors.yellow_nuanced  , colors.none               , styles.bold)
+Group.new("markdownRule"               , groups.markdownH2      , groups.markdownH2         , styles.bold)
+-- Italics and Bold
+Group.new("markdownItalic"             , colors.fg_special_cold , colors.none               , styles.italic)
+Group.new("markdownBold"               , colors.fg              , colors.none               , styles.bold)
+Group.new("markdownBoldItalic"         , colors.fg              , colors.none               , styles.bold + styles.italic)
 -- Code
-Group.new("markdownCodeDelimiter" , colors.green_alt_other , colors.none   , styles.bold)
-Group.new("markdownCode"	  , colors.fg_special_mild , colors.bg_dim   , styles.none)
-Group.new("markdownCodeBlock"	  , colors.fg_special_mild , colors.bg_dim   , styles.none)
+Group.new("markdownCodeDelimiter"      , colors.green_alt_other , colors.none               , styles.bold)
+Group.new("markdownCode"               , colors.fg_special_mild , colors.bg_dim             , styles.none)
+Group.new("markdownCodeBlock"          , colors.fg_special_mild , colors.bg_dim             , styles.none)
 -- Link
-Group.new("markdownLinkText"      , colors.fg_special_cold , colors.none               , styles.italic)
-Group.new("markdownUrl"           , colors.blue            , colors.none               , styles.underline)
-Group.new("markdownFootnote"      , colors.blue_alt        , colors.none               , styles.underline)
-
-
--- For Pandoc
--- Code Blocks
-Group.new("pandocDelimitedCodeBlockStart"    , colors.fg_special_mild               , colors.bg_alt , styles.bold)
-Group.new("pandocDelimitedCodeBlockLanguage" , colors.fg_special_mild               , colors.bg_alt , styles.bold)
-Group.new("pandocDelimitedCodeBlock"         , colors.fg_special_mild               , colors.none   , styles.none)
-Group.new("pandocDelimitedCodeBlockEnd"      , groups.pandocDelimitedCodeBlockStart , colors.bg_alt , styles.bold)
--- Header
-Group.new("pandocAtxStart"      , colors.fg_special_mild , colors.bg_alt          , styles.bold)
-Group.new("pandocAtxHeader"     , colors.fg_special_mild , colors.bg_alt          , styles.bold)
-Group.new("pandocSetexHeader"   , colors.fg_special_mild , colors.bg_alt          , styles.bold )
-Group.new("pandocAtxHeaderAttr" , groups.pandocAtxHeader , groups.pandocAtxHeader , styles.bold)
--- Links
-Group.new("pandocReferenceLabel" , colors.blue , colors.none , styles.italic)
-Group.new("pandocReferenceURL"   , colors.blue , colors.none , styles.none)
--- Item Lists
-Group.new("pandocUListItemBullet" , colors.fg_special_mild , colors.bg_alt , styles.bold)
-Group.new("pandocListItemBullet"  , colors.fg_special_mild , colors.bg_alt , styles.bold)
--- comments
-Group.new("pandocHTMLCommentStart" , groups.Comment , colors.none , styles.italic)
-Group.new("pandocHTMLCommentEnd" , groups.Comment , colors.none , styles.italic)
--- Subscripts
-Group.new("pandocSubscriptMark", colors.fg_special_cold , colors.none , styles.none)
-Group.new("pandocSuperscriptMark", colors.fg_special_cold , colors.none , styles.none)
-Group.new("pandocStrikeoutMark", colors.fg , colors.none , styles.none)
-
-
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
---Group.new("",,,)
+Group.new("markdownLinkText"           , colors.blue            , colors.none               , styles.italic)
+--[[Not using the underline as I have not figured out how to apply it correctly]]--
+Group.new("markdownUrl"                , colors.blue            , colors.none               , styles.none)
+Group.new("markdownFootnote"           , colors.cyan_alt        , colors.none               , styles.italic)
+Group.new("markdownFootnoteDefinition" , colors.fg              , colors.none               , styles.italic)
+-- Lists
+Group.new("markdownListMarker"         , colors.fg_alt          , colors.none               , styles.bold)
+-- Quotes
+Group.new("markdownBlockquote"         , colors.magenta         , colors.none               , styles.bold)
+-- Line Break
+-- Underline is you want you can disable it
+Group.new("markdownLineBreak"          , colors.cyan_refine_fg  , colors.cyan_refine_bg     , styles.underline)
