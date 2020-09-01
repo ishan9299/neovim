@@ -13,7 +13,6 @@ api.nvim_command('packadd! vim-repeat')
 api.nvim_command('packadd! vim-commentary')
 api.nvim_command('packadd! vim-snippets')
 api.nvim_command('packadd! ultisnips')
-api.nvim_command('packadd! vim-polyglot')
 api.nvim_command('packadd! nvim-lsp')
 api.nvim_command('packadd! completion-nvim')
 api.nvim_command('packadd! diagnostic-nvim')
@@ -22,7 +21,6 @@ api.nvim_command('packadd! nvim-colorizer.lua')
 api.nvim_command('packadd! direnv.vim')
 api.nvim_command('packadd! fzf')
 api.nvim_command('packadd! fzf.vim')
-api.nvim_command('packadd! vim-pandoc-syntax')
 api.nvim_command('packadd! vim-waikiki')
 
 -- Colorizer
@@ -68,7 +66,7 @@ api.nvim_set_keymap('n', '<f10>' , [[:echo "hi<" . synIDattr(synID(line("."),col
 -- UI
 
 -- Winhighlight command
-api.nvim_set_option('winhighlight','NormalNC:ColorColumn')
+-- api.nvim_set_option('winhighlight','NormalNC:ColorColumn')
 
 
 -- Colorschemes
@@ -140,8 +138,8 @@ local autocmds = {
 		{"TextYankPost", "*", [[silent! lua require'vim.highlight'.on_yank("Substitute", 200)]]};
 	};
 
-	pandoc_syntax = {
-		{"BufNewFile,BufFilePre,BufRead", "*.md", "set filetype=markdown.pandoc"};
+	markdown_syntax = {
+		{"BufNewFile,BufFilePre,BufRead", "*.md", "set filetype=markdown"};
 	};
 
 	terminal = {
