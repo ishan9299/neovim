@@ -25,6 +25,7 @@
 [submodule "vim-waikiki"]
 	path = pack/packages/opt/vim-waikiki
 	url = https://github.com/fcpg/vim-waikiki
+	ignore = dirty
 [submodule "vim-repeat"]
 	path = pack/packages/opt/vim-repeat
 	url = https://github.com/tpope/vim-repeat
@@ -37,6 +38,7 @@
 [submodule "nvim-colorizer.lua"]
 	path = pack/packages/opt/nvim-colorizer.lua
 	url = https://github.com/norcalli/nvim-colorizer.lua
+	ignore = dirty
 [submodule "vim-snippets"]
 	path = pack/packages/opt/vim-snippets
 	url = https://github.com/honza/vim-snippets

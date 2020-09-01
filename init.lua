@@ -13,6 +13,7 @@ api.nvim_command('packadd! vim-repeat')
 api.nvim_command('packadd! vim-commentary')
 api.nvim_command('packadd! vim-snippets')
 api.nvim_command('packadd! ultisnips')
+api.nvim_command('packadd! vim-polyglot')
 api.nvim_command('packadd! nvim-lsp')
 api.nvim_command('packadd! completion-nvim')
 api.nvim_command('packadd! diagnostic-nvim')
@@ -21,6 +22,7 @@ api.nvim_command('packadd! nvim-colorizer.lua')
 api.nvim_command('packadd! direnv.vim')
 api.nvim_command('packadd! fzf')
 api.nvim_command('packadd! fzf.vim')
+api.nvim_command('packadd! vim-pandoc-syntax')
 api.nvim_command('packadd! vim-waikiki')
 
 -- Colorizer
@@ -68,8 +70,6 @@ api.nvim_set_keymap('n', '<f10>' , [[:echo "hi<" . synIDattr(synID(line("."),col
 -- Winhighlight command
 api.nvim_set_option('winhighlight','NormalNC:ColorColumn')
 
--- Termguicolors
-api.nvim_set_option('termguicolors',true)
 
 -- Colorschemes
 
@@ -82,7 +82,7 @@ api.nvim_set_option('termguicolors',true)
 -- 	end
 -- end
 
-require('modus-vivendi')
+require('modus-operandi')
 api.nvim_set_keymap('n', '<f5>', [[<cmd> lua toggle_theme <cr>]] , opts)
 
 -- Relative line numbers
