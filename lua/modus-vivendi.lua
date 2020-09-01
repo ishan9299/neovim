@@ -356,13 +356,67 @@ Group.new("markdownH3"            , colors.fg_special_cold , colors.blue_nuanced
 Group.new("markdownH4"            , colors.fg_special_mild , colors.cyan_nuanced_bg    , styles.bold)
 Group.new("markdownH5"            , colors.fg_special_calm , colors.none               , styles.bold)
 Group.new("markdownH6"            , colors.yellow_nuanced  , colors.none               , styles.bold)
-
+-- Code
 Group.new("markdownCodeDelimiter" , colors.green_alt_other , colors.none   , styles.bold)
 Group.new("markdownCode"	  , colors.fg_special_mild , colors.bg_dim   , styles.none)
 Group.new("markdownCodeBlock"	  , colors.fg_special_mild , colors.bg_dim   , styles.none)
-
-
+-- Link
 Group.new("markdownLinkText"      , colors.fg_special_cold , colors.none               , styles.italic)
 Group.new("markdownUrl"           , colors.blue            , colors.none               , styles.underline)
-
 Group.new("markdownFootnote"      , colors.blue_alt        , colors.none               , styles.underline)
+
+
+-- For Pandoc
+-- Code Blocks
+Group.new("pandocDelimitedCodeBlockStart"    , colors.fg_special_mild               , colors.bg_alt , styles.bold)
+Group.new("pandocDelimitedCodeBlockLanguage" , colors.fg_special_mild               , colors.bg_alt , styles.bold)
+Group.new("pandocDelimitedCodeBlock"         , colors.fg_special_mild               , colors.none   , styles.none)
+Group.new("pandocDelimitedCodeBlockEnd"      , groups.pandocDelimitedCodeBlockStart , colors.bg_alt , styles.bold)
+-- Header
+Group.new("pandocAtxStart"      , colors.fg_special_mild , colors.bg_alt          , styles.bold)
+Group.new("pandocAtxHeader"     , colors.fg_special_mild , colors.bg_alt          , styles.bold)
+Group.new("pandocSetexHeader"   , colors.fg_special_mild , colors.bg_alt          , styles.bold )
+Group.new("pandocAtxHeaderAttr" , groups.pandocAtxHeader , groups.pandocAtxHeader , styles.bold)
+-- Links
+Group.new("pandocReferenceLabel" , colors.blue , colors.none , styles.italic)
+Group.new("pandocReferenceURL"   , colors.blue , colors.none , styles.none)
+-- Item Lists
+Group.new("pandocUListItemBullet" , colors.fg_special_mild , colors.bg_alt , styles.bold)
+Group.new("pandocListItemBullet"  , colors.fg_special_mild , colors.bg_alt , styles.bold)
+-- comments
+Group.new("pandocHTMLCommentStart" , groups.Comment , colors.none , styles.italic)
+Group.new("pandocHTMLCommentEnd" , groups.Comment , colors.none , styles.italic)
+-- Subscripts
+Group.new("pandocSubscriptMark", colors.fg_special_cold , colors.none , styles.none)
+Group.new("pandocSuperscriptMark", colors.fg_special_cold , colors.none , styles.none)
+Group.new("pandocStrikeoutMark", colors.fg , colors.none , styles.none)
+
+
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
+--Group.new("",,,)
