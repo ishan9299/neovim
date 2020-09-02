@@ -23,6 +23,7 @@ api.nvim_command('packadd! fzf')
 api.nvim_command('packadd! fzf.vim')
 api.nvim_command('packadd! vim-waikiki')
 api.nvim_command('packadd! tabular')
+api.nvim_command('packadd! modus-theme-vim')
 
 -- Colorizer
 require'colorizer'.setup()
@@ -81,8 +82,7 @@ api.nvim_set_keymap('n', '<f10>' , [[:echo "hi<" . synIDattr(synID(line("."),col
 -- 	end
 -- end
 
-require('modus-operandi')
-api.nvim_set_keymap('n', '<f5>', [[<cmd> lua toggle_theme <cr>]] , opts)
+require('modus-vivendi')
 
 -- Relative line numbers
 vim.wo.relativenumber = true
