@@ -1,7 +1,8 @@
 -- vim: foldmethod=marker
 
 local api = vim.api
-require('utils') 
+
+require('utils')
 
 local opts = { silent = true, noremap = true }
 
@@ -11,6 +12,7 @@ vim.g.mapleader = ' '
 api.nvim_command('packadd! vim-dirvish')
 api.nvim_command('packadd! vim-repeat')
 api.nvim_command('packadd! vim-commentary')
+api.nvim_command('packadd! vim-surround')
 api.nvim_command('packadd! vim-snippets')
 api.nvim_command('packadd! ultisnips')
 api.nvim_command('packadd! nvim-lsp')
@@ -25,8 +27,6 @@ api.nvim_command('packadd! vim-waikiki')
 api.nvim_command('packadd! tabular')
 api.nvim_command('packadd! modus-theme-vim')
 
--- Colorizer
-require'colorizer'.setup()
 
 --- Mappings {{{1
 -- Edit command
@@ -73,16 +73,7 @@ api.nvim_set_keymap('n', '<f10>' , [[:echo "hi<" . synIDattr(synID(line("."),col
 
 -- Colorschemes
 
--- local background = api.nvim_get_option('bg')
--- function toggle_theme(background)
--- 	if background == 'light' then
--- 		require('modus-vivendi')
--- 	else
--- 		require('modus-operandi')
--- 	end
--- end
-
-require('modus-vivendi')
+require('modus-operandi')
 
 -- Relative line numbers
 vim.wo.relativenumber = true
@@ -133,18 +124,25 @@ api.nvim_set_var('loaded_netrwPlugin',1)
 api.nvim_set_var('loaded_2html_plugin',1)
 
 
--- Autocmds 
+-- Autocmds
 local autocmds = {
 	highlight_yank = {
 		{"TextYankPost", "*", [[silent! lua require'vim.highlight'.on_yank("Substitute", 200)]]};
 	};
 
 	markdown_syntax = {
-		{"BufNewFile,BufFilePre,BufRead", "*.md", "set filetype=markdown"};
+		{"BufNewFile,BufFilePre,BufRead", "*.md"     , "set filetype=markdown"};
+		{"FileType"			, "markdown" , "setlocal spell"  };
+		{"FileType"			, "markdown" , "setlocal complete+=kspell"  };
+	};
+
+	git = {
+		{ "Filetype"	, "gitcommit" , "setlocal spell" };
+		{ "Filetype"	, "gitcommit" , "setlocal complete+=kspell" };
 	};
 
 	nix_syntax = {
-		{"BufNewFile,BufFilePre,BufRead", "*.nix", "set filetype=nix"};
+		{"BufNewFile,BufFilePre,BufRead", "*.nix", "set filetype=nix | setlocal tabstop=2"};
 	};
 
 	terminal = {
@@ -157,6 +155,7 @@ local autocmds = {
 		{ " Filetype " , " rust        " , " setl omnifunc=v:lua.vim.lsp.omnifunc " };
 		{ " Filetype " , " lua         " , " setl omnifunc=v:lua.vim.lsp.omnifunc " };
 		{ " Filetype " , " vim         " , " setl omnifunc=v:lua.vim.lsp.omnifunc " };
+		{ " Filetype " , " markdown    " , " lua require'completion'.on_attach()  " };
 	};
 }
 
@@ -183,3 +182,93 @@ dirvish = {
 	command  = 'silent! lcd %h | Dirvish'
 }
 api.nvim_set_keymap('n', '<C-e>', [[<cmd>lua require'window'.create_win(dirvish)<cr>]], opts)
+
+-- Colorizer
+require'colorizer'.setup()
+
+-- Completion and LSP
+---- This config came from https://github.com/haorenW1025/config/blob/master/.config/nvim/init.lua
+local lsp = require'nvim_lsp'
+
+local chain_complete_list = {
+	default = {
+		default = {
+			{complete_items = {'lsp', 'snippet'}},
+			{complete_items = {'path'}, triggered_only = {'/'}},
+		},
+		string = {
+			{complete_items = {'path'}, triggered_only = {'/'}},
+		},
+		comment = {},
+	}
+}
+
+local on_attach = function()
+	require'diagnostic'.on_attach({
+	})
+	require'completion'.on_attach({
+		sorting = 'alphabet',
+		matching_strategy_list = {'exact', 'fuzzy'},
+		chain_complete_list = chain_complete_list,
+	})
+	-- This came from https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/lsp_config.lua
+	local mapper = function(mode, key, result)
+		vim.fn.nvim_buf_set_keymap(0, mode, key, result, {noremap=true, silent=true})
+	end
+
+	mapper('n', 'gd', '<cmd>lua vim.lsp.buf.declaration()<CR>')
+	mapper('n', '<c-]>', '<cmd>lua vim.lsp.buf.definition()<CR>')
+	mapper('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
+	mapper('n', 'gD', '<cmd>lua vim.lsp.buf.implementation()<CR>')
+	mapper('n', '1gD', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
+	mapper('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+	mapper('n', 'g0', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
+	mapper('i', '<c-l>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+end
+
+lsp.clangd.setup{
+	on_attach = on_attach;
+	capabilities = {
+		textDocument = {
+			completion = {
+				completionItem = {
+					snippetSupport = true
+				}
+			}
+		}
+	},
+	init_options = {
+		usePlaceholders = true,
+		completeUnimported = true
+	}
+}
+
+lsp.rust_analyzer.setup{
+	on_attach = on_attach;
+}
+
+lsp.sumneko_lua.setup {
+	on_attach= on_attach;
+	runtime = {
+		version = "LuaJIT";
+	};
+	diagnostics={
+		enable=true,
+		globals={
+			"vim", "Color", "c", "Group", "g", "s", "describe", "it", "before_each", "after_each"
+		},
+	},
+}
+
+lsp.vimls.setup{
+	on_attach = on_attach;
+	capabilities = {
+		textDocument = {
+			completion = {
+				completionItem = {
+					snippetSupport = true
+				}
+			}
+		}
+	},
+}
