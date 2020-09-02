@@ -54,3 +54,6 @@
 [submodule "vim-markdown"]
 	path = pack/packages/opt/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown
+[submodule "modus-theme-vim"]
+	path = pack/packages/opt/modus-theme-vim
+	url = https://github.com/ishan9299/modus-theme-vim
