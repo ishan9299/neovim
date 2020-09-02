@@ -57,3 +57,6 @@
 [submodule "modus-theme-vim"]
 	path = pack/packages/opt/modus-theme-vim
 	url = https://github.com/ishan9299/modus-theme-vim
+[submodule "BetterLua.vim"]
+	path = pack/packages/opt/BetterLua.vim
+	url = https://github.com/euclidianAce/BetterLua.vim
