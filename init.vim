@@ -7,3 +7,9 @@ command! -nargs=0 -bar Helptags
     \|     exe 'packadd ' . fnamemodify(p, ':t')
     \| endfor
     \| helptags ALL
+
+sign define LspDiagnosticsErrorSign text=✖
+sign define LspDiagnosticsWarningSign text=⚠
+sign define LspDiagnosticsInformationSign text=ℹ
+sign define LspDiagnosticsHintSign text=➤
+

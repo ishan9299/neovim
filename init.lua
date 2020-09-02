@@ -45,7 +45,7 @@ api.nvim_set_keymap('n' , '<leader>bd'       , ':bd <CR>' , opts)
 api.nvim_set_keymap('n' , '<leader><leader>' , '<C-^>'    , opts)
 
 
--- Windows 
+-- Windows
 api.nvim_set_keymap('n', '<A-h>', '<C-w>h', opts)
 api.nvim_set_keymap('n', '<A-j>', '<C-w>j', opts)
 api.nvim_set_keymap('n', '<A-k>', '<C-w>k', opts)
@@ -165,28 +165,34 @@ nvim_create_augroups(autocmds)
 --- }}}
 
 --- Terminal
-terminal = {
+Terminal = {
 	position = 'botright split',
 	width    = nil,
 	height   = 0.25,
 	command  = 'silent! lcd %:h | term'
 }
-api.nvim_set_keymap('n', '<f7>', [[<cmd>lua require'window'.create_win(terminal)<cr>]], opts)
+api.nvim_set_keymap('n', '<f7>', [[<cmd>lua require'window'.create_win(Terminal)<cr>]], opts)
 
 
 --- Dirvish
-dirvish = {
+Dirvish = {
 	position = 'vsplit',
 	width    = 0.25,
 	height   = nil,
 	command  = 'silent! lcd %h | Dirvish'
 }
-api.nvim_set_keymap('n', '<C-e>', [[<cmd>lua require'window'.create_win(dirvish)<cr>]], opts)
+api.nvim_set_keymap('n', '<C-e>', [[<cmd>lua require'window'.create_win(Dirvish)<cr>]], opts)
 
 -- Colorizer
 require'colorizer'.setup()
 
 -- Completion and LSP
+-- Recommended settings for completion-nvim
+api.nvim_set_option('completeopt','menuone,noinsert,noselect')
+local shortmess_options = api.nvim_get_option('shortmess')
+shortmess_options = shortmess_options .. 'c'
+api.nvim_set_option('shortmess',shortmess_options)
+
 ---- This config came from https://github.com/haorenW1025/config/blob/master/.config/nvim/init.lua
 local lsp = require'nvim_lsp'
 
