@@ -67,17 +67,15 @@ end
 local function list()
   vim.bo[buf].modifiable = true
 
-  local function isempty(s)
-    return s == nil or s == ''
-  end
-
   local names = {}
   local bufferList = api.nvim_list_bufs()
 
   for _,number in pairs(bufferList) do
     if api.nvim_buf_is_loaded(number) then
       local buffername = vim.fn.bufname(number)
-      if not isempty(buffername) then
+      local currentbuffer = api.nvim_get_current_buf()
+      local check = vim.fn.buflisted(number)
+      if check ~= 0 and number ~= currentbuffer then
         table.insert(names,buffername)
       end
     end
