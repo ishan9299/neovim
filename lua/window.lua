@@ -5,6 +5,8 @@ local buf,win,startWin
 
 local function switch()
   local buffer = api.nvim_get_current_line()
+  api.nvim_set_current_win(startWin)
+  api.nvim_command('b ' .. buffer)
 end
 
 local function close()
@@ -39,7 +41,7 @@ local function createWindow()
   local stats = api.nvim_list_uis()[1]
   local width = stats.width
   local height = stats.height
-  local startWin = api.nvim_get_current_win()
+  startWin = api.nvim_get_current_win()
 
   buf = api.nvim_create_buf(false,false)
   vim.bo[buf].buftype = 'nofile'
@@ -69,11 +71,6 @@ local function list()
     return s == nil or s == ''
   end
 
-  local signs = {
-    current = '%',
-    alternate = '#',
-    modified = '[+]'
-  }
   local names = {}
   local bufferList = api.nvim_list_bufs()
 
@@ -81,7 +78,6 @@ local function list()
     if api.nvim_buf_is_loaded(number) then
       local buffername = vim.fn.bufname(number)
       if not isempty(buffername) then
-        buffername = '[' .. number .. '] ' .. buffername
         table.insert(names,buffername)
       end
     end
