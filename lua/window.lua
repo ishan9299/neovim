@@ -1,30 +1,51 @@
 local vim = vim
 local api = vim.api
 
-local buf,winId
+local buf,win,startWin
 
-local function open()
-  local buf_num = string.byte[2]
-  api.nvim_command('b ' .. buf_num)
+local function switch()
+  local buffer = api.nvim_get_current_line()
 end
 
 local function close()
+  if win and api.nvim_win_is_valid(win) then
+    api.nvim_win_close(win,true)
+  end
 end
 
-local function open_close()
-  open()
+local function switch_and_close()
+  switch()
   close()
+end
+
+local function set_mappings()
+  local mappings = {
+    q = 'close()',
+    ['<cr>'] = 'switch_and_close()',
+    -- v = 'split("v")',
+    -- s = 'split("")',
+    -- p = 'preview()',
+    -- t = 'open_in_tab()'
+  }
+
+  local opts = {noremap = true , silent = true}
+
+  for k,v in pairs(mappings) do
+    vim.api.nvim_buf_set_keymap(buf, 'n', k, ':lua require"window".'..v..'<cr>', opts)
+  end
 end
 
 local function createWindow()
   local stats = api.nvim_list_uis()[1]
   local width = stats.width
   local height = stats.height
+  local startWin = api.nvim_get_current_win()
 
   buf = api.nvim_create_buf(false,false)
   vim.bo[buf].buftype = 'nofile'
   vim.bo[buf].swapfile = false
   vim.bo[buf].bufhidden = 'wipe'
+  vim.bo[buf].filetype = 'bufswitcher'
 
   local options = {
     relative = 'editor',
@@ -33,11 +54,12 @@ local function createWindow()
     row = 2,
     col = 2
   }
-  winId = api.nvim_open_win(buf, true, options)
-  vim.wo[winId].number = false
-  vim.wo[winId].cursorline = true
-  vim.wo[winId].wrap = false
-  vim.wo[winId].relativenumber = false
+  win = api.nvim_open_win(buf, true, options)
+  vim.wo[win].number = false
+  vim.wo[win].cursorline = true
+  vim.wo[win].wrap = false
+  vim.wo[win].relativenumber = false
+  set_mappings()
 end
 
 local function list()
@@ -47,6 +69,11 @@ local function list()
     return s == nil or s == ''
   end
 
+  local signs = {
+    current = '%',
+    alternate = '#',
+    modified = '[+]'
+  }
   local names = {}
   local bufferList = api.nvim_list_bufs()
 
@@ -54,7 +81,6 @@ local function list()
     if api.nvim_buf_is_loaded(number) then
       local buffername = vim.fn.bufname(number)
       if not isempty(buffername) then
-        print("Insert buffer " , buffername)
         buffername = '[' .. number .. '] ' .. buffername
         table.insert(names,buffername)
       end
@@ -65,48 +91,21 @@ local function list()
   vim.bo[buf].modifiable = false
 end
 
-local function switch()
-  local buffer = vim.api.nvim_get_current_line()
-  print(buffer)
-end
-
-local function set_mappings()
-  local mappings = {
-    q = 'close()',
-    ['<cr>'] = 'open_and_close()',
-    -- v = 'split("v")',
-    -- s = 'split("")',
-    -- p = 'preview()',
-    -- t = 'open_in_tab()'
-  }
-
-  for k,v in pairs(mappings) do
-    local opts = {nowait = true, noremap = true , silent = true}
-    vim.api.nvim_buf_set_keymap(buf, 'n', k, ':lua require"nvim-oldfile".'..v..'<cr>', opts)
-  end
-end
-
 local function buffers()
-  if winId and vim.api.nvim_win_is_valid(winId) then
-    api.nvim_set_current_win(winId)
+  if win and vim.api.nvim_win_is_valid(win) then
+    api.nvim_set_current_win(win)
   else
     createWindow()
   end
   list()
 end
 
-buffers()
-
 -- TODO write an function to switch buffers
-
 
 return {
   createWindow = createWindow,
-  list = list,
-  open = open,
   close = close,
-  open_close = open_close,
+  switch_and_close = switch_and_close,
   switch = switch,
-  set_mappings = set_mappings,
   buffers = buffers
 }
