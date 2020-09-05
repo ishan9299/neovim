@@ -129,7 +129,6 @@ local autocmds = {
   markdown_syntax = {
     {"BufNewFile,BufFilePre,BufRead", "*.md"     , "set filetype=markdown"};
     {"FileType", "markdown" , "setlocal spell"};
-    {"FileType", "markdown" , "setlocal tabstop=4"};
     {"FileType", "markdown" , "setlocal complete+=kspell"};
   };
 
@@ -148,12 +147,13 @@ local autocmds = {
   };
 
   filetypes = {
-    {" Filetype " , " c     , cpp " , " setl omnifunc=v:lua.vim.lsp.omnifunc ts=8 sts=8 shiftwidth=8 noexpandtab"};
-    {" Filetype " , " rust        " , " setl omnifunc=v:lua.vim.lsp.omnifunc ts=8 sts=8 shiftwidth=8 noexpandtab"};
-    {" Filetype " , " lua         " , " setl omnifunc=v:lua.vim.lsp.omnifunc ts=2 sts=2 shiftwidth=2 expandtab"};
-    {" Filetype " , " vim         " , " setl omnifunc=v:lua.vim.lsp.omnifunc ts=2 sts=2 shiftwidth=2 expandtab"};
-    {" Filetype " , " markdown    " , " setl ts=4 sts=4 shiftwidth=4 expandtab | lua require'completion'.on_attach()"};
-    {" Filetype"  , " nix         " , " setl ts=2 sts=2 shiftwidth=2 expandtab | lua require'completion'.on_attach()"}
+    {" Filetype " , " c     , cpp " , " setl omnifunc=v:lua.vim.lsp.omnifunc ts=8 sts=8 shiftwidth=8 noexpandtab "},
+    {" Filetype " , " rust        " , " setl omnifunc=v:lua.vim.lsp.omnifunc ts=8 sts=8 shiftwidth=8 noexpandtab "},
+    {" Filetype " , " lua         " , " setl omnifunc=v:lua.vim.lsp.omnifunc ts=2 sts=2 shiftwidth=2 expandtab "},
+    {" Filetype " , " vim         " , " setl omnifunc=v:lua.vim.lsp.omnifunc ts=2 sts=2 shiftwidth=2 expandtab "},
+    {" Filetype"  , " nix         " , " setl ts=2 sts=2 shiftwidth=2 expandtab "},
+    {" Filetype"  , " markdown    " , " setl ts=4 sts=4 shiftwidth=4 noexpandtab "},
+    {" BufEnter " , " *           " , " lua require'completion'.on_attach() "},
   };
 }
 
@@ -177,18 +177,36 @@ api.nvim_set_option('shortmess',shortmess_options)
 local lsp = require'nvim_lsp'
 
 local chain_complete_list = {
-  default = {
-    default = {
-      {complete_items = {'lsp', 'snippet'}},
-      {complete_items = {'path'}, triggered_only = {'/'}},
-      {complete_items = {'buffers'}},
-
-    },
+  lua = {
     string = {
-      {complete_items = {'path'}, triggered_only = {'/'}},
+      {mode = {'<c-p>'}},
+      {mode = {'<c-n>'}}
     },
-    comment = {},
-  }
+
+    func = {
+      {complete_items = {'lsp'}}
+    },
+
+    default = {
+      {complete_items = {'lsp','snippet'}},
+      {mode = {'<c-p>'}},
+      {mode = {'<c-n>'}}
+    }
+  },
+
+  default = {
+    {complete_items = {'lsp', 'snippet'}},
+    {complete_items = {'path'}, triggered_only = {'/'}},
+    {complete_items = {'buffers'}},
+    {mode = {'<c-p>'}},
+    {mode = {'<c-n>'}}
+  },
+
+  string = {
+    {complete_items = {'path'}, triggered_only = {'/'}},
+  },
+
+  comment = {},
 }
 
 local on_attach = function()
