@@ -232,6 +232,8 @@ local on_attach = function()
   mapper('i', '<c-l>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
 end
 
+api.nvim_set_var('diagnostic_enable_underline',0)
+
 lsp.clangd.setup{
   on_attach = on_attach;
   capabilities = {
