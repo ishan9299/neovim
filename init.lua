@@ -41,7 +41,7 @@ ignore = ignore .. '*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.p
 api.nvim_set_option('wildignore',ignore)
 
 -- Set font for gapi.nvim
-api.nvim_set_option('guifont','Source Code Pro Medium:h18')
+api.nvim_set_option('guifont','SauceCodePro Nerd Font Medium:h17')
 
 -- Switch buffers painlessly
 api.nvim_set_option('hidden',true)
@@ -96,25 +96,32 @@ api.nvim_set_keymap('n', '<f10>' , [[:echo "hi<" . synIDattr(synID(line("."),col
 --- }}}
 
 -- Plugins {{{1
+-- Tpope plugins text editing
 api.nvim_command('packadd! vim-dirvish')
 api.nvim_command('packadd! vim-repeat')
 api.nvim_command('packadd! vim-commentary')
 api.nvim_command('packadd! vim-surround')
 api.nvim_command('packadd! vim-snippets')
+-- Completion
 api.nvim_command('packadd! ultisnips')
 api.nvim_command('packadd! nvim-lsp')
 api.nvim_command('packadd! completion-nvim')
 api.nvim_command('packadd! diagnostic-nvim')
 api.nvim_command('packadd! nvim-treesitter')
+-- colorschemes
 api.nvim_command('packadd! colorbuddy.vim')
 api.nvim_command('packadd! nvim-colorizer.lua')
 api.nvim_command('packadd! direnv.vim')
+api.nvim_command('packadd! modus-theme-vim')
+api.nvim_command('packadd! BetterLua.vim')
+-- plugins for functionality
 api.nvim_command('packadd! fzf')
 api.nvim_command('packadd! fzf.vim')
 api.nvim_command('packadd! vim-waikiki')
 api.nvim_command('packadd! tabular')
-api.nvim_command('packadd! modus-theme-vim')
-api.nvim_command('packadd! BetterLua.vim')
+api.nvim_command('packadd! ui.nvim')
+api.nvim_command('packadd! nvim-web-devicons')
+api.nvim_command('packadd! nvim-tree.lua')
 --- }}}
 
 -- Colorschemes
@@ -153,6 +160,7 @@ local autocmds = {
     {" Filetype " , " vim         " , " setl omnifunc=v:lua.vim.lsp.omnifunc ts=2 sts=2 shiftwidth=2 expandtab "},
     {" Filetype"  , " nix         " , " setl ts=2 sts=2 shiftwidth=2 expandtab "},
     {" Filetype"  , " markdown    " , " setl ts=4 sts=4 shiftwidth=4 noexpandtab "},
+    {" Filetype"  , " java        " , " setl ts=8 sts=8 shiftwidth=4 noexpandtab "},
     {" BufEnter " , " *           " , " lua require'completion'.on_attach() "},
   };
 }
@@ -191,6 +199,14 @@ local chain_complete_list = {
       {complete_items = {'lsp','snippet'}},
       {mode = {'<c-p>'}},
       {mode = {'<c-n>'}}
+    }
+  },
+
+  markdown = {
+    default = {
+      {mode = {'spel'}},
+      {mode = {'dict'}},
+      {mode = {'file'}}
     }
   },
 
@@ -266,6 +282,15 @@ lsp.sumneko_lua.setup {
       "vim", "Color", "c", "Group", "g", "s", "describe", "it", "before_each", "after_each"
     },
   },
+}
+
+lsp.jdtls.setup{
+  on_attach = on_attach;
+  filetypes = { 'java' };
+  init_options = {
+    workspace = '~/Documents/Programming/java'
+  };
+  -- root_dir = root_pattern('.git')
 }
 
 lsp.vimls.setup{

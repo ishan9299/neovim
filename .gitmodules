@@ -63,3 +63,12 @@
 [submodule "nvim-treesitter"]
 	path = pack/packages/opt/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
+[submodule "ui.nvim"]
+	path = pack/packages/opt/ui.nvim
+	url = https://github.com/norcalli/ui.nvim
+[submodule "nvim-tree.lua"]
+	path = pack/packages/opt/nvim-tree.lua
+	url = https://github.com/kyazdani42/nvim-tree.lua
+[submodule "kyazdani42/nvim-web-devicons"]
+	path = pack/packages/opt/nvim-web-devicons
+	url = https://github.com/kyazdani42/nvim-web-devicons
