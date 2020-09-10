@@ -40,7 +40,7 @@ ignore = ignore .. '*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.p
 
 api.nvim_set_option('wildignore',ignore)
 
--- Set font for gapi.nvim
+-- Set font for gnvim
 api.nvim_set_option('guifont','SauceCodePro Nerd Font Medium:h17')
 
 -- Switch buffers painlessly
@@ -72,8 +72,8 @@ api.nvim_set_keymap('n' , 'tj' , ':tabprev <CR>'  , opts)
 api.nvim_set_keymap('n' , 'tk' , ':tabNext <CR>'  , opts)
 
 -- Buffers
-api.nvim_set_keymap('n' , '<leader>bd'       , ':bd <CR>'                , opts)
-api.nvim_set_keymap('n' , '<leader><leader>' , '<C-^>'                   , opts)
+api.nvim_set_keymap('n' , '<leader>bd'       , ':bd <CR>'                 , opts)
+api.nvim_set_keymap('n' , '<leader><leader>' , '<C-^>'                    , opts)
 api.nvim_set_keymap('n' , '<leader>cd'       , [[:lcd %:p:h<CR>:pwd<CR>]] , opts)
 
 -- Windows
@@ -101,30 +101,35 @@ api.nvim_command('packadd! vim-dirvish')
 api.nvim_command('packadd! vim-repeat')
 api.nvim_command('packadd! vim-commentary')
 api.nvim_command('packadd! vim-surround')
-api.nvim_command('packadd! vim-snippets')
--- Completion
-api.nvim_command('packadd! ultisnips')
+
+-- Lsp plugins
 api.nvim_command('packadd! nvim-lsp')
 api.nvim_command('packadd! completion-nvim')
 api.nvim_command('packadd! diagnostic-nvim')
+
+-- treesitter I am not using it now
 api.nvim_command('packadd! nvim-treesitter')
+
 -- colorschemes
-api.nvim_command('packadd! colorbuddy.vim')
 api.nvim_command('packadd! nvim-colorizer.lua')
+
+-- Integrate with nix-shell in direnv
 api.nvim_command('packadd! direnv.vim')
+
+-- My own theme needs colorbuddy
 api.nvim_command('packadd! modus-theme-vim')
+api.nvim_command('packadd! colorbuddy.vim')
+
+-- Syntax for lua
 api.nvim_command('packadd! BetterLua.vim')
+
 -- plugins for functionality
-api.nvim_command('packadd! fzf')
-api.nvim_command('packadd! fzf.vim')
 api.nvim_command('packadd! vim-waikiki')
 api.nvim_command('packadd! tabular')
-api.nvim_command('packadd! ui.nvim')
-api.nvim_command('packadd! nvim-web-devicons')
-api.nvim_command('packadd! nvim-tree.lua')
 --- }}}
 
 -- Colorschemes
+-- TODO find a way to toggle the theme between light and dark
 require('colorbuddy').colorscheme('modus-operandi')
 
 -- Autocmds {{{1
@@ -184,6 +189,8 @@ api.nvim_set_option('shortmess',shortmess_options)
 ---- This config came from https://github.com/haorenW1025/config/blob/master/.config/nvim/init.lua
 local lsp = require'nvim_lsp'
 
+-- This is chain completion configuration
+-- TODO markdown doesn't behave right
 local chain_complete_list = {
   lua = {
     string = {
@@ -196,7 +203,7 @@ local chain_complete_list = {
     },
 
     default = {
-      {complete_items = {'lsp','snippet'}},
+      {complete_items = {'lsp'}},
       {mode = {'<c-p>'}},
       {mode = {'<c-n>'}}
     }
@@ -225,6 +232,7 @@ local chain_complete_list = {
   comment = {},
 }
 
+-- This is on_attach function which set's up mappings for buffer using daignostics, completion and LSP
 local on_attach = function()
   require'diagnostic'.on_attach({
   })
@@ -261,10 +269,6 @@ lsp.clangd.setup{
       }
     }
   },
-  init_options = {
-    usePlaceholders = true,
-    completeUnimported = true
-  }
 }
 
 lsp.rust_analyzer.setup{

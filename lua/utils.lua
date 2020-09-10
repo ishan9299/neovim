@@ -1,5 +1,5 @@
 local vim = vim
-local api=vim.api
+local api = vim.api
 
 local function nvim_create_augroups(definitions)
   for group_name, definition in pairs(definitions) do

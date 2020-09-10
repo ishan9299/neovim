@@ -7,12 +7,6 @@
 [submodule "tabular"]
 	path = pack/packages/opt/tabular
 	url = https://github.com/godlygeek/tabular
-[submodule "fzf"]
-	path = pack/packages/opt/fzf
-	url = https://github.com/junegunn/fzf
-[submodule "fzf.vim"]
-	path = pack/packages/opt/fzf.vim
-	url = https://github.com/junegunn/fzf.vim
 [submodule "goyo.vim"]
 	path = pack/packages/opt/goyo.vim
 	url = https://github.com/junegunn/goyo.vim
@@ -66,9 +60,3 @@
 [submodule "ui.nvim"]
 	path = pack/packages/opt/ui.nvim
 	url = https://github.com/norcalli/ui.nvim
-[submodule "nvim-tree.lua"]
-	path = pack/packages/opt/nvim-tree.lua
-	url = https://github.com/kyazdani42/nvim-tree.lua
-[submodule "kyazdani42/nvim-web-devicons"]
-	path = pack/packages/opt/nvim-web-devicons
-	url = https://github.com/kyazdani42/nvim-web-devicons
