@@ -11,7 +11,7 @@ vim.wo.relativenumber = true
 vim.wo.number = true
 
 -- Set height of status line
-api.nvim_set_option('laststatus',1)
+vim.o.laststatus = 1
 
 -- Global Settings
 
@@ -19,15 +19,17 @@ api.nvim_command('filetype plugin indent on')
 api.nvim_command('syntax enable')
 
 -- Scrolloff
-api.nvim_set_option('scrolloff',5)
+vim.o.scrolloff = 5
 
 -- Tabstop
 api.nvim_set_option('tabstop',2)
+vim.o.tabstop = 2
 
 -- Set the path to find the file in a project
 local my_path = api.nvim_get_option('path')
 my_path = my_path .. '**'
-api.nvim_set_option('path',my_path)
+-- api.nvim_set_option('path',my_path)
+vim.o.path = my_path
 
 
 -- Ignore certain files and folders when globbing
@@ -38,22 +40,46 @@ ignore = ignore .. '*.pyc,'
 ignore = ignore .. '*.DS_Store,'
 ignore = ignore .. '*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.pdf,'
 
-api.nvim_set_option('wildignore',ignore)
+-- api.nvim_set_option('wildignore',ignore)
+vim.o.wildignore = ignore
 
 -- Set font for gnvim
-api.nvim_set_option('guifont','SauceCodePro Nerd Font Medium:h17')
+-- api.nvim_set_option('guifont','SauceCodePro Nerd Font Medium:h17')
+vim.o.guifont = 'SauceCodePro Nerd Font Medium:h17'
 
 -- Switch buffers painlessly
-api.nvim_set_option('hidden',true)
+-- api.nvim_set_option('hidden',true)
+vim.o.hidden = true
 
-api.nvim_command('set lazyredraw')
+vim.o.lazyredraw = true
 
 -- Do not load netrw by default since I do not use it, see
 -- https://github.com/bling/dotvim/issues/4
-api.nvim_set_var('loaded_netrwPlugin',1)
+vim.g.loaded_netrwPlugin = 1
 
 -- Do not load tohtml.vim
-api.nvim_set_var('loaded_2html_plugin',1)
+vim.g.loaded_2html_plugin = 1
+
+-- The eob removes ~ at the end of buffer
+-- vert gives a line when vertically split
+vim.o.fillchars = 'diff:∙,fold:·,vert:┃,eob: '
+
+-- Show tabs and spaces
+vim.o.listchars='nbsp:⦸,extends:»,precedes:«,trail:•,tab:▸ '
+
+-- Show line break
+vim.o.showbreak = '↳ '
+
+vim.o.showcmd = false
+
+-- These setting are needed for better completion behaviour and some annoyances
+vim.o.completeopt = 'menuone,noinsert,noselect'
+vim.o.shortmess = vim.o.shortmess .. 'cWIa'
+
+-- c = completion messages
+-- W = don't echo "[w]"/"[written]" when writing
+-- I = no splash screen
+-- a = use abbreviations in messages eg. `[RO]` instead of `[readonly]`
 
 -- }}}
 
