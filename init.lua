@@ -123,40 +123,41 @@ api.nvim_set_keymap('n', '<f10>' , [[:echo "hi<" . synIDattr(synID(line("."),col
 
 -- Plugins {{{1
 -- Tpope plugins text editing
-api.nvim_command('packadd! vim-dirvish')
-api.nvim_command('packadd! vim-repeat')
-api.nvim_command('packadd! vim-commentary')
-api.nvim_command('packadd! vim-surround')
+api.nvim_command('packadd! vim-dirvish')    -- Alternative to netrw
+api.nvim_command('packadd! vim-repeat')     -- Full power of .
+api.nvim_command('packadd! vim-commentary') -- Allows us to comment easily
+api.nvim_command('packadd! vim-surround')   -- Easily delete brackets in lisp
 
 -- Lsp plugins
-api.nvim_command('packadd! nvim-lsp')
-api.nvim_command('packadd! completion-nvim')
-api.nvim_command('packadd! diagnostic-nvim')
+api.nvim_command('packadd! nvim-lsp')         -- lsp configs
+api.nvim_command('packadd! completion-nvim')  -- A decent completion written in lua
+api.nvim_command('packadd! diagnostic-nvim')  -- This is a wrapper around lsp to show some messages about errors
 
 -- treesitter I am not using it now
-api.nvim_command('packadd! nvim-treesitter')
+api.nvim_command('packadd! nvim-treesitter')  -- TreeSitter syntax coloring can't make it work for now
 
 -- colorschemes
-api.nvim_command('packadd! nvim-colorizer.lua')
+api.nvim_command('packadd! nvim-colorizer.lua')   -- A really fast colorizer plugin
 
 -- Integrate with nix-shell in direnv
-api.nvim_command('packadd! direnv.vim')
+api.nvim_command('packadd! direnv.vim')   -- Integrates direnv and nix-shell with vim
 
 -- My own theme needs colorbuddy
-api.nvim_command('packadd! modus-theme-vim')
-api.nvim_command('packadd! colorbuddy.vim')
+api.nvim_command('packadd! modus-theme-vim')  -- My theme
+api.nvim_command('packadd! colorbuddy.vim')   -- easy colorschemes !!
 
 -- Syntax for lua
-api.nvim_command('packadd! BetterLua.vim')
+api.nvim_command('packadd! BetterLua.vim')  -- Better colorschemes
 
 -- plugins for functionality
-api.nvim_command('packadd! vim-waikiki')
-api.nvim_command('packadd! tabular')
+api.nvim_command('packadd! vim-waikiki') -- Markdown
+api.nvim_command('packadd! tabular')  -- Make things more readable
 --- }}}
 
 -- Colorschemes
 -- TODO find a way to toggle the theme between light and dark
-require('colorbuddy').colorscheme('modus-operandi')
+vim.o.termguicolors = true
+require('colorbuddy').colorscheme('modus-vivendi')
 
 -- Autocmds {{{1
 local autocmds = {
@@ -206,12 +207,6 @@ require'colorizer'.setup()
 -- Completion and LSP
 
 -- Recommended settings for completion-nvim {{{1
-api.nvim_set_option('completeopt','menuone,noinsert,noselect')
-local shortmess_options = api.nvim_get_option('shortmess')
-
-shortmess_options = shortmess_options .. 'c'
-api.nvim_set_option('shortmess',shortmess_options)
-
 ---- This config came from https://github.com/haorenW1025/config/blob/master/.config/nvim/init.lua
 local lsp = require'nvim_lsp'
 
@@ -282,7 +277,7 @@ local on_attach = function()
   mapper('i', '<c-l>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
 end
 
-api.nvim_set_var('diagnostic_enable_underline',0)
+vim.g.diagnostic_enable_underline = 0
 
 lsp.clangd.setup{
   on_attach = on_attach;
@@ -335,6 +330,11 @@ lsp.vimls.setup{
     }
   },
 }
+
+vim.cmd('sign define LspDiagnosticsErrorSign text=✖')
+vim.cmd('sign define LspDiagnosticsWarningSign text=⚠')
+vim.cmd('sign define LspDiagnosticsInformationSign text=ℹ')
+vim.cmd('sign define LspDiagnosticsHintSign text=➤')
 -- }}}
 
 -- Treesitter
