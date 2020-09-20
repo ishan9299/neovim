@@ -1,8 +1,5 @@
 -- vim: foldmethod=marker
-local vim = vim
-local api = vim.api
-
--- local utils = require('utils')
+local vim,api = vim,vim.api
 
 -- Options {{{1
 vim.g.mapleader = ' '
@@ -49,7 +46,6 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_2html_plugin = 1 -- Do not load tohtml.vim
 
 -- The eob removes ~ at the end of buffer
--- vert gives a line when vertically split
 vim.o.fillchars = 'diff:∙,fold:·,vert:┃,eob: '
 
 -- Show tabs and spaces
@@ -113,92 +109,29 @@ api.nvim_set_keymap('n', '<f10>' , [[:echo "hi<" . synIDattr(synID(line("."),col
 --- }}}
 
 -- Plugins {{{1
--- Tpope plugins text editing
-api.nvim_command('packadd! vim-dirvish')    -- Alternative to netrw
-api.nvim_command('packadd! vim-repeat')     -- Full power of .
-api.nvim_command('packadd! vim-commentary') -- Allows us to comment easily
-api.nvim_command('packadd! vim-surround')   -- Easily delete brackets in lisp
 
--- Lsp plugins
-api.nvim_command('packadd! nvim-lsp')         -- lsp configs
-api.nvim_command('packadd! completion-nvim')  -- A decent completion written in lua
-api.nvim_command('packadd! diagnostic-nvim')  -- This is a wrapper around lsp to show some messages about errors
-
--- treesitter I am not using it now
-api.nvim_command('packadd! nvim-treesitter')  -- TreeSitter syntax coloring can't make it work for now
-
--- colorschemes
-api.nvim_command('packadd! nvim-colorizer.lua')   -- A really fast colorizer plugin
-
--- Integrate with nix-shell in direnv
-api.nvim_command('packadd! direnv.vim')   -- Integrates direnv and nix-shell with vim
-
--- My own theme needs colorbuddy
-api.nvim_command('packadd! modus-theme-vim')  -- My theme
-api.nvim_command('packadd! colorbuddy.vim')   -- easy colorschemes !!
-
--- Syntax for lua
--- api.nvim_command('packadd! BetterLua.vim')  -- Better colorschemes
-
--- plugins for functionality
-api.nvim_command('packadd! vim-waikiki') -- Markdown
-api.nvim_command('packadd! tabular')  -- Make things more readable
---- }}}
-
--- Colorschemes
--- TODO find a way to toggle the theme between light and dark
-vim.o.termguicolors = true
-require('colorbuddy').colorscheme('modus-vivendi')
-
--- Autocmds {{{1
---local autocmds = {
---  highlight_yank = {
---    {"TextYankPost", "*", [[silent! lua require'vim.highlight'.on_yank("Substitute", 200)]]};
---  };
---
---  markdown_syntax = {
---    {"BufNewFile,BufFilePre,BufRead", "*.md"     , "set filetype=markdown"};
---    {"FileType", "markdown" , "setlocal spell"};
---    {"FileType", "markdown" , "setlocal complete+=kspell"};
---  };
---
---  git = {
---    { "Filetype", "gitcommit" , "setlocal spell"};
---    { "Filetype", "gitcommit" , "setlocal complete+=kspell"};
---  };
---
---  nix_syntax = {
---    {"BufNewFile,BufFilePre,BufRead", "*.nix", "set filetype=nix | setlocal tabstop=2"};
---  };
---
---  terminal = {
---    {"TermOpen", "*", "setlocal norelativenumber nonumber"};
---    {"TermOpen", "*", "startinsert"};
---  };
---
---  filetypes = {
---    {" Filetype " , " c     , cpp " , "setlocal omnifunc=v:lua.vim.lsp.omnifunc"},
---    {" Filetype " , " rust        " , "setlocal omnifunc=v:lua.vim.lsp.omnifunc"},
---    {" Filetype " , " lua         " , "setlocal omnifunc=v:lua.vim.lsp.omnifunc"},
---    {" Filetype " , " vim         " , "setlocal omnifunc=v:lua.vim.lsp.omnifunc"},
---    {" Filetype " , " c     , cpp " , "setlocal ts=4 sts=4 shiftwidth=4 expandtab"},
---    {" Filetype " , " rust        " , "setlocal ts=4 sts=4 shiftwidth=4 expandtab"},
---    {" Filetype " , " lua         " , "setlocal ts=2 sts=2 shiftwidth=2 expandtab"},
---    {" Filetype"  , " nix         " , "setlocal ts=2 sts=2 shiftwidth=2 expandtab"},
---    {" Filetype"  , " markdown    " , "setlocal ts=4 sts=4 shiftwidth=4 noexpandtab"},
---    {" Filetype"  , " java        " , "setlocal ts=8 sts=8 shiftwidth=4 noexpandtab"},
---    {" BufEnter " , " *           " , "lua require'completion'.on_attach()"},
---  };
---}
-
--- utils.nvim_create_augroups(autocmds)
+api.nvim_command('packadd! vim-dirvish')        -- Alternative to netrw
+api.nvim_command('packadd! vim-repeat')         -- Full power of .
+api.nvim_command('packadd! vim-commentary')     -- Allows us to comment easily
+api.nvim_command('packadd! vim-surround')       -- Easily delete brackets in lisp
+api.nvim_command('packadd! nvim-lsp')           -- lsp configs
+api.nvim_command('packadd! completion-nvim')    -- A decent completion written in lua
+api.nvim_command('packadd! diagnostic-nvim')    -- This is a wrapper around lsp to show some messages about errors
+api.nvim_command('packadd! nvim-treesitter')    -- TreeSitter syntax coloring can't make it work for now
+api.nvim_command('packadd! nvim-colorizer.lua') -- A really fast colorizer plugin
+api.nvim_command('packadd! direnv.vim')         -- Integrates direnv and nix-shell with vim
+api.nvim_command('packadd! modus-theme-vim')    -- My theme
+api.nvim_command('packadd! colorbuddy.vim')     -- easy colorschemes !!
+api.nvim_command('packadd! vim-waikiki')        -- Markdown
+api.nvim_command('packadd! tabular')            -- Make things more readable
 
 -- }}}
 
--- Colorizer
-require'colorizer'.setup()
+vim.o.termguicolors = true
+require('colorbuddy').colorscheme('modus-vivendi') -- TODO find a way to toggle the theme between light and dark
 
--- Completion and LSP
+require'colorizer'.setup() -- Colorizer
+
 
 -- Recommended settings for completion-nvim {{{1
 ---- This config came from https://github.com/haorenW1025/config/blob/master/.config/nvim/init.lua
@@ -248,13 +181,13 @@ local chain_complete_list = {
 
 -- This is on_attach function which set's up mappings for buffer using daignostics, completion and LSP
 local on_attach = function()
-  require'diagnostic'.on_attach({
-  })
+  require'diagnostic'.on_attach({})
   require'completion'.on_attach({
     sorting = 'alphabet',
     matching_strategy_list = {'exact', 'fuzzy'},
     chain_complete_list = chain_complete_list,
   })
+
   -- This came from https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/lsp_config.lua
   local mapper = function(mode, key, result)
     vim.fn.nvim_buf_set_keymap(0, mode, key, result, {noremap=true, silent=true})
@@ -289,17 +222,23 @@ lsp.rust_analyzer.setup{
   on_attach = on_attach;
 }
 
-lsp.sumneko_lua.setup {
-  on_attach= on_attach;
-  runtime = {
-    version = "LuaJIT";
-  };
-  diagnostics={
-    enable=true,
-    globals={
-      "vim", "Color", "c", "Group", "g", "s", "describe", "it", "before_each", "after_each"
-    },
-  },
+lsp.sumneko_lua.setup{
+  on_attach=on_attach,
+  settings = {
+    Lua = {
+      runtime = { version = "LuaJIT", path = vim.split(package.path, ';'), },
+      completion = { keywordSnippet = "Disable", },
+      diagnostics = { enable = true, globals = {
+        "vim", "describe", "it", "before_each", "after_each" },
+      },
+      workspace = {
+        library = {
+          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+          [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+        }
+      }
+    }
+  }
 }
 
 lsp.jdtls.setup{
@@ -308,7 +247,6 @@ lsp.jdtls.setup{
   init_options = {
     workspace = '~/Documents/Programming/java'
   };
-  -- root_dir = root_pattern('.git')
 }
 
 lsp.vimls.setup{
@@ -328,6 +266,7 @@ vim.cmd('sign define LspDiagnosticsErrorSign text=✖')
 vim.cmd('sign define LspDiagnosticsWarningSign text=⚠')
 vim.cmd('sign define LspDiagnosticsInformationSign text=ℹ')
 vim.cmd('sign define LspDiagnosticsHintSign text=➤')
+
 -- }}}
 
 -- Treesitter
