@@ -89,6 +89,8 @@ api.nvim_set_keymap('n' , 'tk' , ':tabNext <CR>'  , opts)
 -- Buffers
 api.nvim_set_keymap('n' , '<leader>bd'       , ':bd <CR>'                 , opts)
 api.nvim_set_keymap('n' , '<leader><leader>' , '<C-^>'                    , opts)
+api.nvim_set_keymap('n'  , '[b' , ':bp<cr>' , opts)
+api.nvim_set_keymap('n'  , ']b' , ':bp<cr>' , opts)
 api.nvim_set_keymap('n' , '<leader>cd'       , [[:lcd %:p:h<CR>:pwd<CR>]] , opts)
 
 -- Windows
