@@ -2,7 +2,8 @@
 local vim = vim
 local api = vim.api
 
-local utils = require('utils')
+-- local utils = require('utils')
+
 -- Options {{{1
 vim.g.mapleader = ' '
 
@@ -10,29 +11,22 @@ vim.g.mapleader = ' '
 vim.wo.relativenumber = true
 vim.wo.number = true
 
--- Set height of status line
-vim.o.laststatus = 1
+vim.o.laststatus = 1 -- Don't show the status line if no splits
 
--- Global Settings
+api.nvim_command('filetype plugin indent on') -- Filetype flygin on
+api.nvim_command('syntax enable') -- enable syntax highlighting
 
-api.nvim_command('filetype plugin indent on')
-api.nvim_command('syntax enable')
-
--- Scrolloff
-vim.o.scrolloff = 5
+vim.o.scrolloff = 5 -- Scrolling lines starts 5 lines above the last one
 
 -- Tabstop
-api.nvim_set_option('tabstop',2)
 vim.o.tabstop = 2
+vim.bo.tabstop = 2
 
--- Set the path to find the file in a project
 local my_path = api.nvim_get_option('path')
 my_path = my_path .. '**'
--- api.nvim_set_option('path',my_path)
-vim.o.path = my_path
+vim.o.path = my_path -- Set the path to find the file in a project
 
 
--- Ignore certain files and folders when globbing
 local ignore = api.nvim_get_option('wildignore')
 ignore = ignore .. '*.o,*.obj,*.bin,*.dll,*.exe,'
 ignore = ignore .. '*/.git/*,*/.svn/*,*/__pycache__/*,*/build/**,'
@@ -40,31 +34,26 @@ ignore = ignore .. '*.pyc,'
 ignore = ignore .. '*.DS_Store,'
 ignore = ignore .. '*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.pdf,'
 
--- api.nvim_set_option('wildignore',ignore)
-vim.o.wildignore = ignore
+vim.o.wildignore = ignore -- Ignore certain files and folders when globbing
 
--- Set font for gnvim
--- api.nvim_set_option('guifont','SauceCodePro Nerd Font Medium:h17')
-vim.o.guifont = 'SauceCodePro Nerd Font Medium:h17'
+vim.o.guifont = 'SauceCodePro Nerd Font Medium:h17' -- Set font for gnvim
 
--- Switch buffers painlessly
--- api.nvim_set_option('hidden',true)
-vim.o.hidden = true
+vim.o.hidden = true -- Switch buffers painlessly
 
-vim.o.lazyredraw = true
+vim.o.lazyredraw = true -- Macros don't show any animation
 
 -- Do not load netrw by default since I do not use it, see
 -- https://github.com/bling/dotvim/issues/4
 vim.g.loaded_netrwPlugin = 1
 
--- Do not load tohtml.vim
-vim.g.loaded_2html_plugin = 1
+vim.g.loaded_2html_plugin = 1 -- Do not load tohtml.vim
 
 -- The eob removes ~ at the end of buffer
 -- vert gives a line when vertically split
 vim.o.fillchars = 'diff:∙,fold:·,vert:┃,eob: '
 
 -- Show tabs and spaces
+vim.wo.list=true
 vim.o.listchars='nbsp:⦸,extends:»,precedes:«,trail:•,tab:▸ '
 
 -- Show line break
@@ -147,7 +136,7 @@ api.nvim_command('packadd! modus-theme-vim')  -- My theme
 api.nvim_command('packadd! colorbuddy.vim')   -- easy colorschemes !!
 
 -- Syntax for lua
-api.nvim_command('packadd! BetterLua.vim')  -- Better colorschemes
+-- api.nvim_command('packadd! BetterLua.vim')  -- Better colorschemes
 
 -- plugins for functionality
 api.nvim_command('packadd! vim-waikiki') -- Markdown
@@ -160,44 +149,47 @@ vim.o.termguicolors = true
 require('colorbuddy').colorscheme('modus-vivendi')
 
 -- Autocmds {{{1
-local autocmds = {
-  highlight_yank = {
-    {"TextYankPost", "*", [[silent! lua require'vim.highlight'.on_yank("Substitute", 200)]]};
-  };
+--local autocmds = {
+--  highlight_yank = {
+--    {"TextYankPost", "*", [[silent! lua require'vim.highlight'.on_yank("Substitute", 200)]]};
+--  };
+--
+--  markdown_syntax = {
+--    {"BufNewFile,BufFilePre,BufRead", "*.md"     , "set filetype=markdown"};
+--    {"FileType", "markdown" , "setlocal spell"};
+--    {"FileType", "markdown" , "setlocal complete+=kspell"};
+--  };
+--
+--  git = {
+--    { "Filetype", "gitcommit" , "setlocal spell"};
+--    { "Filetype", "gitcommit" , "setlocal complete+=kspell"};
+--  };
+--
+--  nix_syntax = {
+--    {"BufNewFile,BufFilePre,BufRead", "*.nix", "set filetype=nix | setlocal tabstop=2"};
+--  };
+--
+--  terminal = {
+--    {"TermOpen", "*", "setlocal norelativenumber nonumber"};
+--    {"TermOpen", "*", "startinsert"};
+--  };
+--
+--  filetypes = {
+--    {" Filetype " , " c     , cpp " , "setlocal omnifunc=v:lua.vim.lsp.omnifunc"},
+--    {" Filetype " , " rust        " , "setlocal omnifunc=v:lua.vim.lsp.omnifunc"},
+--    {" Filetype " , " lua         " , "setlocal omnifunc=v:lua.vim.lsp.omnifunc"},
+--    {" Filetype " , " vim         " , "setlocal omnifunc=v:lua.vim.lsp.omnifunc"},
+--    {" Filetype " , " c     , cpp " , "setlocal ts=4 sts=4 shiftwidth=4 expandtab"},
+--    {" Filetype " , " rust        " , "setlocal ts=4 sts=4 shiftwidth=4 expandtab"},
+--    {" Filetype " , " lua         " , "setlocal ts=2 sts=2 shiftwidth=2 expandtab"},
+--    {" Filetype"  , " nix         " , "setlocal ts=2 sts=2 shiftwidth=2 expandtab"},
+--    {" Filetype"  , " markdown    " , "setlocal ts=4 sts=4 shiftwidth=4 noexpandtab"},
+--    {" Filetype"  , " java        " , "setlocal ts=8 sts=8 shiftwidth=4 noexpandtab"},
+--    {" BufEnter " , " *           " , "lua require'completion'.on_attach()"},
+--  };
+--}
 
-  markdown_syntax = {
-    {"BufNewFile,BufFilePre,BufRead", "*.md"     , "set filetype=markdown"};
-    {"FileType", "markdown" , "setlocal spell"};
-    {"FileType", "markdown" , "setlocal complete+=kspell"};
-  };
-
-  git = {
-    { "Filetype", "gitcommit" , "setlocal spell"};
-    { "Filetype", "gitcommit" , "setlocal complete+=kspell"};
-  };
-
-  nix_syntax = {
-    {"BufNewFile,BufFilePre,BufRead", "*.nix", "set filetype=nix | setlocal tabstop=2"};
-  };
-
-  terminal = {
-    {"TermOpen", "*", "setlocal norelativenumber nonumber"};
-    {"TermOpen", "*", "startinsert"};
-  };
-
-  filetypes = {
-    {" Filetype " , " c     , cpp " , " setl omnifunc=v:lua.vim.lsp.omnifunc ts=8 sts=8 shiftwidth=8 noexpandtab "},
-    {" Filetype " , " rust        " , " setl omnifunc=v:lua.vim.lsp.omnifunc ts=8 sts=8 shiftwidth=8 noexpandtab "},
-    {" Filetype " , " lua         " , " setl omnifunc=v:lua.vim.lsp.omnifunc ts=2 sts=2 shiftwidth=2 expandtab "},
-    {" Filetype " , " vim         " , " setl omnifunc=v:lua.vim.lsp.omnifunc ts=2 sts=2 shiftwidth=2 expandtab "},
-    {" Filetype"  , " nix         " , " setl ts=2 sts=2 shiftwidth=2 expandtab "},
-    {" Filetype"  , " markdown    " , " setl ts=4 sts=4 shiftwidth=4 noexpandtab "},
-    {" Filetype"  , " java        " , " setl ts=8 sts=8 shiftwidth=4 noexpandtab "},
-    {" BufEnter " , " *           " , " lua require'completion'.on_attach() "},
-  };
-}
-
-utils.nvim_create_augroups(autocmds)
+-- utils.nvim_create_augroups(autocmds)
 
 -- }}}
 
@@ -250,7 +242,6 @@ local chain_complete_list = {
     {complete_items = {'path'}, triggered_only = {'/'}},
   },
 
-  comment = {},
 }
 
 -- This is on_attach function which set's up mappings for buffer using daignostics, completion and LSP
@@ -338,12 +329,11 @@ vim.cmd('sign define LspDiagnosticsHintSign text=➤')
 -- }}}
 
 -- Treesitter
-
 -- Settings {{{1
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "lua",     -- one of "all", "language", or a list of languages
   highlight = {
-    enable = false,              -- false will disable the whole extension
+    enable = true,              -- false will disable the whole extension
     -- disable = { "c", "rust" },  -- list of language that will be disabled
   },
 }
