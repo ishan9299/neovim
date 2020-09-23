@@ -19,13 +19,14 @@ vim.cmd('packadd! vim-commentary')     -- Allows us to comment easily
 vim.cmd('packadd! vim-surround')       -- Easily delete brackets in lisp
 vim.cmd('packadd! tabular')            -- Make things more readable
 
-keybindings.setup()
 options.setup()
+keybindings.setup()
 plugins.lsp()
 plugins.treesitter()
 
 vim.o.termguicolors = true
-require('colorbuddy').colorscheme('modus-vivendi') -- TODO find a way to toggle the theme between light and dark
+vim.g.modus_faint_syntax = 1
+vim.cmd('colorscheme modus-operandi')
 
 require'colorizer'.setup() -- Colorizer
 
