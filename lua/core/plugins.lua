@@ -1,4 +1,5 @@
 local M = {}
+
 function M.lsp()
 ---- This config came from https://github.com/haorenW1025/config/blob/master/.config/nvim/init.lua
   local lsp = require'nvim_lsp'
