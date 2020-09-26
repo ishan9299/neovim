@@ -13,6 +13,18 @@ local function nvim_create_augroups(definitions)
   end
 end
 
+local function toggle_colorschemes()
+  bg_color = vim.o.bg
+  if bg_color == 'dark' then
+    vim.cmd('colorscheme modus-operandi')
+  elseif bg_color == 'light' then
+    vim.cmd('colorscheme modus-vivendi')
+  end
+end
+
 return {
-  nvim_create_augroups = nvim_create_augroups
+  nvim_create_augroups = nvim_create_augroups,
+  toggle_colorschemes = toggle_colorschemes
 }
+
+

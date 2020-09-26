@@ -34,8 +34,9 @@ api.nvim_set_keymap('t' , '<A-j>' , [[<C-\><C-N><C-w>j]] , opts)
 api.nvim_set_keymap('t' , '<A-k>' , [[<C-\><C-N><C-w>k]] , opts)
 api.nvim_set_keymap('t' , '<A-l>' , [[<C-\><C-N><C-w>l]] , opts)
 
--- For colorscheme highlight groups
+-- For colorscheme and highlight groups
 api.nvim_set_keymap('n', '<f10>' , [[:echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' <cr>]] , opts)
+api.nvim_set_keymap('n', '<f5>'  , [[:call v:lua.require('utils').toggle_colorschemes() <cr>]] , opts)
 end
 
 return M

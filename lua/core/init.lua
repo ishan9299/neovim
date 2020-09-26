@@ -26,7 +26,7 @@ plugins.treesitter()
 
 vim.o.termguicolors = true
 vim.g.modus_faint_syntax = 1
-vim.cmd('colorscheme modus-operandi')
+vim.cmd('colorscheme modus-vivendi')
 
 require'colorizer'.setup() -- Colorizer
 

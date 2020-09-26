@@ -15,6 +15,10 @@ function M.setup()
 
   vim.o.scrolloff = 5 -- Scrolling lines starts 5 lines above the last one
 
+-- Foldmethod
+  vim.wo.foldmethod='expr'
+  vim.wo.foldexpr='nvim_treesitter#foldexpr()'
+
 -- Tabstop
   vim.o.tabstop = 2
   vim.bo.tabstop = 2
