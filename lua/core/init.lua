@@ -25,7 +25,7 @@ plugins.lsp()
 plugins.treesitter()
 
 vim.o.termguicolors = true
-vim.g.modus_faint_syntax = 1
+-- vim.g.modus_faint_syntax = 1
 vim.cmd('colorscheme modus-vivendi')
 
 require'colorizer'.setup() -- Colorizer
@@ -42,8 +42,8 @@ local autocmds = {
   };
 
   git = {
-    { "Filetype", "gitcommit" , "setlocal spell"};
-    { "Filetype", "gitcommit" , "setlocal complete+=kspell"};
+    {"Filetype", "gitcommit" , "setlocal spell"};
+    {"Filetype", "gitcommit" , "setlocal complete+=kspell"};
   };
 
   nix_syntax = {
@@ -56,14 +56,14 @@ local autocmds = {
   };
 
   filetypes = {
-    {" Filetype " , " c     , cpp " , " setl omnifunc=v:lua.vim.lsp.omnifunc ts=8 sts=8 shiftwidth=8 noexpandtab "},
-    {" Filetype " , " rust        " , " setl omnifunc=v:lua.vim.lsp.omnifunc ts=8 sts=8 shiftwidth=8 noexpandtab "},
-    {" Filetype " , " lua         " , " setl omnifunc=v:lua.vim.lsp.omnifunc ts=2 sts=2 shiftwidth=2 expandtab "},
-    {" Filetype " , " vim         " , " setl omnifunc=v:lua.vim.lsp.omnifunc ts=2 sts=2 shiftwidth=2 expandtab "},
-    {" Filetype"  , " nix         " , " setl ts=2 sts=2 shiftwidth=2 expandtab "},
-    {" Filetype"  , " markdown    " , " setl ts=4 sts=4 shiftwidth=4 noexpandtab "},
-    {" Filetype"  , " java        " , " setl ts=8 sts=8 shiftwidth=4 noexpandtab "},
-    {" BufEnter " , " *           " , " lua require'completion'.on_attach() "},
+    {"Filetype" , "c     , cpp" , "setl omnifunc=v:lua.vim.lsp.omnifunc ts=8 sts=8 shiftwidth=8 noexpandtab"},
+    {"Filetype" , "rust       " , "setl omnifunc=v:lua.vim.lsp.omnifunc ts=8 sts=8 shiftwidth=8 noexpandtab"},
+    {"Filetype" , "lua        " , "setl omnifunc=v:lua.vim.lsp.omnifunc ts=2 sts=2 shiftwidth=2 expandtab"},
+    {"Filetype" , "vim        " , "setl omnifunc=v:lua.vim.lsp.omnifunc ts=2 sts=2 shiftwidth=2 expandtab"},
+    {"Filetype" , "nix        " , "setl ts=2 sts=2 shiftwidth=2 expandtab"},
+    {"Filetype" , "markdown   " , "setl ts=4 sts=4 shiftwidth=4 noexpandtab"},
+    {"Filetype" , "java       " , "setl ts=8 sts=8 shiftwidth=4 noexpandtab"},
+    {"BufEnter" , "*          " , "lua require'completion'.on_attach()"},
   };
 }
 
