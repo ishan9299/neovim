@@ -1,0 +1,39 @@
+[submodule "surround"]
+	path = pack/packages/start/surround
+	url = https://github.com/tpope/vim-surround
+[submodule "repeat"]
+	path = pack/packages/start/repeat
+	url = https://github.com/tpope/vim-repeat
+[submodule "commentary"]
+	path = pack/packages/start/commentary
+	url = https://github.com/tpope/vim-commentary
+[submodule "dirvish"]
+	path = pack/packages/start/dirvish
+	url = https://github.com/justinmk/vim-dirvish
+[submodule "direnv"]
+	path = pack/packages/start/direnv
+	url = https://github.com/direnv/direnv.vim
+[submodule "tabular"]
+	path = pack/packages/start/tabular
+	url = https://github.com/godlygeek/tabular
+[submodule "completion"]
+	path = pack/packages/opt/completion
+	url = https://github.com/nvim-lua/completion-nvim
+[submodule "diagnostic"]
+	path = pack/packages/opt/diagnostic
+	url = https://github.com/nvim-lua/diagnostic-nvim
+[submodule "lspconfig"]
+	path = pack/packages/opt/lspconfig
+	url = https://github.com/neovim/nvim-lspconfig
+[submodule "colorbuddy"]
+	path = pack/packages/opt/colorbuddy
+	url = https://github.com/tjdevries/colorbuddy.nvim
+[submodule "modus"]
+	path = pack/packages/opt/modus-theme-vim
+	url = https://github.com/ishan9299/modus-theme-vim
+[submodule "colorizer"]
+	path = pack/packages/opt/colorizer
+	url = https://github.com/norcalli/nvim-colorizer.lua
+[submodule "treesitter"]
+	path = pack/packages/opt/treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter
