@@ -4,11 +4,7 @@ local M = {}
 function M.setup()
   vim.g.mapleader = ' '
 
--- Relative line numbers
-  vim.wo.relativenumber = true
-  vim.wo.number = true
-
-  vim.o.laststatus = 1 -- Don't show the status line if no splits
+  vim.o.termguicolors = true
 
   api.nvim_command('filetype plugin indent on') -- Filetype flygin on
   api.nvim_command('syntax enable') -- enable syntax highlighting
@@ -36,8 +32,6 @@ function M.setup()
   ignore = ignore .. '*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.pdf,'
 
   vim.o.wildignore = ignore -- Ignore certain files and folders when globbing
-
-  vim.o.guifont = 'SauceCodePro Nerd Font Medium:h17' -- Set font for gnvim
 
   vim.o.hidden = true -- Switch buffers painlessly
 
