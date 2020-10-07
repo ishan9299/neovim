@@ -37,3 +37,6 @@
 [submodule "treesitter"]
 	path = pack/packages/opt/treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter
+[submodule "nlua"]
+	path = pack/packages/opt/nlua
+	url = https://github.com/tjdevries/nlua.nvim
