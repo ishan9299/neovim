@@ -1,10 +1,10 @@
 local utils = require'utils'
 
 local autocmds = {
-  syntax = {
+  nix_syntax = {
     {"BufNewFile,BufFilePre,BufRead", "*.nix", "set filetype=nix | setlocal tabstop=2"};
   },
-  filetypes = {
+  nix_indentation = {
     {"Filetype" , "nix" , "setl ts=2 sts=2 shiftwidth=2 expandtab"},
   }
 }

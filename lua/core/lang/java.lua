@@ -12,8 +12,8 @@ local utils = require'utils'
 
 
 local autocmds = {
-  filetypes = {
-    {"Filetype" , "java" , "setl ts=8 sts=8 shiftwidth=4 noexpandtab"},
+  java_indentation = {
+    {"Filetype" , "java" , "setl ts=8 sts=8 shiftwidth=4 expandtab"},
   }
 }
 utils.nvim_create_augroups(autocmds)

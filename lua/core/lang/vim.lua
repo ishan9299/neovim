@@ -16,7 +16,7 @@ lsp.vimls.setup{
 }
 
 local autocmds = {
-  filetypes = {
+  vimscript_indentation = {
     {"Filetype" , "vim" , "setl ts=2 sts=2 shiftwidth=2 expandtab"},
   }
 }

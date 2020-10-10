@@ -24,7 +24,7 @@ lsp.sumneko_lua.setup{
 }
 
 local autocmds = {
-  filetype = {
+  lua_indentation = {
     {"Filetype" , "lua" , "setl ts=2 sts=2 shiftwidth=2 expandtab"},
   }
 }

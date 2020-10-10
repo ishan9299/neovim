@@ -7,8 +7,8 @@ lsp.rust_analyzer.setup{
 }
 
 local autocmds = {
-  filetypes = {
-    {"Filetype" , "rust" , "setl ts=8 sts=8 shiftwidth=8 noexpandtab"},
+  rust_indentation = {
+    {"Filetype" , "rust" , "setl ts=4 sts=4 shiftwidth=4 expandtab"},
   }
 }
 

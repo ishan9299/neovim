@@ -16,8 +16,8 @@ lsp.clangd.setup{
 }
 
 local autocmds = {
-  filetypes = {
-    {"Filetype" , "c     , cpp" , "setl ts=8 sts=8 shiftwidth=8 noexpandtab"},
+  c_indentation = {
+    {"Filetype" , "c     , cpp" , "setl ts=4 sts=4 shiftwidth=4 expandtab"},
   }
 }
 
