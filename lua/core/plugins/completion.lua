@@ -51,4 +51,8 @@ local autocmds = {
     }
 }
 
+local normal_silent = { silent = true, noremap = false }
+vim.api.nvim_set_keymap('i', '<tab>', [[<Plug>(completion_smart_tab)]], normal_silent)
+vim.api.nvim_set_keymap('i', '<s-tab>', [[<Plug>(completion_smart_s_tab)]], normal_silent)
+
 require'utils'.nvim_create_augroups(autocmds)
