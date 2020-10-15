@@ -40,3 +40,9 @@
 [submodule "nlua"]
 	path = pack/packages/opt/nlua
 	url = https://github.com/tjdevries/nlua.nvim
+[submodule "plenary"]
+	path = pack/packages/opt/plenary
+	url = https://github.com/nvim-lua/plenary.nvim
+[submodule "expressline"]
+	path = pack/packages/opt/expressline
+	url = https://github.com/tjdevries/express_line.nvim
