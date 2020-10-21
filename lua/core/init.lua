@@ -20,6 +20,7 @@ require('core.plugins.treesitter')  -- configuration for treesitter highlighting
 require('core.plugins.colorizer')   -- shows the colors for colorcodes
 require('core.plugins.colorbuddy')  -- easily write and modify the colorschemes
 require('core.plugins.modus')       -- my colorscheme
+-- require('core.plugins.expressline') -- my statusline
 
 --[[
 Settings for some languages using lsp

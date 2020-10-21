@@ -50,6 +50,9 @@ function M.setup()
   vim.wo.list=true
   vim.o.listchars='nbsp:⦸,extends:»,precedes:«,trail:•,tab:▸ '
 
+-- Cursor line
+  vim.wo.cursorline = true
+
 -- Show line break
   vim.o.showbreak = '↳ '
 
