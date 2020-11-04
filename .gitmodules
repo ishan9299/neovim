@@ -46,3 +46,6 @@
 [submodule "expressline"]
 	path = pack/packages/opt/expressline
 	url = https://github.com/tjdevries/express_line.nvim
+[submodule "vim-nix"]
+	path = pack/packages/start/vim-nix
+	url = https://github.com/LnL7/vim-nix
