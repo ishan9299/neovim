@@ -19,9 +19,6 @@
 [submodule "completion"]
 	path = pack/packages/opt/completion
 	url = https://github.com/nvim-lua/completion-nvim
-[submodule "diagnostic"]
-	path = pack/packages/opt/diagnostic
-	url = https://github.com/nvim-lua/diagnostic-nvim
 [submodule "lspconfig"]
 	path = pack/packages/opt/lspconfig
 	url = https://github.com/neovim/nvim-lspconfig

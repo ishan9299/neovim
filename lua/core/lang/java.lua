@@ -1,5 +1,5 @@
 vim.cmd('packadd! lspconfig')
-local lsp = require'nvim_lsp'
+local lsp = require'lspconfig'
 local utils = require'utils'
 
   lsp.jdtls.setup{

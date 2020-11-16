@@ -1,6 +1,6 @@
 vim.cmd('packadd! lspconfig')
 local utils = require'utils'
-local lsp = require'nvim_lsp'
+local lsp = require'lspconfig'
 
 lsp.html.setup{
   on_attach = require'core.lang.lsp'.on_attach;

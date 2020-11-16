@@ -1,7 +1,7 @@
 vim.cmd('packadd! lspconfig')
 vim.cmd('packadd! nlua')
 
-local lsp = require'nvim_lsp'
+local lsp = require'lspconfig'
 local utils = require'utils'
 
 lsp.sumneko_lua.setup{
