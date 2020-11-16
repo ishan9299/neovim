@@ -16,17 +16,17 @@ The plugins over here are stored in opt directory comment them out to disable th
 
 require('core.plugins.completion')  -- completion for neovim
 require('core.plugins.treesitter')  -- configuration for treesitter highlighting
+require('core.plugins.rainbow')     -- rainbow parenthesis using treesitter in lua
 require('core.plugins.colorizer')   -- shows the colors for colorcodes
 require('core.plugins.colorbuddy')  -- easily write and modify the colorschemes
 require('core.plugins.modus')       -- my colorscheme
--- require('core.plugins.expressline') -- my statusline
 
 --[[
 Settings for some languages using lsp
 ]]
 require('core.lang.C++')
 require('core.lang.java')
-require('core.lang.lua')
+-- require('core.lang.lua')
 require('core.lang.html')
 require('core.lang.css')
 require('core.lang.vim')
