@@ -46,6 +46,3 @@
 [submodule "vim-nix"]
 	path = pack/packages/start/vim-nix
 	url = https://github.com/LnL7/vim-nix
-[submodule "nvim-ts-rainbow"]
-	path = pack/packages/opt/nvim-ts-rainbow
-	url = https://github.com/p00f/nvim-ts-rainbow
