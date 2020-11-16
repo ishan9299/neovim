@@ -15,7 +15,6 @@ The plugins over here are stored in opt directory comment them out to disable th
 ]]
 
 require('core.plugins.completion')  -- completion for neovim
-require('core.plugins.diagnostic')  -- diagnostic for lsp
 require('core.plugins.treesitter')  -- configuration for treesitter highlighting
 require('core.plugins.colorizer')   -- shows the colors for colorcodes
 require('core.plugins.colorbuddy')  -- easily write and modify the colorschemes
