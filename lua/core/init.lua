@@ -26,7 +26,7 @@ Settings for some languages using lsp
 ]]
 require('core.lang.C++')
 require('core.lang.java')
--- require('core.lang.lua')
+require('core.lang.lua')
 require('core.lang.html')
 require('core.lang.css')
 require('core.lang.vim')
