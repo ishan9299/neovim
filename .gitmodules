@@ -46,3 +46,12 @@
 [submodule "vim-nix"]
 	path = pack/packages/start/vim-nix
 	url = https://github.com/LnL7/vim-nix
+[submodule "popup"]
+	path = pack/packages/opt/popup
+	url = https://github.com/nvim-lua/popup.nvim
+[submodule "telescope"]
+	path = pack/packages/opt/telescope
+	url = https://github.com/nvim-telescope/telescope.nvim
+[submodule "nvim-web-devicons"]
+	path = pack/packages/opt/nvim-web-devicons
+	url = https://github.com/kyazdani42/nvim-web-devicons
