@@ -12,8 +12,8 @@ api.nvim_set_keymap('n', '<leader>et', ':tabe <C-R>=expand("%:p:h") . "/" <CR>' 
 
 -- Tabs
 api.nvim_set_keymap('n' , 'tn' , ':tabnew  <CR>'  , normal_silent)
-api.nvim_set_keymap('n' , 'tj' , ':tabprev <CR>'  , normal_silent)
-api.nvim_set_keymap('n' , 'tk' , ':tabNext <CR>'  , normal_silent)
+api.nvim_set_keymap('n' , 'tj' , ':tabprevious <CR>'  , normal_silent)
+api.nvim_set_keymap('n' , 'tk' , ':tabnext <CR>'  , normal_silent)
 
 -- Buffers
 api.nvim_set_keymap('n' , '<leader>bd'       , ':bd <CR>'                 , normal_silent)
