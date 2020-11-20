@@ -19,6 +19,8 @@ require('core.plugins.treesitter')  -- configuration for treesitter highlighting
 require('core.plugins.colorizer')   -- shows the colors for colorcodes
 require('core.plugins.colorbuddy')  -- easily write and modify the colorschemes
 require('core.plugins.modus')       -- my colorscheme
+require('core.plugins.devicons')    -- icons
+require('core.plugins.telescope')   -- it's a telescope
 
 --[[
 Settings for some languages using lsp
@@ -44,7 +46,7 @@ You can also set some options
 --[[
 Fonts used by neovim gui
 ]]
-vim.o.guifont = 'SauceCodePro Nerd Font Medium:h17'
+vim.o.guifont = 'Iosevka Nerd Font Mono:h17'
 
 --[[
 Set the colorscheme
