@@ -21,6 +21,7 @@ require('core.plugins.colorbuddy')  -- easily write and modify the colorschemes
 require('core.plugins.modus')       -- my colorscheme
 require('core.plugins.devicons')    -- icons
 require('core.plugins.telescope')   -- it's a telescope
+require('core.plugins.lazygit')     -- lazygit inside neovim
 
 --[[
 Settings for some languages using lsp
