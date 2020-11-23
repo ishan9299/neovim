@@ -40,9 +40,6 @@
 [submodule "plenary"]
 	path = pack/packages/opt/plenary
 	url = https://github.com/nvim-lua/plenary.nvim
-[submodule "expressline"]
-	path = pack/packages/opt/expressline
-	url = https://github.com/tjdevries/express_line.nvim
 [submodule "vim-nix"]
 	path = pack/packages/start/vim-nix
 	url = https://github.com/LnL7/vim-nix
@@ -61,3 +58,12 @@
 [submodule "lazygit"]
 	path = pack/packages/opt/lazygit
 	url = https://github.com/kdheepak/lazygit.nvim
+[submodule "galaxyline"]
+	path = pack/packages/opt/galaxyline
+	url = https://github.com/glepnir/galaxyline.nvim
+[submodule "gitsigns"]
+	path = pack/packages/opt/gitsigns
+	url = https://github.com/lewis6991/gitsigns.nvim
+[submodule "luatree"]
+	path = pack/packages/opt/luatree
+	url = https://github.com/kyazdani42/nvim-tree.lua
