@@ -22,6 +22,8 @@ require('core.plugins.modus')       -- my colorscheme
 require('core.plugins.devicons')    -- icons
 require('core.plugins.telescope')   -- it's a telescope
 require('core.plugins.lazygit')     -- lazygit inside neovim
+require('core.plugins.gitsigns')    -- gitsigns
+require('core.plugins.luatree')     -- file explorer
 
 --[[
 Settings for some languages using lsp
@@ -54,6 +56,7 @@ Set the colorscheme
 - modus-operandi (light theme)
 - modus-vivendi (dark theme)
 ]]
+vim.g.modus_moody_enable = 1
 vim.cmd('colorscheme modus-operandi')
 
 --[[
