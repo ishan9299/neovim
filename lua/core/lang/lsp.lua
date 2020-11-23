@@ -19,10 +19,10 @@ function M.on_attach()
   -- CodeAction
   -- vim.cmd 'command! CodeAction lua vim.lsp.buf.code_action()'
 
-  vim.cmd('sign define LspDiagnosticsErrorSign text=✖')
-  vim.cmd('sign define LspDiagnosticsWarningSign text=⚠')
-  vim.cmd('sign define LspDiagnosticsInformationSign text=ℹ')
-  vim.cmd('sign define LspDiagnosticsHintSign text=➤')
+  vim.cmd('sign define LspDiagnosticsSignError text=✖')
+  vim.cmd('sign define LspDiagnosticsSignWarning text=⚠')
+  vim.cmd('sign define LspDiagnosticsSignInformation text=ℹ')
+  vim.cmd('sign define LspDiagnosticsSignHint text=➤')
 end
 
 return M
