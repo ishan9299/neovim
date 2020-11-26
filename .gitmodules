@@ -67,3 +67,6 @@
 [submodule "luatree"]
 	path = pack/packages/opt/luatree
 	url = https://github.com/kyazdani42/nvim-tree.lua
+[submodule "expressline"]
+	path = pack/packages/opt/expressline
+	url = https://github.com/tjdevries/express_line.nvim
