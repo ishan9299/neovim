@@ -20,7 +20,7 @@ require('core.plugins.colorizer')   -- shows the colors for colorcodes
 require('core.plugins.colorbuddy')  -- easily write and modify the colorschemes
 require('core.plugins.modus')       -- my colorscheme
 require('core.plugins.devicons')    -- icons
-require('core.plugins.telescope')   -- it's a telescope
+-- require('core.plugins.telescope')   -- it's a telescope
 require('core.plugins.lazygit')     -- lazygit inside neovim
 require('core.plugins.gitsigns')    -- gitsigns
 require('core.plugins.luatree')     -- file explorer
@@ -36,6 +36,8 @@ require('core.lang.lua')
 require('core.lang.html')
 require('core.lang.css')
 require('core.lang.vim')
+require('core.lang.typescript')
+require('core.lang.json')
 require('core.lang.rust')
 
 --[[
@@ -59,7 +61,8 @@ Set the colorscheme
 - modus-vivendi (dark theme)
 ]]
 vim.g.modus_moody_enable = 1
-vim.cmd('colorscheme modus-operandi')
+-- vim.cmd('colorscheme modus-vivendi')
+vim.cmd('colorscheme modus-vivendi')
 
 --[[
 Relative line numbers
