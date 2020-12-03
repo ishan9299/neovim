@@ -55,9 +55,6 @@
 [submodule "startify"]
 	path = pack/packages/start/vim-startify
 	url = https://github.com/mhinz/vim-startify
-[submodule "lazygit"]
-	path = pack/packages/opt/lazygit
-	url = https://github.com/kdheepak/lazygit.nvim
 [submodule "galaxyline"]
 	path = pack/packages/opt/galaxyline
 	url = https://github.com/glepnir/galaxyline.nvim
