@@ -1,4 +1,4 @@
-require('core.options').setup()  -- set some sane default options
+-- require('core.options').setup()  -- set some sane default options
 require('core.mappings').setup() -- set the default keys
 require('core.autocmds')         -- This sets up the autocommands for terminal git files
 
@@ -21,7 +21,6 @@ require('core.plugins.colorbuddy')  -- easily write and modify the colorschemes
 require('core.plugins.modus')       -- my colorscheme
 require('core.plugins.devicons')    -- icons
 -- require('core.plugins.telescope')   -- it's a telescope
-require('core.plugins.lazygit')     -- lazygit inside neovim
 require('core.plugins.gitsigns')    -- gitsigns
 require('core.plugins.luatree')     -- file explorer
 require('core.plugins.barbar')      -- fancy tabs
