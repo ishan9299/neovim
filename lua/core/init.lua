@@ -23,7 +23,7 @@ require('core.plugins.devicons')    -- icons
 -- require('core.plugins.telescope')   -- it's a telescope
 require('core.plugins.gitsigns')    -- gitsigns
 require('core.plugins.luatree')     -- file explorer
-require('core.plugins.barbar')      -- fancy tabs
+-- require('core.plugins.barbar')      -- fancy tabs
 -- require('core.plugins.expressline') -- statusline
 
 --[[
