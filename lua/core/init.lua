@@ -1,3 +1,6 @@
+local o = vim.o
+local wo = vim.wo
+local g = vim.g
 -- require('core.options').setup()  -- set some sane default options
 require('core.mappings').setup() -- set the default keys
 require('core.autocmds')         -- This sets up the autocommands for terminal git files
@@ -52,14 +55,14 @@ You can also set some options
 --[[
 Fonts used by neovim gui
 ]]
-vim.o.guifont = 'Iosevka Nerd Font Mono:h17'
+o.guifont = 'Iosevka Nerd Font Mono:h17'
 
 --[[
 Set the colorscheme
 - modus-operandi (light theme)
 - modus-vivendi (dark theme)
 ]]
-vim.g.modus_moody_enable = 1
+g.modus_moody_enable = 1
 -- vim.cmd('colorscheme modus-vivendi')
 vim.cmd('colorscheme modus-vivendi')
 
@@ -67,8 +70,8 @@ vim.cmd('colorscheme modus-vivendi')
 Relative line numbers
 to get normal line number set relative line number as false
 ]]
-vim.wo.relativenumber = true
-vim.wo.number = true
+wo.relativenumber = true
+wo.number = true
 
 --[[
 statusline
@@ -76,4 +79,4 @@ statusline
 1 = show only when there is a split
 0 = never show it
 ]]
-vim.o.laststatus = 2
+o.laststatus = 2

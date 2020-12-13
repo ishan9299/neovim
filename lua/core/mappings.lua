@@ -11,15 +11,15 @@ api.nvim_set_keymap('n', '<leader>ev', ':vsp  <C-R>=expand("%:p:h") . "/" <CR>' 
 api.nvim_set_keymap('n', '<leader>et', ':tabe <C-R>=expand("%:p:h") . "/" <CR>' , normal_echo)
 
 -- Tabs
--- api.nvim_set_keymap('n' , 'tn' , ':tabnew  <CR>'  , normal_silent)
--- api.nvim_set_keymap('n' , 'tj' , ':tabprevious <CR>'  , normal_silent)
--- api.nvim_set_keymap('n' , 'tk' , ':tabnext <CR>'  , normal_silent)
+api.nvim_set_keymap('n' , 'tn' , ':tabnew  <CR>'  , normal_silent)
+api.nvim_set_keymap('n' , 'tj' , ':tabprevious <CR>'  , normal_silent)
+api.nvim_set_keymap('n' , 'tk' , ':tabnext <CR>'  , normal_silent)
 
 -- Buffers
--- api.nvim_set_keymap('n' , '<leader>bd'       , ':bd <CR>'                 , normal_silent)
+api.nvim_set_keymap('n' , '<leader>bd'       , ':bd <CR>'                 , normal_silent)
 -- api.nvim_set_keymap('n' , '<leader><leader>' , '<C-^>'                    , normal_silent)
--- api.nvim_set_keymap('n'  , '[b' , ':bp<cr>' , normal_silent)
--- api.nvim_set_keymap('n'  , ']b' , ':bn<cr>' , normal_silent)
+api.nvim_set_keymap('n'  , 'gbp' , ':bp<cr>' , normal_silent)
+api.nvim_set_keymap('n'  , 'gbn' , ':bn<cr>' , normal_silent)
 api.nvim_set_keymap('n' , '<leader>cd'       , [[:lcd %:p:h<CR>:pwd<CR>]] , normal_silent)
 
 -- Windows
