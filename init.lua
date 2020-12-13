@@ -1,6 +1,7 @@
 local o = vim.o
 local wo = vim.wo
 local g = vim.g
+local bo = vim.bo
 
 g.mapleader = ' '
 
@@ -18,7 +19,7 @@ wo.foldexpr='nvim_treesitter#foldexpr()'
 
 -- Tabstop
 o.tabstop = 2
-vim.bo.tabstop = 2
+bo.tabstop = 2
 
 -- Set the path to find the file in a project
 o.path = o.path .. '**'
