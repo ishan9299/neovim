@@ -7,6 +7,13 @@ vim.cmd('filetype plugin indent on') -- Filetype flygin on
 vim.cmd('syntax enable') -- enable syntax highlighting
 vim.cmd('colorscheme modus-operandi')
 
+-- ++------ BUFFER OPTIONS ------++
+-- These settings also need to be set as
+-- global options don't know why.
+bo.ts=4
+bo.sts=4
+bo.shiftwidth=4 -- spaces for autoindent
+bo.expandtab = true -- Turn of tabs
 
 -- ++------ WINDOW OPTIONS ------++
 -- Foldmethod
