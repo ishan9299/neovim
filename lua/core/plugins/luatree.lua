@@ -1,5 +1,4 @@
 local vim = vim
-vim.cmd('packadd! luatree')
 
 vim.g.lua_tree_side = 'left' -- left by default
 vim.g.lua_tree_width = 40 -- 30 by default
