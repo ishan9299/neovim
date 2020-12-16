@@ -52,7 +52,7 @@ o.lazyredraw = true -- Macros don't show any animation
 -- The eob removes ~ at the end of buffer
 o.fillchars = 'diff:∙,fold:·,vert:┃,eob: '
 -- Show tabs and spaces
-o.listchars='nbsp:⦸,extends:»,precedes:«,trail:•,tab:▸ '
+o.listchars='eol:↲,nbsp:¬,extends:»,precedes:«,trail:•,tab:▸ '
 -- Show line break
 o.showbreak = '↳ '
 o.showcmd = false
