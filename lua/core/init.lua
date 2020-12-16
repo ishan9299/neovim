@@ -1,7 +1,7 @@
 require('core.mappings').setup() -- set the default keys
 require('core.autocmds')         -- This sets up the autocommands for terminal git files
 
--- On ly required if you have packer in your `opt` pack
+-- Only required if you have packer in your `opt` pack
 local packer_exists = pcall(vim.cmd, [[packadd packer.nvim]])
 
 if not packer_exists then
@@ -65,6 +65,7 @@ return require('packer').startup(function()
         'javascript',
         'php',
         'vim',
+        'lua',
         css = {
            RGB      = true,
            RRGGBB   = true,
