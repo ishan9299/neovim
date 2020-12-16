@@ -175,9 +175,9 @@ return require('packer').startup(function()
   use {
   'nvim-treesitter/nvim-treesitter',
   config = require'nvim-treesitter.configs'.setup {
-     ensure_installed = { "javascript", "typescript" },     -- one of "all", "language", or a list of languages
+     ensure_installed = { "javascript", "typescript", "lua", "cpp", "nix", "go" },     -- one of "all", "language", or a list of languages
      highlight = {
-        enable = true,              -- false will disable the whole extension
+        enable = false,              -- false will disable the whole extension
         use_languagetree = false,
      },
   },
