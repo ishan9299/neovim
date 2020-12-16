@@ -227,11 +227,6 @@ return require('packer').startup(function()
   use 'tjdevries/conf.vim'
   use 'junegunn/vader.vim'
 
-  -- use {'junegunn/fzf', run = './install --all' }     -- Fuzzy Searcher
-  -- use {'junegunn/fzf.vim'}
-  -- use {'yuki-ycino/fzf-preview.vim', run = 'yarn global add' }
-  -- use {'yuki-ycino/fzf-preview.vim', run = 'npm install' }
-
   use 'lervag/wiki.vim'
   use 'ihsanturk/neuron.vim'
 
@@ -242,5 +237,8 @@ return require('packer').startup(function()
   use 'tjdevries/colorbuddy.nvim'
   use 'tjdevries/gruvbuddy.nvim'
   use 'ishan9299/modus-theme-vim'
+
+  -- NIX
+  use 'LnL7/vim-nix'
 end)
 
