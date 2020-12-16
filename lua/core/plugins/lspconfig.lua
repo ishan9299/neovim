@@ -18,7 +18,7 @@ local function custom_attach()
   vim.cmd('sign define LspDiagnosticsSignHint text=➤')
 end
 
-function M.init() {
+function M.init()
     local lsp = require'lspconfig'
 
     lsp.clangd.setup{
@@ -75,5 +75,5 @@ function M.init() {
             }
         },
     }
-}
+end
 return M
