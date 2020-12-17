@@ -5,6 +5,7 @@ local bo = vim.bo
 
 vim.cmd('filetype plugin indent on') -- Filetype flygin on
 vim.cmd('syntax enable') -- enable syntax highlighting
+vim.g.modus_moody_enable = 1
 vim.cmd('colorscheme modus-operandi')
 
 -- ++------ BUFFER OPTIONS ------++

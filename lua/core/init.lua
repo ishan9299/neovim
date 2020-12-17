@@ -237,6 +237,7 @@ return require('packer').startup(function()
   use 'tjdevries/colorbuddy.nvim'
   use 'tjdevries/gruvbuddy.nvim'
   use 'ishan9299/modus-theme-vim'
+  use 'glepnir/galaxyline.nvim'
 
   -- NIX
   use 'LnL7/vim-nix'
