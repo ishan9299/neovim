@@ -152,7 +152,7 @@ return require('packer').startup(function()
   --   neovim/neovim has all of the LSP code.
   use {
   'neovim/nvim-lspconfig',
-  config = 'require("core.plugins.lspconfig")',
+  config = 'require("core.plugins.lspconfig").init()',
   }
 
   -- STREAM: Figure out how to use snippets better
@@ -240,6 +240,11 @@ return require('packer').startup(function()
   use 'ishan9299/modus-theme-vim'
   use 'glepnir/galaxyline.nvim'
 
+  use {
+      'nvim-telescope/telescope.nvim',
+      requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
+      config = 'require("core.plugins.telescope")'
+  }
   -- NIX
   use 'LnL7/vim-nix'
 end)
