@@ -66,6 +66,7 @@ return require('packer').startup(function()
         'php',
         'vim',
         'lua',
+        'conf',
         css = {
            RGB      = true,
            RRGGBB   = true,
