@@ -17,7 +17,7 @@ api.nvim_set_keymap('n' , 'tk' , ':tabnext <CR>'  , normal_silent)
 
 -- Buffers
 api.nvim_set_keymap('n' , '<leader>bd'       , ':bd <CR>'                 , normal_silent)
--- api.nvim_set_keymap('n' , '<leader><leader>' , '<C-^>'                    , normal_silent)
+api.nvim_set_keymap('n' , '<leader><leader>' , '<C-^>'                    , normal_silent)
 api.nvim_set_keymap('n'  , 'gbp' , ':bp<cr>' , normal_silent)
 api.nvim_set_keymap('n'  , 'gbn' , ':bn<cr>' , normal_silent)
 api.nvim_set_keymap('n' , '<leader>cd'       , [[:lcd %:p:h<CR>:pwd<CR>]] , normal_silent)
@@ -27,6 +27,12 @@ api.nvim_set_keymap('n', '<A-h>', '<C-w>h', normal_silent)
 api.nvim_set_keymap('n', '<A-j>', '<C-w>j', normal_silent)
 api.nvim_set_keymap('n', '<A-k>', '<C-w>k', normal_silent)
 api.nvim_set_keymap('n', '<A-l>', '<C-w>l', normal_silent)
+
+-- Resize
+api.nvim_set_keymap('n', '<C-M-h>', ':vertical resize -2<CR>', normal_silent)
+api.nvim_set_keymap('n', '<C-M-l>', ':vertical resize +2<CR>', normal_silent)
+api.nvim_set_keymap('n', '<C-M-j>', ':resize -2<CR>', normal_silent)
+api.nvim_set_keymap('n', '<C-M-k>', ':resize +2<CR>', normal_silent)
 
 
 -- Terminal
