@@ -234,9 +234,9 @@ return require('packer').startup(function()
   use 'ThePrimeagen/vim-be-good'
 
 
-  use 'tjdevries/colorbuddy.nvim'
+  use { 'tjdevries/colorbuddy.nvim', opt = true }
   use 'tjdevries/gruvbuddy.nvim'
-  use 'ishan9299/modus-theme-vim'
+  use '~/Projects/modus-theme-vim'
   use 'glepnir/galaxyline.nvim'
 
   use {
