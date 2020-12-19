@@ -173,17 +173,16 @@ return require('packer').startup(function()
 
   -- }}}
   -- TREE SITTER: {{{
-  use {
-  'nvim-treesitter/nvim-treesitter',
-  config = require'nvim-treesitter.configs'.setup {
-     -- ensure_installed = { "javascript", "typescript", "lua", "cpp", "nix", "go" },     -- one of "all", "language", or a list of languages
-     highlight = {
-        enable = false,              -- false will disable the whole extension
-        use_languagetree = false,
-     },
-  },
-  }
-  use 'nvim-treesitter/playground'
+  -- use {
+  -- 'nvim-treesitter/nvim-treesitter',
+  -- config = require'nvim-treesitter.configs'.setup {
+  --    -- ensure_installed = { "javascript", "typescript", "lua", "cpp", "nix", "go" },     -- one of "all", "language", or a list of languages
+  --    highlight = {
+  --       enable = false,              -- false will disable the whole extension
+  --       use_languagetree = false,
+  --    },
+  -- },
+  -- }
 
   -- }}}
   -- NAVIGATION: {{{
