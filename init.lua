@@ -6,7 +6,6 @@ local bo = vim.bo
 vim.cmd('filetype plugin indent on') -- Filetype flygin on
 vim.cmd('syntax enable') -- enable syntax highlighting
 g.modus_moody_enable = 1
-o.background = 'light'
 vim.cmd('packadd! colorbuddy.nvim')
 require('colorbuddy').colorscheme('modus-operandi')
 -- vim.cmd('colorscheme modus-operandi')

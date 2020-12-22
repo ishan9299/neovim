@@ -227,13 +227,6 @@ return require('packer').startup(function()
   use 'tjdevries/conf.vim'
   use 'junegunn/vader.vim'
 
-  use 'lervag/wiki.vim'
-  use 'ihsanturk/neuron.vim'
-
-  use 'ThePrimeagen/vim-apm'
-  use 'ThePrimeagen/vim-be-good'
-
-
   use { 'tjdevries/colorbuddy.nvim', opt = true }
   use 'tjdevries/gruvbuddy.nvim'
   use '~/Projects/modus-theme-vim'
