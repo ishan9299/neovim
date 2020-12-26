@@ -5,10 +5,6 @@ local bo = vim.bo
 
 vim.cmd('filetype plugin indent on') -- Filetype flygin on
 vim.cmd('syntax enable') -- enable syntax highlighting
-g.modus_moody_enable = 1
-vim.cmd('packadd! colorbuddy.nvim')
-require('colorbuddy').colorscheme('modus-operandi')
--- vim.cmd('colorscheme modus-operandi')
 
 -- ++------ BUFFER OPTIONS ------++
 -- These settings also need to be set as
@@ -90,6 +86,9 @@ g.loaded_shellmenu = 1
 g.loaded_termdebug = 1
 
 
-
 -- Lua files
 require('core')
+
+g.modus_moody_enable = 1
+vim.cmd('packadd! colorbuddy.nvim')
+require('colorbuddy').colorscheme('modus-operandi')
