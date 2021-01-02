@@ -34,35 +34,6 @@ function M.init()
         },
     }
 
-
-    lsp.cssls.setup{
-        on_attach = custom_attach;
-    }
-
-    lsp.html.setup{
-        on_attach = custom_attach;
-    }
-    lsp.sumneko_lua.setup{
-        on_attach = custom_attach;
-        settings = {
-            Lua = {
-                runtime = { version = "LuaJIT", path = vim.split(package.path, ';'), },
-                completion = { keywordSnippet = "Disable", },
-                diagnostics = { enable = true, globals = {
-                    "vim", "describe", "it", "before_each", "after_each", "client", "use" },
-                },
-                workspace = {
-                    library = {
-                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                        [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-                    }
-                }
-            }
-        }
-    }
-
-    lsp.tsserver.setup{}
-
     lsp.vimls.setup{
         on_attach = custom_attach;
         capabilities = {
