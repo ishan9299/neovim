@@ -63,8 +63,6 @@ return require('packer').startup(function()
      }
      end,
   }
-  use 'romainl/vim-qf'
-
   use {
      'glacambre/firenvim',
      run = function()
@@ -88,20 +86,17 @@ return require('packer').startup(function()
 
   use 'junegunn/goyo.vim'
   use 'justinmk/vim-syntax-extra'
-  use 'liuchengxu/vista.vim'
   use 'justinmk/vim-dirvish'
-  use 'pechorin/any-jump.vim'
-  use 'godlygeek/tabular'        -- Quickly align text by pattern
-  use 'tpope/vim-surround'       -- Surround text objects easily
-  use 'tpope/vim-speeddating'    -- Handle changing of dates in a nicer manner
-  use 'tpope/vim-commentary'     -- Easily comment out lines or objects
-  use 'tpope/vim-repeat'         -- Repeat actions better
-  use 'tpope/vim-abolish'        -- Cool things with words!
+  use 'godlygeek/tabular'
+  use 'tpope/vim-surround'
+  use 'tpope/vim-speeddating'
+  use 'tpope/vim-commentary'
+  use 'tpope/vim-repeat'
+  use 'tpope/vim-abolish'
   use 'tpope/vim-characterize'
-  use 'AndrewRadev/splitjoin.vim'
-  use 'AndrewRadev/sideways.vim' -- Easy sideways movement
+  use 'LnL7/vim-nix'
 
-  use { 'tjdevries/colorbuddy.nvim', opt = true }
+  use 'tjdevries/colorbuddy.nvim'
   use 'tjdevries/gruvbuddy.nvim'
   use '~/Projects/modus-theme-vim'
   use 'glepnir/galaxyline.nvim'
@@ -112,6 +107,5 @@ return require('packer').startup(function()
       config = 'require("core.plugins.telescope")'
   }
 
-  use 'LnL7/vim-nix'
 end)
 

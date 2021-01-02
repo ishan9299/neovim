@@ -90,5 +90,4 @@ g.loaded_termdebug = 1
 require('core')
 
 g.modus_moody_enable = 1
-vim.cmd('packadd! colorbuddy.nvim')
 require('colorbuddy').colorscheme('modus-operandi')

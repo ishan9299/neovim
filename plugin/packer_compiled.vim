@@ -9,12 +9,6 @@ endif
 
 lua << END
 local plugins = {
-  ["colorbuddy.nvim"] = {
-    loaded = false,
-    only_sequence = false,
-    only_setup = false,
-    path = "/home/me/.local/share/nvim/site/pack/packer/opt/colorbuddy.nvim"
-  },
   ["packer.nvim"] = {
     loaded = false,
     only_sequence = false,
@@ -151,7 +145,7 @@ require"core.plugins.luatree"
 -- Config for: telescope.nvim
 require("core.plugins.telescope")
 -- Config for: nvim-colorizer.lua
-loadstring("\27LJ\2\nÇ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\bcss\1\0\b\nnames\2\vRRGGBB\2\bRGB\2\bcss\2\vcss_fn\2\vhsl_fn\2\vrgb_fn\2\rRRGGBBAA\2\1\v\0\0\thtml\15htmldjango\rmarkdown\bcss\tscss\15javascript\bphp\bvim\blua\tconf\nsetup\14colorizer\frequire\0")()
+loadstring("\27LJ\2\nÇ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\bcss\1\0\b\vhsl_fn\2\vrgb_fn\2\rRRGGBBAA\2\nnames\2\vRRGGBB\2\bRGB\2\bcss\2\vcss_fn\2\1\v\0\0\thtml\15htmldjango\rmarkdown\bcss\tscss\15javascript\bphp\bvim\blua\tconf\nsetup\14colorizer\frequire\0")()
 -- Conditional loads
 -- Load plugins in order defined by `after`
 END
