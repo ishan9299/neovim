@@ -88,6 +88,22 @@ return require('packer').startup(function()
       config = 'require("core.plugins.telescope")'
   }
 
+  use {
+      'nvim-treesitter/nvim-treesitter',
+      config = require'nvim-treesitter.configs'.setup {
+          ensure_installed = "maintained",
+          highlight = {
+              enable = true,
+              use_languagetree = false,
+          },
+      },
+  }
+
+  use {
+      'neovim/nvim-lspconfig',
+      config = 'require("core.plugins.lspconfig").init()',
+  }
+
   use 'junegunn/goyo.vim'
   use 'justinmk/vim-syntax-extra'
   use 'justinmk/vim-dirvish'
