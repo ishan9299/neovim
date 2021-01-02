@@ -32,9 +32,6 @@ end
 return require('packer').startup(function()
   use {'wbthomason/packer.nvim', opt = true}
 
-  use 'mhinz/vim-startify'
-  use 'dstein64/vim-startuptime'
-
   -- Pretty colors
   use {
      'norcalli/nvim-colorizer.lua',
@@ -63,6 +60,7 @@ return require('packer').startup(function()
      }
      end,
   }
+
   use {
      'glacambre/firenvim',
      run = function()
@@ -84,6 +82,12 @@ return require('packer').startup(function()
     config = 'require"core.plugins.luatree"',
   }
 
+  use {
+      'nvim-telescope/telescope.nvim',
+      requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
+      config = 'require("core.plugins.telescope")'
+  }
+
   use 'junegunn/goyo.vim'
   use 'justinmk/vim-syntax-extra'
   use 'justinmk/vim-dirvish'
@@ -95,17 +99,11 @@ return require('packer').startup(function()
   use 'tpope/vim-abolish'
   use 'tpope/vim-characterize'
   use 'LnL7/vim-nix'
-
+  use 'mhinz/vim-startify'
+  use 'dstein64/vim-startuptime'
   use 'tjdevries/colorbuddy.nvim'
   use 'tjdevries/gruvbuddy.nvim'
-  use '~/Projects/modus-theme-vim'
+  use '~/.config/nvim/modus-theme-vim'
   use 'glepnir/galaxyline.nvim'
-
-  use {
-      'nvim-telescope/telescope.nvim',
-      requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
-      config = 'require("core.plugins.telescope")'
-  }
-
 end)
 
