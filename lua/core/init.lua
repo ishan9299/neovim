@@ -62,13 +62,6 @@ return require('packer').startup(function()
   }
 
   use {
-     'glacambre/firenvim',
-     run = function()
-     vim.fn['firenvim#install'](0)
-  end
-  }
-
-  use {
     'kyazdani42/nvim-web-devicons',
     config = function()
     require'nvim-web-devicons'.setup {
@@ -83,12 +76,6 @@ return require('packer').startup(function()
   }
 
   use {
-      'nvim-telescope/telescope.nvim',
-      requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
-      config = 'require("core.plugins.telescope")'
-  }
-
-  use {
       'nvim-treesitter/nvim-treesitter',
       config = require'nvim-treesitter.configs'.setup {
           ensure_installed = "maintained",
@@ -97,11 +84,6 @@ return require('packer').startup(function()
               use_languagetree = false,
           },
       },
-  }
-
-  use {
-      'neovim/nvim-lspconfig',
-      config = 'require("core.plugins.lspconfig").init()',
   }
 
   use 'junegunn/goyo.vim'
