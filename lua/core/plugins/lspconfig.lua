@@ -23,15 +23,6 @@ function M.init()
 
     lsp.clangd.setup{
         on_attach = custom_attach;
-        capabilities = {
-            textDocument = {
-                completion = {
-                    completionItem = {
-                        snippetSupport = true
-                    }
-                }
-            }
-        },
     }
 
     lsp.vimls.setup{
