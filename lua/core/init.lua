@@ -30,12 +30,6 @@ end
 
 
 return require('packer').startup(function()
-  use {
-      'windwp/nvim-autopairs',
-      config = function()
-          require('nvim-autopairs').setup()
-      end
-  }
   use {'wbthomason/packer.nvim', opt = true}
 
   -- Pretty colors
@@ -68,6 +62,11 @@ return require('packer').startup(function()
   }
 
   use {
+    'kyazdani42/nvim-tree.lua',
+    config = 'require"core.plugins.luatree"',
+  }
+
+  use {
     'kyazdani42/nvim-web-devicons',
     config = function()
     require'nvim-web-devicons'.setup {
@@ -77,8 +76,30 @@ return require('packer').startup(function()
   }
 
   use {
-    'kyazdani42/nvim-tree.lua',
-    config = 'require"core.plugins.luatree"',
+      'nvim-lua/completion-nvim',
+      config = function()
+          vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
+          vim.g.completion_enable_auto_paren = 1
+          vim.g.completion_auto_change_source = 1
+
+          vim.g.completion_chain_complete_list = {
+              default = {
+                  default = {
+                      -- {complete_items = {'lsp', 'snippet'}},
+                      {mode = '<c-n>'},
+                      {mode = '<c-p>'},
+                  },
+                  ['string'] = {
+                      {complete_items = {'path'}},
+                  },
+                  vim = {
+                      {mode = 'cmd'},
+                  },
+              }
+          }
+
+          vim.cmd[[autocmd BufEnter * lua require'completion'.on_attach()]]
+      end
   }
 
   use {
@@ -90,6 +111,20 @@ return require('packer').startup(function()
               use_languagetree = false,
           },
       },
+  }
+
+  use {
+      'windwp/nvim-autopairs',
+      config = function()
+          require('nvim-autopairs').setup()
+      end
+  }
+
+  use {
+      'ziglang/zig.vim',
+      config = function()
+          vim.g.zig_fmt_autosave = 1
+      end
   }
 
   use 'junegunn/goyo.vim'
@@ -107,6 +142,7 @@ return require('packer').startup(function()
   use 'dstein64/vim-startuptime'
   use 'tjdevries/colorbuddy.nvim'
   use 'tjdevries/gruvbuddy.nvim'
+  use 'benbusby/vim-earthbound-themes' -- moonside theme
   use '~/.config/nvim/modus-theme-vim'
   use 'glepnir/galaxyline.nvim'
 end)

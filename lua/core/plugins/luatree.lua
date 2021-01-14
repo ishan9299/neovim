@@ -54,4 +54,4 @@ let g:lua_tree_bindings = {
     \ }
 --]]
 
-vim.api.nvim_set_keymap('n', '<C-e>', ':LuaTreeToggle<cr>', { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', '<C-e>', ':NvimTreeToggle<cr>', { silent = true, noremap = true })

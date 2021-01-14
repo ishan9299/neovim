@@ -1,7 +1,2 @@
-if vim.g.vscode == nil then
-  require('core')
-end
+require('core')
 
-if vim.g.vscode == 1 then
-  require('vscode')
-end
