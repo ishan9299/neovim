@@ -6,10 +6,12 @@ if !has('nvim-0.5')
   echohl None
   finish
 endif
+try
 
 lua << END
 local plugins = {
   ["packer.nvim"] = {
+    config = { "\27LJ\2\nè\1\0\0\5\0\6\0\f6\0\0\0'\2\1\0B\0\2\0025\1\3\0004\2\3\0005\3\2\0>\3\1\2=\2\4\0019\2\5\0\18\4\1\0B\2\2\1K\0\1\0\25nvim_create_augroups\vpacker\1\0\0\1\4\0\0\17BufWritePost\16plugins.lua\18PackerCompile\nutils\frequire\0" },
     loaded = false,
     only_sequence = false,
     only_setup = false,
@@ -29,17 +31,16 @@ local function handle_bufread(names)
   end
 end
 
-_packer_load = nil
-
+local packer_load = nil
 local function handle_after(name, before)
   local plugin = plugins[name]
   plugin.load_after[before] = nil
   if next(plugin.load_after) == nil then
-    _packer_load({name}, {})
+    packer_load({name}, {})
   end
 end
 
-_packer_load = function(names, cause)
+packer_load = function(names, cause)
   local some_unloaded = false
   for _, name in ipairs(names) do
     if not plugins[name].loaded then
@@ -123,10 +124,8 @@ _packer_load = function(names, cause)
       vim.fn.feedkeys(prefix, 'n')
     end
 
-    local formatted_plug_key = string.format('%c%c%c', 0x80, 253, 83)
-    local keys = string.gsub(cause.keys, '^<Plug>', formatted_plug_key) .. extra
-    local escaped_keys = string.gsub(keys, '<[cC][rR]>', '\r')
-    vim.fn.feedkeys(escaped_keys)
+    local escaped_keys = vim.api.nvim_replace_termcodes(cause.keys .. extra, true, true, true)
+    vim.api.nvim_feedkeys(escaped_keys, 'm', true)
   elseif cause.event then
     vim.cmd(fmt('doautocmd <nomodeline> %s', cause.event))
   elseif cause.ft then
@@ -135,30 +134,46 @@ _packer_load = function(names, cause)
   end
 end
 
+_packer_load_wrapper = function(names, cause)
+  success, err_msg = pcall(packer_load, names, cause)
+  if not success then
+    vim.cmd('echohl ErrorMsg')
+    vim.cmd('echomsg "Error in packer_compiled: ' .. vim.fn.escape(err_msg, '"') .. '"')
+    vim.cmd('echomsg "Please check your config for correctness"')
+    vim.cmd('echohl None')
+  end
+end
+
 -- Runtimepath customization
 
 -- Pre-load configuration
 -- Post-load configuration
--- Config for: nvim-tree.lua
-require"core.plugins.luatree"
--- Config for: zig.vim
-loadstring("\27LJ\2\n2\0\0\2\0\3\0\0056\0\0\0009\0\1\0)\1\1\0=\1\2\0K\0\1\0\21zig_fmt_autosave\6g\bvim\0")()
--- Config for: nvim-web-devicons
-loadstring("\27LJ\2\nO\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\fdefault\2\nsetup\22nvim-web-devicons\frequire\0")()
+-- Config for: telescope.nvim
+loadstring("\27LJ\2\n‚\3\0\0\b\0\15\0#6\0\0\0009\0\1\0009\0\2\0005\1\3\0\18\2\0\0'\4\4\0'\5\5\0'\6\6\0\18\a\1\0B\2\5\1\18\2\0\0'\4\4\0'\5\a\0'\6\b\0\18\a\1\0B\2\5\1\18\2\0\0'\4\4\0'\5\t\0'\6\n\0\18\a\1\0B\2\5\1\18\2\0\0'\4\4\0'\5\v\0'\6\f\0\18\a\1\0B\2\5\1\18\2\0\0'\4\4\0'\5\r\0'\6\14\0\18\a\1\0B\2\5\1K\0\1\0:<cmd>lua require('telescope.builtin').help_tags()<cr>\btht8<cmd>lua require('telescope.builtin').buffers()<cr>\btfb:<cmd>lua require('telescope.builtin').live_grep()<cr>\btlg:<cmd>lua require('telescope.builtin').git_files()<cr>\btgf;<cmd>lua require('telescope.builtin').find_files()<cr>\btff\6n\1\0\2\fnoremap\2\vsilent\2\20nvim_set_keymap\bapi\bvim\0")()
+-- Config for: modus-theme-vim
+loadstring("\27LJ\2\nî\1\0\0\4\0\b\0\r6\0\0\0009\0\1\0)\1\1\0=\1\2\0)\1\1\0=\1\3\0006\1\4\0'\3\5\0B\1\2\0029\1\6\1'\3\a\0B\1\2\1K\0\1\0\18modus-vivendi\16colorscheme\15colorbuddy\frequire\23modus_faint_syntax\23modus_moody_enable\6g\bvim\0")()
 -- Config for: nvim-autopairs
 loadstring("\27LJ\2\n<\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0")()
--- Config for: nvim-colorizer.lua
-loadstring("\27LJ\2\n«\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\bcss\1\0\b\bcss\2\vcss_fn\2\vhsl_fn\2\vrgb_fn\2\rRRGGBBAA\2\nnames\2\vRRGGBB\2\bRGB\2\1\v\0\0\thtml\15htmldjango\rmarkdown\bcss\tscss\15javascript\bphp\bvim\blua\tconf\nsetup\14colorizer\frequire\0")()
--- Config for: undotree
-loadstring("\27LJ\2\nr\0\0\6\0\a\0\t6\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0'\4\5\0005\5\6\0B\0\5\1K\0\1\0\1\0\2\fnoremap\2\vsilent\2\24:UndotreeToggle<cr>\t<F5>\6n\20nvim_set_keymap\bapi\bvim\0")()
 -- Config for: completion-nvim
-loadstring("\27LJ\2\nÃ\3\0\0\6\0\20\0'6\0\0\0009\0\1\0005\1\3\0=\1\2\0006\0\0\0009\0\1\0)\1\1\0=\1\4\0006\0\0\0009\0\1\0005\1\17\0005\2\b\0004\3\3\0005\4\6\0>\4\1\0035\4\a\0>\4\2\3=\3\t\0024\3\3\0005\4\v\0005\5\n\0=\5\f\4>\4\1\3=\3\r\0024\3\3\0005\4\14\0>\4\1\3=\3\0\0024\3\3\0005\4\15\0>\4\1\3=\3\16\2=\2\t\1=\1\5\0006\0\0\0009\0\18\0'\2\19\0B\0\2\1K\0\1\0;autocmd BufEnter * lua require'completion'.on_attach()\bcmd\1\0\0\rmarkdown\1\0\1\tmode\nspell\1\0\1\tmode\bcmd\vstring\19complete_items\1\0\0\1\2\0\0\tpath\fdefault\1\0\0\1\0\1\tmode\n<c-p>\1\0\1\tmode\n<c-n>#completion_chain_complete_list\"completion_auto_change_source\1\4\0\0\nexact\14substring\nfuzzy&completion_matching_strategy_list\6g\bvim\0")()
+loadstring("\27LJ\2\nÅ\4\0\0\a\0\24\0*6\0\0\0'\2\1\0B\0\2\0026\1\2\0009\1\3\0015\2\5\0=\2\4\1)\2\1\0=\2\6\0015\2\19\0005\3\n\0004\4\3\0005\5\b\0>\5\1\0045\5\t\0>\5\2\4=\4\v\0034\4\3\0005\5\r\0005\6\f\0=\6\14\5>\5\1\4=\4\15\0034\4\3\0005\5\16\0>\5\1\4=\4\2\0034\4\3\0005\5\17\0>\5\1\4=\4\18\3=\3\v\2=\2\a\0015\2\21\0004\3\3\0005\4\20\0>\4\1\3=\3\22\0029\3\23\0\18\5\2\0B\3\2\1K\0\1\0\25nvim_create_augroups\15completion\1\0\0\1\4\0\0\rBufEnter\6*(lua require'completion'.on_attach()\1\0\0\rmarkdown\1\0\1\tmode\nspell\1\0\1\tmode\bcmd\vstring\19complete_items\1\0\0\1\2\0\0\tpath\fdefault\1\0\0\1\0\1\tmode\n<c-p>\1\0\1\tmode\n<c-n>#completion_chain_complete_list\"completion_auto_change_source\1\4\0\0\nexact\14substring\nfuzzy&completion_matching_strategy_list\6g\bvim\nutils\frequire\0")()
+-- Config for: nvim-colorizer.lua
+loadstring("\27LJ\2\n«\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\bcss\1\0\b\vcss_fn\2\vhsl_fn\2\vrgb_fn\2\rRRGGBBAA\2\nnames\2\vRRGGBB\2\bRGB\2\bcss\2\1\v\0\0\thtml\15htmldjango\rmarkdown\bcss\tscss\15javascript\bphp\bvim\blua\tconf\nsetup\14colorizer\frequire\0")()
+-- Config for: nvim-treesitter
+loadstring("\27LJ\2\nó\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\14highlight\1\0\2\venable\2\21use_languagetree\1\1\0\1\21ensure_installed\15maintained\nsetup\28nvim-treesitter.configs\frequire\0")()
+-- Config for: nvim-web-devicons
+loadstring("\27LJ\2\nO\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\fdefault\2\nsetup\22nvim-web-devicons\frequire\0")()
+-- Config for: nvim-tree.lua
+loadstring("\27LJ\2\nˇ\4\0\0\b\0\28\0*6\0\0\0009\0\1\0006\1\0\0009\1\2\0019\1\3\1'\2\5\0=\2\4\0)\2(\0=\2\6\0)\2\0\0=\2\a\0)\2\1\0=\2\b\0)\2\1\0=\2\t\0)\2\1\0=\2\n\0)\2\1\0=\2\v\0)\2\1\0=\2\f\0)\2\1\0=\2\r\0'\2\15\0=\2\14\0)\2\1\0=\2\16\0)\2\1\0=\2\17\0005\2\19\0005\3\20\0=\3\21\0025\3\22\0=\3\23\2=\2\18\0\18\2\1\0'\4\24\0'\5\25\0'\6\26\0005\a\27\0B\2\5\1K\0\1\0\1\0\2\fnoremap\2\vsilent\2\24:NvimTreeToggle<cr>\n<C-e>\6n\vfolder\1\0\2\topen\bÓóæ\fdefault\bÓóø\bgit\1\0\5\14untracked\b‚òÖ\vstaged\b‚úì\runstaged\b‚úó\frenamed\b‚ûú\runmerged\bÓúß\1\0\2\fsymlink\bÔíÅ\fdefault\bÓòí\19lua_tree_icons\26lua_tree_allow_resize\22lua_tree_tab_open\a:~\"lua_tree_root_folder_modifier\20lua_tree_git_hl\27lua_tree_hide_dotfiles\28lua_tree_indent_markers\20lua_tree_follow\26lua_tree_quit_on_open\24lua_tree_auto_close\23lua_tree_auto_open\19lua_tree_width\tleft\18lua_tree_side\20nvim_set_keymap\bapi\6g\bvim\0")()
+-- Config for: undotree
+loadstring("\27LJ\2\nv\0\0\a\0\a\0\n6\0\0\0009\0\1\0009\0\2\0\18\1\0\0'\3\3\0'\4\4\0'\5\5\0005\6\6\0B\1\5\1K\0\1\0\1\0\2\fnoremap\2\vsilent\2\24:UndotreeToggle<cr>\t<F5>\6n\20nvim_set_keymap\bapi\bvim\0")()
+-- Config for: zig.vim
+loadstring("\27LJ\2\n2\0\0\2\0\3\0\0056\0\0\0009\0\1\0)\1\1\0=\1\2\0K\0\1\0\21zig_fmt_autosave\6g\bvim\0")()
 -- Conditional loads
 -- Load plugins in order defined by `after`
 END
 
 function! s:load(names, cause) abort
-call luaeval('_packer_load(_A[1], _A[2])', [a:names, a:cause])
+  call luaeval('_packer_load_wrapper(_A[1], _A[2])', [a:names, a:cause])
 endfunction
 
 
@@ -172,3 +187,10 @@ augroup packer_load_aucmds
   " Event lazy-loads
   " Function lazy-loads
 augroup END
+
+catch
+  echohl ErrorMsg
+  echom "Error in packer_compiled: " .. v:exception
+  echom "Please check your config for correctness"
+  echohl None
+endtry

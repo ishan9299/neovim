@@ -2,6 +2,8 @@ local o = vim.o
 local wo = vim.wo
 local g = vim.g
 local bo = vim.bo
+local utils = require('utils')
+local remap = vim.api.nvim_set_keymap
 
 vim.cmd('filetype plugin indent on') -- Filetype flygin on
 vim.cmd('syntax enable') -- enable syntax highlighting
@@ -15,7 +17,7 @@ o.expandtab = true -- Turn of tabs
 -- Set the path to find the file in a project
 o.termguicolors = true
 o.path = o.path .. '**'
-
+---------------------------
 local ignore = o.wildignore
 ignore = ignore .. '*.o,*.obj,*.bin,*.dll,*.exe,'
 ignore = ignore .. '*/.git/*,*/.svn/*,*/__pycache__/*,*/build/**,'
@@ -23,7 +25,7 @@ ignore = ignore .. '*.pyc,*.out,'
 ignore = ignore .. '*.DS_Store,'
 ignore = ignore .. '*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.pdf,'
 o.wildignore = ignore -- Ignore certain files and folders when globbing
-
+---------------------------
 o.hidden = true -- Switch buffers painlessly
 o.lazyredraw = true -- Macros don't show any animation
 -- The eob removes ~ at the end of buffer
@@ -46,18 +48,18 @@ o.shortmess = vim.o.shortmess .. 'cWIa'
 -- 0 = never show it
 o.laststatus = 2
 -- Scrolling lines starts 5 lines above the last one
-o.scrolloff = 5
+o.scrolloff = 8
 -- Font used by neovim gui
-o.guifont = 'Iosevka Nerd Font Mono:h17'
+o.guifont = "Iosevka Nerd Font Mono:h17"
 o.hlsearch = false
 o.incsearch = true
 -- guicursor
-o.guicursor = ""
+o.guicursor = "" -- disabling the guicursor
 
 
 -- ++------ GLOBAL VARIABLES ------++
 -- Set the Leader key
-g.mapleader = ' '
+g.mapleader = " "
 -- Disable the built-in plugins
 g.loaded_netrwPlugin = 1
 g.loaded_2html_plugin = 1 -- Do not load tohtml.vim
@@ -92,10 +94,57 @@ wo.list=true
 wo.cursorline = true
 wo.colorcolumn = "80"
 wo.wrap = false
+-- folding
+wo.foldmethod = "expr"
+wo.foldexpr = "nvim_treesitter#foldexpr()"
 
--- Lua files
-require('core')
--- vim.cmd[[colorscheme moonside]]
-g.modus_moody_enable = 1
-g.modus_faint_syntax = 1
-require('colorbuddy').colorscheme('modus-vivendi')
+-- ++------ KEY BINDINGS ------++
+local normal_silent = { silent = true, noremap = true }
+local normal_echo = { silent = false, noremap = true }
+-- Edit command but more useful
+remap('n', '<leader>ew', ':e    <C-R>=expand("%:p:h") . "/" <CR>' , normal_echo)
+remap('n', '<leader>es', ':sp   <C-R>=expand("%:p:h") . "/" <CR>' , normal_echo)
+remap('n', '<leader>ev', ':vsp  <C-R>=expand("%:p:h") . "/" <CR>' , normal_echo)
+remap('n', '<leader>et', ':tabe <C-R>=expand("%:p:h") . "/" <CR>' , normal_echo)
+-- Tabs
+remap('n' , 'tn' , ':tabnew  <CR>'  , normal_silent)
+-- Buffers
+remap('n' , '<leader>bd'       , ':bd <CR>'                 , normal_silent)
+remap('n' , '<leader><leader>' , '<C-^>'                    , normal_silent)
+remap('n'  , 'gbp' , ':bp<cr>' , normal_silent)
+remap('n'  , 'gbn' , ':bn<cr>' , normal_silent)
+remap('n' , '<leader>cd'       , [[:lcd %:p:h<CR>:pwd<CR>]] , normal_silent)
+-- Windows
+remap('n', '<A-h>', '<C-w>h', normal_silent)
+remap('n', '<A-j>', '<C-w>j', normal_silent)
+remap('n', '<A-k>', '<C-w>k', normal_silent)
+remap('n', '<A-l>', '<C-w>l', normal_silent)
+-- Resize
+remap('n', '<C-M-h>', ':vertical resize -2<CR>', normal_silent)
+remap('n', '<C-M-l>', ':vertical resize +2<CR>', normal_silent)
+remap('n', '<C-M-j>', ':resize -2<CR>', normal_silent)
+remap('n', '<C-M-k>', ':resize +2<CR>', normal_silent)
+-- Terminal
+remap('t' , '<esc>' , [[<C-\><C-N>]]       , normal_silent)
+remap('t' , '<A-h>' , [[<C-\><C-N><C-w>h]] , normal_silent)
+remap('t' , '<A-j>' , [[<C-\><C-N><C-w>j]] , normal_silent)
+remap('t' , '<A-k>' , [[<C-\><C-N><C-w>k]] , normal_silent)
+remap('t' , '<A-l>' , [[<C-\><C-N><C-w>l]] , normal_silent)
+-- For colorscheme and highlight groups
+remap('n', '<f10>' , [[:echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' <cr>]] , normal_silent)
+
+-- ++------ Autocmds ------++
+local core_autocmds = {
+    git = {
+        {"Filetype", "gitcommit" , "setlocal spell"};
+        {"Filetype", "gitcommit" , "setlocal complete+=kspell"};
+    };
+
+    terminal = {
+        {"TermOpen", "*", "setlocal norelativenumber nonumber"};
+        {"TermOpen", "*", "startinsert"};
+    };
+}
+utils.nvim_create_augroups(core_autocmds)
+
+require('plugins')
