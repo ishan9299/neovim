@@ -27,7 +27,7 @@ o.wildignore = ignore -- Ignore certain files and folders when globbing
 o.hidden = true -- Switch buffers painlessly
 o.lazyredraw = true -- Macros don't show any animation
 -- The eob removes ~ at the end of buffer
-o.fillchars = 'diff:∙,fold:·,vert:┃,eob: '
+o.fillchars = 'diff:∙,fold:·,vert:│,eob: '
 -- Show tabs and spaces
 o.listchars='nbsp:¬,precedes:«,trail:•,tab:▸ '
 -- Show line break
@@ -51,6 +51,8 @@ o.scrolloff = 5
 o.guifont = 'Iosevka Nerd Font Mono:h17'
 o.hlsearch = false
 o.incsearch = true
+-- guicursor
+o.guicursor = ""
 
 
 -- ++------ GLOBAL VARIABLES ------++
@@ -64,6 +66,8 @@ g.loaded_justify = 1
 g.loaded_cfilter = 1
 g.loaded_shellmenu = 1
 g.loaded_termdebug = 1
+-- undodir
+g.undodir = "~/.config/nvim/.undodir"
 
 -- ++------ BUFFER OPTIONS ------++
 -- These settings also need to be set as
@@ -72,6 +76,7 @@ bo.ts=4
 bo.sts=4
 bo.shiftwidth=4 -- spaces for autoindent
 bo.expandtab = true -- Turn of tabs
+bo.undofile = true
 
 -- ++------ WINDOW OPTIONS ------++
 -- Foldmethod

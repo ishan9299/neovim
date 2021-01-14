@@ -79,13 +79,11 @@ return require('packer').startup(function()
       'nvim-lua/completion-nvim',
       config = function()
           vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
-          vim.g.completion_enable_auto_paren = 1
           vim.g.completion_auto_change_source = 1
 
           vim.g.completion_chain_complete_list = {
               default = {
                   default = {
-                      -- {complete_items = {'lsp', 'snippet'}},
                       {mode = '<c-n>'},
                       {mode = '<c-p>'},
                   },
@@ -94,6 +92,9 @@ return require('packer').startup(function()
                   },
                   vim = {
                       {mode = 'cmd'},
+                  },
+                  markdown = {
+                      {mode = 'spell'},
                   },
               }
           }
@@ -111,6 +112,13 @@ return require('packer').startup(function()
               use_languagetree = false,
           },
       },
+  }
+
+  use {
+      'mbbill/undotree',
+      config = function()
+          vim.api.nvim_set_keymap('n', '<F5>', ':UndotreeToggle<cr>', { silent = true, noremap = true })
+      end
   }
 
   use {
