@@ -2,5 +2,9 @@
 with pkgs;
 
 mkShell {
-  buildInputs = [ gcc-unwrapped ];
+  buildInputs = [
+    gcc-unwrapped
+    ninja
+    gnumake
+  ];
 }

@@ -279,7 +279,7 @@ return require('packer').startup(function()
                 end
             end
 
-            -- Use a loop to conveniently both setup defined servers 
+            -- Use a loop to conveniently both setup defined servers
             -- and map buffer local keybindings when the language server attaches
             local servers = { "pyright", "rust_analyzer", "tsserver" }
             for _, lsp in ipairs(servers) do
@@ -298,7 +298,7 @@ return require('packer').startup(function()
             end
 
             -- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
-            local sumneko_root_path = vim.fn.stdpath('cache')..'/lspconfig/sumneko_lua/lua-language-server'
+            local sumneko_root_path = 'lspconfig/sumneko_lua/lua-language-server'
             local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
 
             require'lspconfig'.sumneko_lua.setup {
