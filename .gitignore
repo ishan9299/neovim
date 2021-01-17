@@ -3,3 +3,4 @@ pack/packages/opt/ultisnips/
 plugin/packer_compiled.vim
 plugin/packer_compiled.vim
 .direnv
+lspconfig

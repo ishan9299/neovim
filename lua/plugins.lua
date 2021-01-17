@@ -228,7 +228,7 @@ return require('packer').startup(function()
             local g = vim.g
             g.modus_moody_enable = 1
             g.modus_faint_syntax = 1
-            require('colorbuddy').colorscheme('modus-vivendi')
+            require('colorbuddy').colorscheme('modus-operandi')
         end,
     }
 
@@ -281,7 +281,7 @@ return require('packer').startup(function()
 
             -- Use a loop to conveniently both setup defined servers
             -- and map buffer local keybindings when the language server attaches
-            local servers = { "pyright", "rust_analyzer", "tsserver" }
+            local servers = {"sumneko_lua" }
             for _, lsp in ipairs(servers) do
                 nvim_lsp[lsp].setup { on_attach = on_attach }
             end
