@@ -329,6 +329,18 @@ return require('packer').startup(function()
         end,
     }
 
+    use {
+        'p00f/nvim-ts-rainbow',
+        config = function()
+            require'nvim-treesitter.configs'.setup {
+                rainbow = {
+                    enable = true,
+                    disable = {'bash'} -- please disable bash until I figure #1 out
+                }
+            }
+        end
+    }
+
     use 'junegunn/goyo.vim'
     use 'justinmk/vim-syntax-extra'
     use 'justinmk/vim-dirvish'
@@ -344,4 +356,3 @@ return require('packer').startup(function()
     use 'dstein64/vim-startuptime'
     use 'benbusby/vim-earthbound-themes' -- moonside theme
 end)
-
