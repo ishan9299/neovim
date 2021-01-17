@@ -12,7 +12,6 @@ local function nvim_create_augroups(definitions)
   end
 end
 
-
 return {
   nvim_create_augroups = nvim_create_augroups,
 }

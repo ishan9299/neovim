@@ -1,5 +1,3 @@
-local utils = require('utils')
-
 local packer_exists = pcall(vim.cmd, [[packadd packer.nvim]])
 
 if not packer_exists then
@@ -32,14 +30,6 @@ return require('packer').startup(function()
     use {
         'wbthomason/packer.nvim',
         opt = true,
-        -- config = function()
-        --     local compile_packer = {
-        --         packer = {
-        --             { "BufWritePost", "plugins.lua", "PackerCompile" }
-        --         }
-        --     }
-        --     utils.nvim_create_augroups(compile_packer)
-        -- end,
     }
 
     -- Pretty colors
@@ -76,7 +66,7 @@ return require('packer').startup(function()
         'kyazdani42/nvim-tree.lua',
         config = function()
             local g = vim.g
-            local remap = vim.api.nvim_set_keymap
+            local map = vim.api.nvim_set_keymap
             g.lua_tree_side = 'left' -- left by default
             g.lua_tree_width = 40 -- 30 by default
             g.lua_tree_auto_open            = 0 -- 0 by default, opens the tree when typing `vim $DIR` or `vim`
@@ -131,7 +121,7 @@ return require('packer').startup(function()
             \ }
             --]]
 
-            remap('n', '<C-e>', ':NvimTreeToggle<cr>', { silent = true, noremap = true })
+            map('n', '<C-e>', ':NvimTreeToggle<cr>', { silent = true, noremap = true })
         end,
     }
 
@@ -171,13 +161,10 @@ return require('packer').startup(function()
                 }
             }
 
-        --     local completion_autocmds = {
-        --         completion = {
-        --             {"BufEnter", "*", "lua require'completion'.on_attach()"}
-        --         }
-        --     }
-        --     utils.nvim_create_augroups(completion_autocmds)
-
+            vim.cmd([[augroup completion_autocmds]])
+            vim.cmd([[autocmd!]])
+            vim.cmd([[autocmd BufEnter * lua require'completion'.on_attach()]])
+            vim.cmd([[augroup END]])
         end,
     }
 
@@ -198,8 +185,8 @@ return require('packer').startup(function()
     use {
         'mbbill/undotree',
         config = function()
-            local remap = vim.api.nvim_set_keymap
-            remap('n', '<F5>', ':UndotreeToggle<cr>', { silent = true, noremap = true })
+            local map = vim.api.nvim_set_keymap
+            map('n', '<F5>', ':UndotreeToggle<cr>', { silent = true, noremap = true })
         end,
     }
 
@@ -215,7 +202,8 @@ return require('packer').startup(function()
     use {
         'ziglang/zig.vim',
         config = function()
-            vim.g.zig_fmt_autosave = 1
+            local g = vim.g
+            g.zig_fmt_autosave = 1
         end,
     }
 
@@ -223,13 +211,13 @@ return require('packer').startup(function()
         'nvim-telescope/telescope.nvim',
         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
         config = function()
-            local remap = vim.api.nvim_set_keymap
+            local map = vim.api.nvim_set_keymap
             local opts = { silent = true, noremap = true }
-            remap("n" , "tff" , "<cmd>lua require('telescope.builtin').find_files()<cr>" , opts)
-            remap("n" , "tgf" , "<cmd>lua require('telescope.builtin').git_files()<cr>"  , opts)
-            remap("n" , "tlg" , "<cmd>lua require('telescope.builtin').live_grep()<cr>"  , opts)
-            remap("n" , "tfb" , "<cmd>lua require('telescope.builtin').buffers()<cr>"    , opts)
-            remap("n" , "tht" , "<cmd>lua require('telescope.builtin').help_tags()<cr>"  , opts)
+            map("n" , "tff" , "<cmd>lua require('telescope.builtin').find_files()<cr>" , opts)
+            map("n" , "tgf" , "<cmd>lua require('telescope.builtin').git_files()<cr>"  , opts)
+            map("n" , "tlg" , "<cmd>lua require('telescope.builtin').live_grep()<cr>"  , opts)
+            map("n" , "tfb" , "<cmd>lua require('telescope.builtin').buffers()<cr>"    , opts)
+            map("n" , "tht" , "<cmd>lua require('telescope.builtin').help_tags()<cr>"  , opts)
         end,
     }
 
@@ -282,9 +270,6 @@ return require('packer').startup(function()
                 -- Set autocommands conditional on server_capabilities
                 if client.resolved_capabilities.document_highlight then
                     require('lspconfig').util.nvim_multiline_command [[
-                    :hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-                    :hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-                    :hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
                     augroup lsp_document_highlight
                     autocmd!
                     autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
@@ -328,7 +313,7 @@ return require('packer').startup(function()
                         },
                         diagnostics = {
                             -- Get the language server to recognize the `vim` global
-                            globals = {'vim'},
+                            globals = {'vim', 'use'},
                         },
                         workspace = {
                             -- Make the server aware of Neovim runtime files
