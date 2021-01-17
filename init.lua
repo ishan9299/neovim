@@ -3,7 +3,7 @@ local wo = vim.wo
 local g = vim.g
 local bo = vim.bo
 local utils = require('utils')
-local remap = vim.api.nvim_set_keymap
+local map = vim.api.nvim_set_keymap
 
 vim.cmd('filetype plugin indent on') -- Filetype flygin on
 vim.cmd('syntax enable') -- enable syntax highlighting
@@ -102,36 +102,36 @@ wo.foldexpr = "nvim_treesitter#foldexpr()"
 local normal_silent = { silent = true, noremap = true }
 local normal_echo = { silent = false, noremap = true }
 -- Edit command but more useful
-remap('n', '<leader>ew', ':e    <C-R>=expand("%:p:h") . "/" <CR>' , normal_echo)
-remap('n', '<leader>es', ':sp   <C-R>=expand("%:p:h") . "/" <CR>' , normal_echo)
-remap('n', '<leader>ev', ':vsp  <C-R>=expand("%:p:h") . "/" <CR>' , normal_echo)
-remap('n', '<leader>et', ':tabe <C-R>=expand("%:p:h") . "/" <CR>' , normal_echo)
+map('n', '<leader>ew', ':e    <C-R>=expand("%:p:h") . "/" <CR>' , normal_echo)
+map('n', '<leader>es', ':sp   <C-R>=expand("%:p:h") . "/" <CR>' , normal_echo)
+map('n', '<leader>ev', ':vsp  <C-R>=expand("%:p:h") . "/" <CR>' , normal_echo)
+map('n', '<leader>et', ':tabe <C-R>=expand("%:p:h") . "/" <CR>' , normal_echo)
 -- Tabs
-remap('n' , 'tn' , ':tabnew  <CR>'  , normal_silent)
+map('n' , 'tn' , ':tabnew  <CR>'  , normal_silent)
 -- Buffers
-remap('n' , '<leader>bd'       , ':bd <CR>'                 , normal_silent)
-remap('n' , '<leader><leader>' , '<C-^>'                    , normal_silent)
-remap('n'  , 'gbp' , ':bp<cr>' , normal_silent)
-remap('n'  , 'gbn' , ':bn<cr>' , normal_silent)
-remap('n' , '<leader>cd'       , [[:lcd %:p:h<CR>:pwd<CR>]] , normal_silent)
+map('n' , '<leader>bd'       , ':bd <CR>'                 , normal_silent)
+map('n' , '<leader><leader>' , '<C-^>'                    , normal_silent)
+map('n'  , 'gbp' , ':bp<cr>' , normal_silent)
+map('n'  , 'gbn' , ':bn<cr>' , normal_silent)
+map('n' , '<leader>cd'       , [[:lcd %:p:h<CR>:pwd<CR>]] , normal_silent)
 -- Windows
-remap('n', '<A-h>', '<C-w>h', normal_silent)
-remap('n', '<A-j>', '<C-w>j', normal_silent)
-remap('n', '<A-k>', '<C-w>k', normal_silent)
-remap('n', '<A-l>', '<C-w>l', normal_silent)
+map('n', '<A-h>', '<C-w>h', normal_silent)
+map('n', '<A-j>', '<C-w>j', normal_silent)
+map('n', '<A-k>', '<C-w>k', normal_silent)
+map('n', '<A-l>', '<C-w>l', normal_silent)
 -- Resize
-remap('n', '<C-M-h>', ':vertical resize -2<CR>', normal_silent)
-remap('n', '<C-M-l>', ':vertical resize +2<CR>', normal_silent)
-remap('n', '<C-M-j>', ':resize -2<CR>', normal_silent)
-remap('n', '<C-M-k>', ':resize +2<CR>', normal_silent)
+map('n', '<C-M-h>', ':vertical resize -2<CR>', normal_silent)
+map('n', '<C-M-l>', ':vertical resize +2<CR>', normal_silent)
+map('n', '<C-M-j>', ':resize -2<CR>', normal_silent)
+map('n', '<C-M-k>', ':resize +2<CR>', normal_silent)
 -- Terminal
-remap('t' , '<esc>' , [[<C-\><C-N>]]       , normal_silent)
-remap('t' , '<A-h>' , [[<C-\><C-N><C-w>h]] , normal_silent)
-remap('t' , '<A-j>' , [[<C-\><C-N><C-w>j]] , normal_silent)
-remap('t' , '<A-k>' , [[<C-\><C-N><C-w>k]] , normal_silent)
-remap('t' , '<A-l>' , [[<C-\><C-N><C-w>l]] , normal_silent)
+map('t' , '<esc>' , [[<C-\><C-N>]]       , normal_silent)
+map('t' , '<A-h>' , [[<C-\><C-N><C-w>h]] , normal_silent)
+map('t' , '<A-j>' , [[<C-\><C-N><C-w>j]] , normal_silent)
+map('t' , '<A-k>' , [[<C-\><C-N><C-w>k]] , normal_silent)
+map('t' , '<A-l>' , [[<C-\><C-N><C-w>l]] , normal_silent)
 -- For colorscheme and highlight groups
-remap('n', '<f10>' , [[:echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' <cr>]] , normal_silent)
+map('n', '<f10>' , [[:echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' <cr>]] , normal_silent)
 
 -- ++------ Autocmds ------++
 local core_autocmds = {
@@ -147,4 +147,5 @@ local core_autocmds = {
 }
 utils.nvim_create_augroups(core_autocmds)
 
+-- ++------ Plugins ------++
 require('plugins')
