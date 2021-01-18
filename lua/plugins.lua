@@ -209,7 +209,7 @@ return require('packer').startup(function()
 
     use {
         'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
+        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}, {'nvim-telescope/telescope-project.nvim'}},
         config = function()
             local map = vim.api.nvim_set_keymap
             local opts = { silent = true, noremap = true }
@@ -218,6 +218,10 @@ return require('packer').startup(function()
             map("n" , "tlg" , "<cmd>lua require('telescope.builtin').live_grep()<cr>"  , opts)
             map("n" , "tfb" , "<cmd>lua require('telescope.builtin').buffers()<cr>"    , opts)
             map("n" , "tht" , "<cmd>lua require('telescope.builtin').help_tags()<cr>"  , opts)
+
+            -- Telescope extensions
+            require'telescope'.load_extension('project')
+            map("n" , "ttp" , ":lua require('telescope').extensions.project.project{}<cr>"  , opts)
         end,
     }
 
@@ -330,7 +334,6 @@ return require('packer').startup(function()
     }
 
     use 'junegunn/goyo.vim'
-    use 'justinmk/vim-syntax-extra'
     use 'justinmk/vim-dirvish'
     use 'godlygeek/tabular'
     use 'tpope/vim-surround'
@@ -342,5 +345,5 @@ return require('packer').startup(function()
     use 'LnL7/vim-nix'
     use 'mhinz/vim-startify'
     use 'dstein64/vim-startuptime'
-    use 'benbusby/vim-earthbound-themes' -- moonside theme
+    use 'benbusby/vim-earthbound-themes'
 end)
