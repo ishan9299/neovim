@@ -31,7 +31,7 @@ o.lazyredraw = true -- Macros don't show any animation
 -- The eob removes ~ at the end of buffer
 o.fillchars = 'diff:∙,fold:·,vert:│,eob: '
 -- Show tabs and spaces
-o.listchars='nbsp:¬,precedes:«,trail:•,tab:▸ '
+o.listchars='nbsp:¬,precedes:«,trail:•,tab:»-«'
 -- Show line break
 o.showbreak = '↳ '
 o.showcmd = false
@@ -92,7 +92,7 @@ wo.number = true
 wo.list=true
 -- Cursor line
 wo.cursorline = true
-wo.colorcolumn = "80"
+wo.colorcolumn = "120"
 wo.wrap = false
 -- folding
 wo.foldmethod = "expr"
@@ -136,8 +136,8 @@ map('n', '<f10>' , [[:echo "hi<" . synIDattr(synID(line("."),col("."),1),"name")
 -- ++------ Autocmds ------++
 local core_autocmds = {
     git = {
-        {"Filetype", "gitcommit" , "setlocal spell"};
-        {"Filetype", "gitcommit" , "setlocal complete+=kspell"};
+        {"FileType", "gitcommit" , "setl spell"};
+        {"FileType", "gitcommit" , "setl complete+=kspell"};
     };
 
     terminal = {
@@ -146,7 +146,12 @@ local core_autocmds = {
     };
 
     makefile = {
-        {"FileType", "Makefile", "setlocal listchars='tab:▸ ,space:•'"}
+        {"FileType", "make", [[ setl lcs=tab:»-« | setl lcs+=space:• | setl noexpandtab ]]}
+    };
+
+    c_stuff = {
+        {"FileType", "c", "setlocal colorcolumn=80"};
+        {"FileType", "cpp", "setlocal colorcolumn=80"}
     }
 }
 utils.nvim_create_augroups(core_autocmds)
