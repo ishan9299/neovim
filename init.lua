@@ -144,6 +144,10 @@ local core_autocmds = {
         {"TermOpen", "*", "setlocal norelativenumber nonumber"};
         {"TermOpen", "*", "startinsert"};
     };
+
+    makefile = {
+        {"FileType", "Makefile", "setlocal listchars='tab:▸ ,space:•'"}
+    }
 }
 utils.nvim_create_augroups(core_autocmds)
 
