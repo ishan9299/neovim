@@ -31,7 +31,16 @@ o.lazyredraw = true -- Macros don't show any animation
 -- The eob removes ~ at the end of buffer
 o.fillchars = 'diff:∙,fold:·,vert:│,eob: '
 -- Show tabs and spaces
-o.listchars='nbsp:¬,precedes:«,trail:•,tab:»-«'
+local listchars = ''
+listchars = listchars .. 'eol:↲,'
+listchars = listchars .. 'tab:»·,'
+-- listchars = listchars .. 'space:␣,'
+listchars = listchars .. 'trail:-,'
+listchars = listchars .. 'extends:☛,'
+listchars = listchars .. 'precedes:☚,'
+listchars = listchars .. 'conceal:┊,'
+listchars = listchars .. 'nbsp:☠'
+o.listchars = listchars
 -- Show line break
 o.showbreak = '↳ '
 o.showcmd = false
@@ -146,7 +155,7 @@ local core_autocmds = {
     };
 
     makefile = {
-        {"FileType", "make", [[ setl lcs=tab:»-« | setl lcs+=space:• | setl noexpandtab ]]}
+        {"FileType", "make", [[ setl lcs=tab:»· | setl lcs+=space:␣ | setl noexpandtab ]]}
     };
 
     c_stuff = {
@@ -158,3 +167,4 @@ utils.nvim_create_augroups(core_autocmds)
 
 -- ++------ Plugins ------++
 require('plugins')
+
