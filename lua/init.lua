@@ -232,7 +232,7 @@ return require('packer').startup(function()
             local g = vim.g
             g.modus_moody_enable = 1
             g.modus_faint_syntax = 1
-            require('colorbuddy').colorscheme('modus-operandi')
+            require('colorbuddy').colorscheme('modus-vivendi')
         end,
     }
 
@@ -334,6 +334,7 @@ return require('packer').startup(function()
     }
 
     use 'junegunn/goyo.vim'
+    use 'junegunn/rainbow_parentheses.vim'
     use 'justinmk/vim-dirvish'
     use 'godlygeek/tabular'
     use 'tpope/vim-surround'

@@ -164,7 +164,3 @@ local core_autocmds = {
     }
 }
 utils.nvim_create_augroups(core_autocmds)
-
--- ++------ Plugins ------++
-require('plugins')
-
