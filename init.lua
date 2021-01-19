@@ -32,7 +32,7 @@ o.lazyredraw = true -- Macros don't show any animation
 o.fillchars = 'diff:∙,fold:·,vert:│,eob: '
 -- Show tabs and spaces
 local listchars = ''
-listchars = listchars .. 'eol:↲,'
+-- listchars = listchars .. 'eol:↲,'
 listchars = listchars .. 'tab:»·,'
 -- listchars = listchars .. 'space:␣,'
 listchars = listchars .. 'trail:-,'
