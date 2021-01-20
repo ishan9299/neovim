@@ -333,8 +333,11 @@ return require('packer').startup(function()
         end,
     }
 
-    use 'junegunn/goyo.vim'
-    use 'junegunn/rainbow_parentheses.vim'
+    use {
+        'junegunn/goyo.vim',
+        ft = 'markdown'
+    }
+
     use 'justinmk/vim-dirvish'
     use 'godlygeek/tabular'
     use 'tpope/vim-surround'
