@@ -325,6 +325,7 @@ return require('packer').startup(function()
         end,
     }
 
+    -- UndoTree
     use {
         'mbbill/undotree',
         config = function()
