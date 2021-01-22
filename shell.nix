@@ -3,8 +3,8 @@ with pkgs;
 
 mkShell {
   buildInputs = [
+    git
     gcc-unwrapped
     ninja
-    gnumake
   ];
 }

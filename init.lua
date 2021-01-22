@@ -20,6 +20,7 @@ o.expandtab = true -- Turn of tabs
 o.termguicolors = true
 o.path = o.path .. '**'
 ---------------------------
+-- Ignore these files
 local ignore = o.wildignore
 ignore = ignore .. '*.o,*.obj,*.bin,*.dll,*.exe,'
 ignore = ignore .. '*/.git/*,*/.svn/*,*/__pycache__/*,*/build/**,'
@@ -32,17 +33,19 @@ o.hidden = true -- Switch buffers painlessly
 o.lazyredraw = true -- Macros don't show any animation
 -- The eob removes ~ at the end of buffer
 o.fillchars = 'diff:∙,fold:·,vert:│,eob: '
+---------------------------
 -- Show tabs and spaces
 local listchars = ''
 -- listchars = listchars .. 'eol:↲,'
 listchars = listchars .. 'tab:»·,'
 -- listchars = listchars .. 'space:␣,'
-listchars = listchars .. 'trail:-,'
+listchars = listchars .. 'trail:•,'
 listchars = listchars .. 'extends:☛,'
 listchars = listchars .. 'precedes:☚,'
 listchars = listchars .. 'conceal:┊,'
 listchars = listchars .. 'nbsp:☠'
 o.listchars = listchars
+---------------------------
 -- Show line break
 o.showbreak = '↳ '
 o.showcmd = false
@@ -154,7 +157,7 @@ cmd[[autocmd FileType gitcommit setl complete+=kspell]]
 cmd[[autocmd TermOpen * setl norelativenumber nonumber]]
 cmd[[autocmd TermOpen * startinsert]]
 -- makefile
-cmd[[autocmd FileType make setl lcs=tab:»· | setl lcs+=space:␣ | setl noexpandtab]]
+cmd[[autocmd FileType make setl lcs=tab:»· | setl lcs+=space:␣ | setl lcs+=trail:• | setl noexpandtab]]
 -- C/C++
 cmd[[autocmd FileType c,cpp setlocal colorcolumn=80]]
 cmd[[augroup end]]
