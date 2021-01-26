@@ -125,8 +125,8 @@ map('n' , 'tn' , ':tabnew  <CR>'  , normal_silent)
 -- Buffers
 map('n' , '<leader>bd'       , ':bd <CR>'                 , normal_silent)
 map('n' , '<leader><leader>' , '<C-^>'                    , normal_silent)
-map('n'  , 'gbp' , ':bp<cr>' , normal_silent)
-map('n'  , 'gbn' , ':bn<cr>' , normal_silent)
+map('n' , 'gbp' , ':bp<cr>' , normal_silent)
+map('n' , 'gbn' , ':bn<cr>' , normal_silent)
 map('n' , '<leader>cd'       , [[:lcd %:p:h<CR>:pwd<CR>]] , normal_silent)
 -- Windows
 map('n', '<A-h>', '<C-w>h', normal_silent)
@@ -295,8 +295,9 @@ return require('packer').startup(function()
                         {mode = '<c-n>'},
                         {mode = '<c-p>'},
                     },
-                    ['string'] = {
+                    string = {
                         {complete_items = {'path'}},
+                        {mode = 'file'},
                     },
                     vim = {
                         {mode = 'cmd'},
@@ -376,7 +377,7 @@ return require('packer').startup(function()
         requires = { {'tjdevries/colorbuddy.nvim'}, {'glepnir/galaxyline.nvim'} },
         config = function()
             vim.g.modus_moody_enable = 1
-            vim.g.modus_faint_syntax = 1
+            -- vim.g.modus_faint_syntax = 1
             require('colorbuddy').colorscheme('modus-vivendi')
         end,
     }
