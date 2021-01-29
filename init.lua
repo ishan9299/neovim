@@ -163,6 +163,25 @@ cmd[[autocmd FileType make setl lcs=tab:»· | setl lcs+=space:␣ | setl lcs+=t
 cmd[[autocmd FileType c,cpp setlocal colorcolumn=80]]
 cmd[[augroup end]]
 
+
+-- ++------ My Functions ------++
+-- Toggle Line Numbers
+function _G.toggleLineNumbers()
+    local relativeNumbers = (wo.rnu and wo.nu)
+    local numbers = wo.nu
+    if (numbers == false) then
+        print("Enable Line Numbers")
+        wo.nu = true
+    elseif(numbers == true and relativeNumbers == false) then
+        wo.rnu = true -- move to relativeNumbers
+    elseif(relativeNumbers == true) then
+        wo.nu = false -- hide the numbering
+        wo.rnu = false -- hide the relative numbering
+    end
+end
+map('n', '<f7>', [[<cmd>lua toggleLineNumbers()<cr>]], normal_silent)
+
+
 -- ++------ Plugins ------++
 
 -- BootStrap
