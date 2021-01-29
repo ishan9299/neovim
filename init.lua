@@ -1,3 +1,7 @@
+-- TODO
+-- ----
+-- Add beinding to toggle line numbers
+-- Also a terminal toggle plugin
 local o = vim.o
 local wo = vim.wo
 local g = vim.g
@@ -281,35 +285,30 @@ return require('packer').startup(function()
 
     -- Completion
     use {
-        'nvim-lua/completion-nvim',
+        'hrsh7th/nvim-compe',
         config = function()
-            vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
-            vim.g.completion_auto_change_source = 1
+            require'compe'.setup {
+                enabled = true;
+                autocomplete = true;
+                debug = false;
+                min_length = 1;
+                preselect = 'enable';
+                throttle_time = 80;
+                source_timeout = 200;
+                incomplete_delay = 400;
+                allow_prefix_unmatch = false;
 
-            vim.g.completion_chain_complete_list = {
-                default = {
-                    default = {
-                        {mode = '<c-n>'},
-                        {mode = '<c-p>'},
-                    },
-                    string = {
-                        {complete_items = {'path'}},
-                        {mode = 'file'},
-                    },
-                    vim = {
-                        {mode = 'cmd'},
-                    },
-                    markdown = {
-                        {mode = 'spell'},
-                    },
-                }
+                source = {
+                    path = true;
+                    buffer = true;
+                    tags = true;
+                    spell = true;
+                    vsnip = false;
+                    nvim_lsp = false;
+                    nvim_lua = true;
+                };
             }
-
-            vim.cmd([[augroup completion_autocmds]])
-            vim.cmd([[autocmd!]])
-            vim.cmd([[autocmd BufEnter * lua require'completion'.on_attach()]])
-            vim.cmd([[augroup END]])
-        end,
+        end
     }
 
     -- Treesitter
