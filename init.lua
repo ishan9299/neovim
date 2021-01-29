@@ -60,7 +60,7 @@ o.shortmess = vim.o.shortmess .. 'cWIa'
 -- 2 = always show it
 -- 1 = show only when there is a split
 -- 0 = never show it
-o.laststatus = 2
+o.laststatus = 1
 -- Scrolling lines starts 5 lines above the last one
 o.scrolloff = 8
 -- Font used by neovim gui
@@ -99,9 +99,6 @@ bo.undofile = true
 wo.foldmethod='expr'
 wo.foldlevel=99
 wo.foldexpr='nvim_treesitter#foldexpr()'
--- Relative line numbers to get normal line number set relative line number as false
-wo.relativenumber = true
-wo.number = true
 -- Enables some characters that show up when using tab and trailing spaces
 wo.list=true
 -- Cursor line
@@ -376,7 +373,6 @@ return require('packer').startup(function()
         '~/.config/nvim/modus-theme-vim',
         requires = { {'tjdevries/colorbuddy.nvim'}, {'glepnir/galaxyline.nvim'} },
         config = function()
-            vim.g.modus_moody_enable = 1
             -- vim.g.modus_faint_syntax = 1
             require('colorbuddy').colorscheme('modus-vivendi')
         end,
