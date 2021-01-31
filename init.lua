@@ -170,8 +170,7 @@ function _G.toggleLineNumbers()
     local relativeNumbers = (wo.rnu and wo.nu)
     local numbers = wo.nu
     if (numbers == false) then
-        print("Enable Line Numbers")
-        wo.nu = true
+        wo.nu = true -- move to normal lineNumbers
     elseif(numbers == true and relativeNumbers == false) then
         wo.rnu = true -- move to relativeNumbers
     elseif(relativeNumbers == true) then
@@ -392,6 +391,7 @@ return require('packer').startup(function()
         requires = { {'tjdevries/colorbuddy.nvim'}, {'glepnir/galaxyline.nvim'} },
         config = function()
             -- vim.g.modus_faint_syntax = 1
+            vim.g.modus_moody_enable = 1
             require('colorbuddy').colorscheme('modus-vivendi')
         end,
     }
@@ -405,7 +405,7 @@ return require('packer').startup(function()
     use 'godlygeek/tabular'
     use 'tpope/vim-surround'
     use 'tpope/vim-speeddating'
-    use 'tpope/vim-commentary'
+    use 'b3nj5m1n/kommentary'
     use 'tpope/vim-repeat'
     use 'tpope/vim-abolish'
     use 'tpope/vim-characterize'
