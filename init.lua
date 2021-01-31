@@ -68,7 +68,7 @@ o.laststatus = 1
 -- Scrolling lines starts 5 lines above the last one
 o.scrolloff = 8
 -- Font used by neovim gui
-o.guifont = "Iosevka Nerd Font Mono:h17"
+o.guifont = "agave Nerd Font:h17"
 o.hlsearch = false
 o.incsearch = true
 -- guicursor
@@ -401,11 +401,17 @@ return require('packer').startup(function()
         ft = 'markdown'
     }
 
+    use {
+        'b3nj5m1n/kommentary',
+        config = function()
+            require('kommentary.config').config["nix"] = {"# ", {"/* ", " */"}}
+        end
+    }
+
     use 'justinmk/vim-dirvish'
     use 'godlygeek/tabular'
     use 'tpope/vim-surround'
     use 'tpope/vim-speeddating'
-    use 'b3nj5m1n/kommentary'
     use 'tpope/vim-repeat'
     use 'tpope/vim-abolish'
     use 'tpope/vim-characterize'
