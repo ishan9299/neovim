@@ -404,7 +404,7 @@ return require('packer').startup(function()
     use {
         'b3nj5m1n/kommentary',
         config = function()
-            require('kommentary.config').config["nix"] = {"# ", {"/* ", " */"}}
+            require('kommentary.config').config["nix"] = {"#", {"/*", "*/"}}
         end
     }
 
