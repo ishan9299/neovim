@@ -161,6 +161,8 @@ cmd[[autocmd TermOpen * startinsert]]
 cmd[[autocmd FileType make setl lcs=tab:»· | setl lcs+=space:␣ | setl lcs+=trail:• | setl noexpandtab]]
 -- C/C++
 cmd[[autocmd FileType c,cpp setlocal colorcolumn=80]]
+-- highlight yanked region
+cmd[[autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="Visual", timeout=310}]]
 cmd[[augroup end]]
 
 
