@@ -1,7 +1,3 @@
--- TODO
--- ----
--- Add beinding to toggle line numbers
--- Also a terminal toggle plugin
 local o = vim.o
 local wo = vim.wo
 local g = vim.g
@@ -140,7 +136,6 @@ map('n', '<C-M-l>', ':vertical resize +2<CR>', normal_silent)
 map('n', '<C-M-j>', ':resize -2<CR>', normal_silent)
 map('n', '<C-M-k>', ':resize +2<CR>', normal_silent)
 -- Terminal
-map('t' , '<esc>' , [[<C-\><C-N>]]       , normal_silent)
 map('t' , '<A-h>' , [[<C-\><C-N><C-w>h]] , normal_silent)
 map('t' , '<A-j>' , [[<C-\><C-N><C-w>j]] , normal_silent)
 map('t' , '<A-k>' , [[<C-\><C-N><C-w>k]] , normal_silent)
@@ -407,6 +402,21 @@ return require('packer').startup(function()
         'b3nj5m1n/kommentary',
         config = function()
             require('kommentary.config').config["nix"] = {"#", {"/*", "*/"}}
+        end
+    }
+
+    use {
+        'akinsho/nvim-toggleterm.lua',
+        config = function()
+            require"toggleterm".setup{
+              size = 15,
+              open_mapping = [[<c-\>]],
+              shade_filetypes = {},
+              shade_terminals = true,
+              start_in_insert = true,
+              persist_size = true,
+              direction = 'horizontal',
+            }
         end
     }
 
