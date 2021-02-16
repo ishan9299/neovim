@@ -410,7 +410,7 @@ return require('packer').startup(function()
         config = function()
             require"toggleterm".setup{
               size = 15,
-              open_mapping = [[<c-\>]],
+              open_mapping = [[<M-t>]],
               shade_filetypes = {},
               shade_terminals = true,
               start_in_insert = true,
