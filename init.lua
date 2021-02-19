@@ -420,6 +420,10 @@ return require('packer').startup(function()
         end
     }
 
+    use {
+        'tikhomirov/vim-glsl'
+    }
+
     use 'justinmk/vim-dirvish'
     use 'godlygeek/tabular'
     use 'tpope/vim-surround'
