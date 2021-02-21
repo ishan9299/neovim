@@ -143,24 +143,6 @@ map('t' , '<A-l>' , [[<C-\><C-N><C-w>l]] , normal_silent)
 -- For colorscheme and highlight groups
 map('n', '<f10>' , [[:echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' <cr>]] , normal_silent)
 
--- ++------ Autocmds ------++
-cmd[[augroup core_autocmds]]
-cmd[[autocmd!]]
--- gitcommit
-cmd[[autocmd FileType gitcommit setl spell]]
-cmd[[autocmd FileType gitcommit setl complete+=kspell]]
--- terminal
-cmd[[autocmd TermOpen * setl norelativenumber nonumber]]
-cmd[[autocmd TermOpen * startinsert]]
--- makefile
-cmd[[autocmd FileType make setl lcs=tab:»· | setl lcs+=space:␣ | setl lcs+=trail:• | setl noexpandtab]]
--- C/C++
-cmd[[autocmd FileType c,cpp setlocal colorcolumn=80]]
--- highlight yanked region
-cmd[[autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="Visual", timeout=310}]]
-cmd[[augroup end]]
-
-
 -- ++------ My Functions ------++
 -- Toggle Line Numbers
 function _G.toggleLineNumbers()
@@ -176,7 +158,6 @@ function _G.toggleLineNumbers()
     end
 end
 map('n', '<f7>', [[<cmd>lua toggleLineNumbers()<cr>]], normal_silent)
-
 
 -- ++------ Plugins ------++
 
