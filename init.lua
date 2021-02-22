@@ -413,7 +413,5 @@ return require('packer').startup(function()
     use 'tpope/vim-abolish'
     use 'tpope/vim-characterize'
     use 'LnL7/vim-nix'
-    use 'mhinz/vim-startify'
     use 'dstein64/vim-startuptime'
-    use 'benbusby/vim-earthbound-themes'
 end)
