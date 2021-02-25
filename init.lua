@@ -325,6 +325,11 @@ return require('packer').startup(function()
         'nvim-telescope/telescope.nvim',
         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}, {'nvim-telescope/telescope-project.nvim'}},
         config = function()
+            require('telescope').setup {
+                defaults = {
+                    layout_strategy = "vertical",
+                }
+            }
             local remap = vim.api.nvim_set_keymap
             local opts = { silent = true, noremap = true }
             remap("n" , "tff" , "<cmd>lua require('telescope.builtin').find_files()<cr>" , opts)
@@ -332,6 +337,7 @@ return require('packer').startup(function()
             remap("n" , "tlg" , "<cmd>lua require('telescope.builtin').live_grep()<cr>"  , opts)
             remap("n" , "tfb" , "<cmd>lua require('telescope.builtin').buffers()<cr>"    , opts)
             remap("n" , "tht" , "<cmd>lua require('telescope.builtin').help_tags()<cr>"  , opts)
+            remap("n" , "tsk" , "<cmd>lua require('telescope.builtin').keymaps()<cr>"    , opts)
 
             -- Telescope extensions
             require'telescope'.load_extension('project')
