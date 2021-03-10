@@ -297,7 +297,7 @@ return require('packer').startup(function()
     use 'tpope/vim-surround'
     use 'tpope/vim-repeat'
     use 'tpope/vim-characterize'
-    -- use 'LnL7/vim-nix'
+    use 'LnL7/vim-nix'
     use 'dstein64/vim-startuptime'
     use 'andreypopp/vim-colors-plain'
 end)
