@@ -69,7 +69,8 @@ o.hlsearch = false
 o.incsearch = true
 -- guicursor
 o.guicursor = "" -- disabling the guicursor
-
+-- o.bg = 'dark'
+-- cmd[[colorscheme plain]]
 
 -- ++------ GLOBAL VARIABLES ------++
 -- Set the Leader key
@@ -140,8 +141,6 @@ map('t' , '<A-h>' , [[<C-\><C-N><C-w>h]] , normal_silent)
 map('t' , '<A-j>' , [[<C-\><C-N><C-w>j]] , normal_silent)
 map('t' , '<A-k>' , [[<C-\><C-N><C-w>k]] , normal_silent)
 map('t' , '<A-l>' , [[<C-\><C-N><C-w>l]] , normal_silent)
--- For colorscheme and highlight groups
-map('n', '<f10>' , [[:echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' <cr>]] , normal_silent)
 
 -- ++------ My Functions ------++
 -- Toggle Line Numbers
@@ -206,54 +205,6 @@ return require('packer').startup(function()
         end,
     }
 
-    -- NVIMTree
-    use {
-        'kyazdani42/nvim-tree.lua',
-        config = function()
-            local remap = vim.api.nvim_set_keymap
-            vim.g.lua_tree_side = 'left' -- left by default
-            vim.g.lua_tree_width = 40 -- 30 by default
-            vim.g.lua_tree_auto_open            = 0 -- 0 by default, opens the tree when typing `vim $DIR` or `vim`
-            vim.g.lua_tree_auto_close           = 1 -- 0 by default, closes the tree when it's the last window
-            vim.g.lua_tree_quit_on_open         = 1 -- 0 by default, closes the tree when you open a file
-            vim.g.lua_tree_follow               = 1 -- 0 by default, this option allows the cursor to be updated when entering a buffer
-            vim.g.lua_tree_indent_markers       = 1 -- 0 by default, this option shows indent markers when folders are open
-            vim.g.lua_tree_hide_dotfiles        = 1 -- 0 by default, this option hides files and folders starting with a dot `.`
-            vim.g.lua_tree_git_hl               = 1 -- 0 by default, will enable file highlight for git attributes (can be used without the icons).
-            vim.g.lua_tree_root_folder_modifier = ':~' -- This is the default. See :help filename-modifiers for more options
-            vim.g.lua_tree_tab_open             = 1 -- 0 by default, will open the tree when entering a new tab and the tree was previously open
-            vim.g.lua_tree_allow_resize         = 1 -- 0 by default, will not resize the tree when opening a file
-
-            vim.g.lua_tree_icons = {
-                default = '',
-                symlink = '',
-                git = {
-                    unstaged  = "✗",
-                    staged    = "✓",
-                    unmerged  = "",
-                    renamed   = "➜",
-                    untracked = "★"
-                },
-                folder = {
-                    default = "",
-                    open = ""
-                }
-            }
-
-            remap('n', '<C-e>', ':NvimTreeToggle<cr>', { silent = true, noremap = true })
-        end,
-    }
-
-    -- DevIcons
-    use {
-        'kyazdani42/nvim-web-devicons',
-        config = function()
-            require'nvim-web-devicons'.setup {
-                default = true;
-            }
-        end,
-    }
-
     -- Completion
     use {
         'hrsh7th/nvim-compe',
@@ -277,6 +228,7 @@ return require('packer').startup(function()
                     vsnip = false;
                     nvim_lsp = false;
                     nvim_lua = true;
+                    treesitter = true;
                 };
             }
         end
@@ -296,15 +248,6 @@ return require('packer').startup(function()
         end,
     }
 
-    -- UndoTree
-    use {
-        'mbbill/undotree',
-        config = function()
-            local remap = vim.api.nvim_set_keymap
-            remap('n', '<F5>', ':UndotreeToggle<cr>', { silent = true, noremap = true })
-        end,
-    }
-
     -- Autopairs
     use {
         'windwp/nvim-autopairs',
@@ -313,43 +256,11 @@ return require('packer').startup(function()
         end,
     }
 
-    -- Zig
-    use {
-        'ziglang/zig.vim',
-        config = function()
-            vim.g.zig_fmt_autosave = 1
-        end,
-    }
-
-    use {
-        'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}, {'nvim-telescope/telescope-project.nvim'}},
-        config = function()
-            require('telescope').setup {
-                defaults = {
-                    layout_strategy = "vertical",
-                }
-            }
-            local remap = vim.api.nvim_set_keymap
-            local opts = { silent = true, noremap = true }
-            remap("n" , "tff" , "<cmd>lua require('telescope.builtin').find_files()<cr>" , opts)
-            remap("n" , "tgf" , "<cmd>lua require('telescope.builtin').git_files()<cr>"  , opts)
-            remap("n" , "tlg" , "<cmd>lua require('telescope.builtin').live_grep()<cr>"  , opts)
-            remap("n" , "tfb" , "<cmd>lua require('telescope.builtin').buffers()<cr>"    , opts)
-            remap("n" , "tht" , "<cmd>lua require('telescope.builtin').help_tags()<cr>"  , opts)
-            remap("n" , "tsk" , "<cmd>lua require('telescope.builtin').keymaps()<cr>"    , opts)
-
-            -- Telescope extensions
-            require'telescope'.load_extension('project')
-            remap("n" , "ttp" , ":lua require('telescope').extensions.project.project{}<cr>"  , opts)
-        end,
-    }
-
     use {
         '~/.config/nvim/modus-theme-vim',
         requires = { {'tjdevries/colorbuddy.nvim'}, {'glepnir/galaxyline.nvim'} },
         config = function()
-            -- vim.g.modus_faint_syntax = 1
+            vim.g.modus_faint_syntax = 1
             vim.g.modus_moody_enable = 1
             require('colorbuddy').colorscheme('modus-vivendi')
         end,
@@ -358,13 +269,6 @@ return require('packer').startup(function()
     use {
         'junegunn/goyo.vim',
         ft = 'markdown'
-    }
-
-    use {
-        'b3nj5m1n/kommentary',
-        config = function()
-            require('kommentary.config').config["nix"] = {"#", {"/*", "*/"}}
-        end
     }
 
     use {
@@ -387,13 +291,13 @@ return require('packer').startup(function()
         'tikhomirov/vim-glsl'
     }
 
+    use 'tpope/vim-commentary'
     use 'justinmk/vim-dirvish'
     use 'godlygeek/tabular'
     use 'tpope/vim-surround'
-    use 'tpope/vim-speeddating'
     use 'tpope/vim-repeat'
-    use 'tpope/vim-abolish'
     use 'tpope/vim-characterize'
-    use 'LnL7/vim-nix'
+    -- use 'LnL7/vim-nix'
     use 'dstein64/vim-startuptime'
+    use 'andreypopp/vim-colors-plain'
 end)
