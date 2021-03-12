@@ -14,4 +14,8 @@ autocmd FileType make setl lcs=tab:»· | setl lcs+=space:␣ | setl lcs+=trail:
 autocmd FileType c,cpp setlocal colorcolumn=80
 " highlight yanked region
 autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="Visual", timeout=310}
+" flake.lock
+autocmd BufNewFile,BufRead flake.lock setl ft=json
+" GLSL
+autocmd BufNewFile,BufRead *.vs,*.fs,*.shader setl ft=glsl
 augroup end

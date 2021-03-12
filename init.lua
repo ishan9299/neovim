@@ -109,6 +109,7 @@ wo.wrap = false
 -- folding
 wo.foldmethod = "expr"
 wo.foldexpr = "nvim_treesitter#foldexpr()"
+wo.lbr = true
 
 -- ++------ KEY BINDINGS ------++
 local normal_silent = { silent = true, noremap = true }
@@ -261,7 +262,7 @@ return require('packer').startup(function()
         requires = { {'tjdevries/colorbuddy.nvim'}, {'glepnir/galaxyline.nvim'} },
         config = function()
             vim.g.modus_faint_syntax = 1
-            vim.g.modus_moody_enable = 1
+            -- vim.g.modus_moody_enable = 1
             require('colorbuddy').colorscheme('modus-vivendi')
         end,
     }
