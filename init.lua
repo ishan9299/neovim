@@ -15,7 +15,7 @@ cmd('syntax enable') -- enable syntax highlighting
 o.ts=4
 o.sts=4
 o.shiftwidth=4 -- spaces for autoindent
-o.expandtab = true -- Turn of tabs
+o.expandtab = true -- Turn off tabs
 -- Set the path to find the file in a project
 o.termguicolors = true
 o.path = o.path .. '**'
@@ -69,8 +69,6 @@ o.hlsearch = false
 o.incsearch = true
 -- guicursor
 o.guicursor = "" -- disabling the guicursor
--- o.bg = 'dark'
--- cmd[[colorscheme plain]]
 
 -- ++------ GLOBAL VARIABLES ------++
 -- Set the Leader key
@@ -236,18 +234,18 @@ return require('packer').startup(function()
     }
 
     -- Treesitter
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        config = function()
-            require'nvim-treesitter.configs'.setup {
-                ensure_installed = "maintained",
-                highlight = {
-                    enable = true,
-                    use_languagetree = false,
-                },
-            }
-        end,
-    }
+    -- use {
+    --     'nvim-treesitter/nvim-treesitter',
+    --     config = function()
+    --         require'nvim-treesitter.configs'.setup {
+    --             ensure_installed = "maintained",
+    --             highlight = {
+    --                 enable = true,
+    --                 use_languagetree = false,
+    --             },
+    --         }
+    --     end,
+    -- }
 
     -- Autopairs
     use {
@@ -259,11 +257,9 @@ return require('packer').startup(function()
 
     use {
         '~/.config/nvim/modus-theme-vim',
-        requires = { {'tjdevries/colorbuddy.nvim'}, {'glepnir/galaxyline.nvim'} },
+        requires = { {'glepnir/galaxyline.nvim'} },
         config = function()
-            vim.g.modus_faint_syntax = 1
-            -- vim.g.modus_moody_enable = 1
-            require('colorbuddy').colorscheme('modus-vivendi')
+            vim.cmd('colorscheme modus-operandi')
         end,
     }
 
@@ -279,7 +275,7 @@ return require('packer').startup(function()
               size = 15,
               open_mapping = [[<M-t>]],
               shade_filetypes = {},
-              shade_terminals = true,
+              shade_terminals = false,
               start_in_insert = true,
               persist_size = true,
               direction = 'horizontal',
@@ -301,4 +297,6 @@ return require('packer').startup(function()
     use 'LnL7/vim-nix'
     use 'dstein64/vim-startuptime'
     use 'andreypopp/vim-colors-plain'
+    use 'bluz71/vim-moonfly-colors'
+    use 'glepnir/zephyr-nvim'
 end)

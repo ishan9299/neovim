@@ -5,6 +5,7 @@ mkShell {
   buildInputs = [
     git
     gcc-unwrapped
+    tree-sitter
     ninja
   ];
 }
