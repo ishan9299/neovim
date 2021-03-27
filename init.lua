@@ -54,13 +54,13 @@ o.showcmd = false
 -- W = don't echo "[w]"/"[written]" when writing
 -- I = no splash screen
 -- a = use abbreviations in messages eg. `[RO]` instead of `[readonly]`
-o.completeopt = 'menuone,noinsert,noselect'
+o.completeopt = 'menuone,noselect'
 o.shortmess = vim.o.shortmess .. 'cWIa'
 -- statusline
 -- 2 = always show it
 -- 1 = show only when there is a split
 -- 0 = never show it
-o.laststatus = 1
+o.laststatus = 0
 -- Scrolling lines starts 5 lines above the last one
 o.scrolloff = 8
 -- Font used by neovim gui
@@ -94,19 +94,12 @@ bo.expandtab = true -- Turn of tabs
 bo.undofile = true
 
 -- ++------ WINDOW OPTIONS ------++
--- Foldmethod
-wo.foldmethod='expr'
-wo.foldlevel=99
-wo.foldexpr='nvim_treesitter#foldexpr()'
 -- Enables some characters that show up when using tab and trailing spaces
 wo.list=true
 -- Cursor line
-wo.cursorline = true
+wo.cursorline = false
 wo.colorcolumn = "120"
 wo.wrap = false
--- folding
-wo.foldmethod = "expr"
-wo.foldexpr = "nvim_treesitter#foldexpr()"
 wo.lbr = true
 
 -- ++------ KEY BINDINGS ------++
@@ -159,144 +152,29 @@ map('n', '<f7>', [[<cmd>lua toggleLineNumbers()<cr>]], normal_silent)
 
 -- ++------ Plugins ------++
 
--- BootStrap
-local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
 
-if fn.empty(fn.glob(install_path)) > 0 then
-  cmd('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
-  cmd 'packadd packer.nvim'
-end
-
-cmd [[packadd packer.nvim]]
-
-return require('packer').startup(function()
-    use {
-        'wbthomason/packer.nvim',
-        opt = true,
-    }
-
-    -- Pretty colors
-    use {
-        'norcalli/nvim-colorizer.lua',
-        config = function()
-            require'colorizer'.setup {
-                'html',
-                'htmldjango',
-                'markdown',
-                'css',
-                'scss',
-                'javascript',
-                'php',
-                'vim',
-                'lua',
-                'conf',
-                css = {
-                    RGB      = true,
-                    RRGGBB   = true,
-                    names    = true,
-                    RRGGBBAA = true,
-                    rgb_fn   = true,
-                    hsl_fn   = true,
-                    css      = true,
-                    css_fn   = true,
-                },
-            }
-        end,
-    }
-
-    -- Completion
-    use {
-        'hrsh7th/nvim-compe',
-        config = function()
-            require'compe'.setup {
-                enabled = true;
-                autocomplete = true;
-                debug = false;
-                min_length = 1;
-                preselect = 'enable';
-                throttle_time = 80;
-                source_timeout = 200;
-                incomplete_delay = 400;
-                allow_prefix_unmatch = false;
-
-                source = {
-                    path = true;
-                    buffer = true;
-                    tags = true;
-                    spell = true;
-                    vsnip = false;
-                    nvim_lsp = false;
-                    nvim_lua = true;
-                    treesitter = true;
-                };
-            }
-        end
-    }
-
-    -- Treesitter
     -- use {
-    --     'nvim-treesitter/nvim-treesitter',
+    --     '~/.config/nvim/modus-theme-vim',
+    --     requires = { {'glepnir/galaxyline.nvim'},  {'kyazdani42/nvim-web-devicons'} },
     --     config = function()
-    --         require'nvim-treesitter.configs'.setup {
-    --             ensure_installed = "maintained",
-    --             highlight = {
-    --                 enable = true,
-    --                 use_languagetree = false,
-    --             },
-    --         }
+    --         vim.cmd('colorscheme modus-vivendi')
     --     end,
     -- }
 
-    -- Autopairs
-    use {
-        'windwp/nvim-autopairs',
-        config = function()
-            require('nvim-autopairs').setup()
-        end,
-    }
-
-    use {
-        '~/.config/nvim/modus-theme-vim',
-        requires = { {'glepnir/galaxyline.nvim'} },
-        config = function()
-            vim.cmd('colorscheme modus-operandi')
-        end,
-    }
-
-    use {
-        'junegunn/goyo.vim',
-        ft = 'markdown'
-    }
-
-    use {
-        'akinsho/nvim-toggleterm.lua',
-        config = function()
-            require"toggleterm".setup{
-              size = 15,
-              open_mapping = [[<M-t>]],
-              shade_filetypes = {},
-              shade_terminals = false,
-              start_in_insert = true,
-              persist_size = true,
-              direction = 'horizontal',
-            }
-        end
-    }
+    -- use {
+    --     'akinsho/nvim-toggleterm.lua',
+    --     config = function()
+    --         require"toggleterm".setup{
+    --           size = 15,
+    --           open_mapping = [[<M-t>]],
+    --           shade_filetypes = {},
+    --           shade_terminals = false,
+    --           start_in_insert = true,
+    --           persist_size = true,
+    --           direction = 'horizontal',
+    --         }
+    --     end
+    -- }
 
 
-    use {
-        'tikhomirov/vim-glsl'
-    }
 
-    use 'tpope/vim-commentary'
-    use 'justinmk/vim-dirvish'
-    use 'godlygeek/tabular'
-    use 'tpope/vim-surround'
-    use 'tpope/vim-repeat'
-    use 'tpope/vim-characterize'
-    use 'LnL7/vim-nix'
-    use 'dstein64/vim-startuptime'
-    use 'andreypopp/vim-colors-plain'
-    use 'bluz71/vim-moonfly-colors'
-    use 'glepnir/zephyr-nvim'
-end)
