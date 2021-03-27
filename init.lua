@@ -152,29 +152,24 @@ map('n', '<f7>', [[<cmd>lua toggleLineNumbers()<cr>]], normal_silent)
 
 -- ++------ Plugins ------++
 
+vim.cmd('packadd! modus-theme-vim')
+vim.cmd('colorscheme modus-vivendi')
 
-    -- use {
-    --     '~/.config/nvim/modus-theme-vim',
-    --     requires = { {'glepnir/galaxyline.nvim'},  {'kyazdani42/nvim-web-devicons'} },
-    --     config = function()
-    --         vim.cmd('colorscheme modus-vivendi')
-    --     end,
-    -- }
+vim.cmd('packadd! nvim-toggleterm.lua')
+require"toggleterm".setup{
+    size = 15,
+    open_mapping = [[<M-t>]],
+    shade_filetypes = {},
+    shade_terminals = false,
+    start_in_insert = true,
+    persist_size = true,
+    direction = 'horizontal',
+}
 
-    -- use {
-    --     'akinsho/nvim-toggleterm.lua',
-    --     config = function()
-    --         require"toggleterm".setup{
-    --           size = 15,
-    --           open_mapping = [[<M-t>]],
-    --           shade_filetypes = {},
-    --           shade_terminals = false,
-    --           start_in_insert = true,
-    --           persist_size = true,
-    --           direction = 'horizontal',
-    --         }
-    --     end
-    -- }
-
-
-
+vim.cmd('packadd! tabular')
+vim.cmd('packadd! vim-commentary')
+vim.cmd('packadd! vim-dirvish')
+vim.cmd('packadd! vim-nix')
+vim.cmd('packadd! vim-polyglot')
+vim.cmd('packadd! vim-repeat')
+vim.cmd('packadd! vim-surround')

@@ -1,0 +1,27 @@
+[submodule "modus-theme-vim"]
+	path = /home/me/.config/nvim/pack/packages/opt/modus-theme-vim
+	url = https://github.com/ishan9299/modus-theme-vim
+[submodule "nvim-toggleterm.lua"]
+	path = /home/me/.config/nvim/pack/packages/opt/nvim-toggleterm.lua
+	url = https://github.com/akinsho/nvim-toggleterm.lua
+[submodule "vim-polyglot"]
+	path = /home/me/.config/nvim/pack/packages/opt/vim-polyglot
+	url = https://github.com/sheerun/vim-polyglot
+[submodule "vim-commentary"]
+	path = /home/me/.config/nvim/pack/packages/opt/vim-commentary
+	url = https://github.com/tpope/vim-commentary
+[submodule "vim-dirvish"]
+	path = /home/me/.config/nvim/pack/packages/opt/vim-dirvish
+	url = https://github.com/justinmk/vim-dirvish
+[submodule "tabular"]
+	path = /home/me/.config/nvim/pack/packages/opt/tabular
+	url = https://github.com/godlygeek/tabular
+[submodule "vim-surround"]
+	path = /home/me/.config/nvim/pack/packages/opt/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule "vim-repeat"]
+	path = /home/me/.config/nvim/pack/packages/opt/vim-repeat
+	url = https://github.com/tpope/vim-repeat
+[submodule "vim-nix"]
+	path = /home/me/.config/nvim/pack/packages/opt/vim-nix
+	url = https://github.com/LnL7/vim-nix
