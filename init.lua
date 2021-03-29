@@ -10,11 +10,16 @@ cmd('syntax on')
 
 g.mapleader = ' ' -- Space as a leader key
 -- Disable builtins plugins
-g.loaded_netrwPlugin = 1
-g.loaded_2html_plugin = 1
-g.loaded_matchit_plugin = 1
+g.loaded_netrwPlugin = 1 -- Disable netrw it has problem with symlinks and I am on nixos
+g.loaded_2html_plugin = 1 -- converts lines or the entire buffer to html code
+g.loaded_matchit = 1 -- extends matching when using % not really needed though
+g.loaded_gzip = 1 -- disable editing compressed files
+g.loaded_tarPlugin = 1 -- disable navigating tar files
+g.loaded_zipPlugin = 1 -- disable navigating zip files
+g.loaded_tutor_mode_plugin = 1 -- disable vim tutor
+g.loaded_matchparen = 1 -- disable the match paren plugin
 ---------------------------
-o.laststatus = 1
+o.laststatus = 1 -- only show the statusline when a split exists
 o.hidden = true -- allow us to switch buffers easily
 o.termguicolors = true -- 24-bit RGB in terminal
 o.guicursor = '' -- disable the line cursor
@@ -53,7 +58,7 @@ cmd('packadd! tabular')
 cmd('packadd! vim-commentary')
 cmd('packadd! vim-dirvish')
 cmd('packadd! vim-nix')
-cmd('packadd! vim-polyglot')
+-- cmd('packadd! vim-polyglot')
 cmd('packadd! vim-repeat')
 cmd('packadd! vim-surround')
 
@@ -73,3 +78,4 @@ end
 map('n', '<f7>', [[<cmd>lua toggleLineNumbers()<cr>]], normal_mode_silent)
 
 -- Autocmds
+-- the disbale tof vim-plygot doesnt seem to slow down the typung in vim
