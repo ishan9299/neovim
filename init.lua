@@ -5,6 +5,7 @@ local bo = vim.bo
 local o = vim.o
 local map = vim.api.nvim_set_keymap
 local normal_mode_silent = {silent = true, noremap = true}
+local normal_mode_echo = {silent = false, noremap = true}
 
 cmd('syntax on')
 
@@ -17,8 +18,15 @@ g.loaded_gzip = 1 -- disable editing compressed files
 g.loaded_tarPlugin = 1 -- disable navigating tar files
 g.loaded_zipPlugin = 1 -- disable navigating zip files
 g.loaded_tutor_mode_plugin = 1 -- disable vim tutor
-g.loaded_matchparen = 1 -- disable the match paren plugin
+g.loaded_matchparen = 1 -- disable the match paren plugin it is causing extreme slow downs
+g.loaded_python_provider = 0 -- disable the python 2 health checks
+g.loaded_python3_provider = 0 -- disable the python 3 health checks
+g.loaded_ruby_provider = 0 -- disable the ruby health checks
+g.loaded_perl_provider = 0 -- disable the perl health checks
+g.loaded_node_provider = 0 -- disable the node health checks
 ---------------------------
+o.scrolloff = 15 -- minimal number of lines to keep above and below the cursor
+o.lazyredraw = true -- don't redraw screen when using macros
 o.laststatus = 1 -- only show the statusline when a split exists
 o.hidden = true -- allow us to switch buffers easily
 o.termguicolors = true -- 24-bit RGB in terminal
@@ -38,7 +46,9 @@ bo.tabstop = 4 -- 4 spaces equals to one tab
 bo.shiftwidth = 4 -- number of spaces for each step of autoindent
 bo.expandtab = true
 bo.textwidth = 120 -- Maximum width of text that is being inserted
-wo.foldenable = false
+bo.formatoptions = 'jql' -- disable the autocommenting
+wo.foldenable = false -- no folding
+wo.wrap = false -- dont wrap the lines
 
 
 -- Plugins
@@ -58,7 +68,6 @@ cmd('packadd! tabular')
 cmd('packadd! vim-commentary')
 cmd('packadd! vim-dirvish')
 cmd('packadd! vim-nix')
--- cmd('packadd! vim-polyglot')
 cmd('packadd! vim-repeat')
 cmd('packadd! vim-surround')
 
@@ -75,7 +84,33 @@ function _G.toggleLineNumbers()
         wo.rnu = false -- hide the relative numbering
     end
 end
-map('n', '<f7>', [[<cmd>lua toggleLineNumbers()<cr>]], normal_mode_silent)
+map('n', '<f7>', [[<cmd>lua toggleLineNumbers()<cr>]], normal_mode_silent) -- toggle line numbers [f7]
 
--- Autocmds
--- the disbale tof vim-plygot doesnt seem to slow down the typung in vim
+-- Completion Binding
+local function t(str)
+    return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+function _G.smart_tab()
+    return vim.fn.pumvisible() == 1 and t'<C-n>' or t'<Tab>'
+end
+
+map('i', '<Tab>', 'v:lua.smart_tab()', {expr = true, noremap = true})
+
+
+-- Keybindings
+map('n', '<leader><leader>', '<C-^>', normal_mode_silent) -- move to alternate buffers [<space><space>]
+map('n', 'tn', '<cmd>tabnew<cr>', normal_mode_silent) -- open a new tab [tn]
+map('n', 'tc', '<cmd>tabclose<cr>', normal_mode_silent) -- close a tab [tc]
+map('n', '<A-k>', '<cmd>wincmd k<cr>', normal_mode_silent) -- move to split above [A-k]
+map('n', '<A-j>', '<cmd>wincmd j<cr>', normal_mode_silent) -- move to split below [A-j]
+map('n', '<A-l>', '<cmd>wincmd l<cr>', normal_mode_silent) -- move to split l [A-l]
+map('n', '<A-h>', '<cmd>wincmd h<cr>', normal_mode_silent) -- move to split h [A-h]
+map('t', '<A-h>', [[<C-\><C-N><C-w>h]], normal_mode_silent) -- move to split h when inside in terminal [A-h]
+map('t', '<A-j>', [[<C-\><C-N><C-w>j]], normal_mode_silent) -- move to split j when inside in terminal [A-j]
+map('t', '<A-k>', [[<C-\><C-N><C-w>k]], normal_mode_silent) -- move to split k when inside in terminal [A-k]
+map('t', '<A-l>', [[<C-\><C-N><C-w>l]], normal_mode_silent) -- move to split k when inside in terminal [A-l]
+map('n', '<leader>ew', ':e    <C-R>=expand("%:p:h") . "/" <CR>' , normal_mode_echo) -- open a new file in a current window [<space>ew]
+map('n', '<leader>es', ':sp   <C-R>=expand("%:p:h") . "/" <CR>' , normal_mode_echo) -- open a new file in a horizontal split [<space>es]
+map('n', '<leader>ev', ':vsp  <C-R>=expand("%:p:h") . "/" <CR>' , normal_mode_echo) -- open a new file in a vertical split [<space>ev]
+map('n', '<leader>et', ':tabe <C-R>=expand("%:p:h") . "/" <CR>' , normal_mode_echo) -- open a new file in a new tab [<space>et]
