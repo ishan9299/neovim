@@ -31,3 +31,6 @@
 [submodule "nvim-solarized-lua"]
 	path = pack/packages/opt/nvim-solarized-lua
 	url = https://github.com/ishan9299/nvim-solarized-lua
+[submodule "nvim-compe"]
+	path = pack/packages/opt/nvim-compe
+	url = https://github.com/hrsh7th/nvim-compe.git

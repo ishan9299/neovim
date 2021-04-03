@@ -1,6 +1,7 @@
 -- TODO
 local cmd = vim.cmd
 local g = vim.g
+local fn = vim.fn
 local wo = vim.wo
 local bo = vim.bo
 local o = vim.o
@@ -52,14 +53,15 @@ bo.textwidth = 120 -- Maximum width of text that is being inserted
 wo.foldenable = false -- no folding
 wo.wrap = false -- dont wrap the lines
 
--- Plugins
+---------- Plugins ----------
 cmd('packadd! modus-theme-vim')
+cmd('colorscheme modus-vivendi')
 cmd('packadd! nvim-solarized-lua')
 -- cmd('colorscheme modus-operandi') -- set my colorscheme
 o.bg = 'dark'
 -- g.solarized_visibility = 'high'
 -- g.solarized_statusline = 'flat'
-cmd('colorscheme solarized')
+-- cmd('colorscheme solarized')
 
 cmd('packadd! nvim-toggleterm.lua')
 require"toggleterm".setup{
@@ -78,6 +80,71 @@ cmd('packadd! vim-nix')
 cmd('packadd! vim-repeat')
 cmd('packadd! vim-surround')
 cmd('packadd! vim-startuptime')
+cmd('packadd! nvim-compe')
+require'compe'.setup {
+	enabled = true;
+	autocomplete = true;
+	debug = false;
+	min_length = 1;
+	preselect = 'enable';
+	throttle_time = 80;
+	source_timeout = 200;
+	incomplete_delay = 400;
+	max_abbr_width = 100;
+	max_kind_width = 100;
+	max_menu_width = 100;
+	documentation = true;
+
+	source = {
+		path = true;
+		buffer = true;
+		calc = true;
+		nvim_lsp = false;
+		nvim_lua = true;
+		vsnip = false;
+	};
+}
+
+local t = function(str)
+	return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+local check_back_space = function()
+	local col = fn.col('.') - 1
+	if col == 0 or fn.getline('.'):sub(col, col):match('%s') then
+		return true
+	else
+		return false
+	end
+end
+
+-- Use (s-)tab to:
+--- move to prev/next item in completion menuone
+--- jump to prev/next snippet's placeholder
+
+_G.tab_complete = function()
+	if fn.pumvisible() == 1 then
+		return t "<C-n>"
+	elseif check_back_space() then
+		return t "<Tab>"
+	else
+		return fn['compe#complete']()
+	end
+end
+
+_G.s_tab_complete = function()
+	if fn.pumvisible() == 1 then
+		return t "<C-p>"
+	else
+		return t "<S-Tab>"
+	end
+end
+
+map("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+map("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+map("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+map("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+----------------------------
 
 -- Toggle Line Numbers
 function _G.toggleLineNumbers()
@@ -93,17 +160,6 @@ function _G.toggleLineNumbers()
 	end
 end
 map('n', '<f7>', [[<cmd>lua toggleLineNumbers()<cr>]], normal_mode_silent) -- toggle line numbers [f7]
-
--- Completion Binding
-local function t(str)
-	return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-function _G.smart_tab()
-	return vim.fn.pumvisible() == 1 and t'<C-n>' or t'<Tab>'
-end
-
-map('i', '<Tab>', 'v:lua.smart_tab()', {expr = true, noremap = true})
 
 -- Keybindings
 map('n', '<leader><leader>', '<C-^>', normal_mode_silent) -- move to alternate buffers [<space><space>]
@@ -121,19 +177,3 @@ map('n', '<leader>ew', ':e    <C-R>=expand("%:p:h") . "/" <CR>' , normal_mode_ec
 map('n', '<leader>es', ':sp   <C-R>=expand("%:p:h") . "/" <CR>' , normal_mode_echo) -- open a new file in a horizontal split [<space>es]
 map('n', '<leader>ev', ':vsp  <C-R>=expand("%:p:h") . "/" <CR>' , normal_mode_echo) -- open a new file in a vertical split [<space>ev]
 map('n', '<leader>et', ':tabe <C-R>=expand("%:p:h") . "/" <CR>' , normal_mode_echo) -- open a new file in a new tab [<space>et]
-
-
--- lspconfig
-local nvim_lsp = require('lspconfig')
-local on_attach = function(client, bufnr)
-	local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-	buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-end
-
-local servers = { "clangd" }
-for _, lsp in ipairs(servers) do
-	nvim_lsp[lsp].setup { on_attach = on_attach }
-end
--- lspsaga
-local saga = require 'lspsaga'
-saga.init_lsp_saga()
