@@ -25,3 +25,9 @@
 [submodule "vim-nix"]
 	path = /home/me/.config/nvim/pack/packages/opt/vim-nix
 	url = https://github.com/LnL7/vim-nix
+[submodule "vim-startuptime"]
+	path = pack/packages/opt/vim-startuptime
+	url = https://github.com/dstein64/vim-startuptime
+[submodule "nvim-solarized-lua"]
+	path = pack/packages/opt/nvim-solarized-lua
+	url = https://github.com/ishan9299/nvim-solarized-lua
