@@ -4,8 +4,10 @@ augroup disable_autocomments
     autocmd BufNewFile,BufRead,FileType,OptionSet * setlocal formatoptions-=cro
 augroup end
 
-augroup VCenterCursor
-  au!
-  au BufEnter,WinEnter,WinNew,VimResized *,*.*
-        \ let &scrolloff=winheight(win_getid())/2
-augroup END
+nmap <f10> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
