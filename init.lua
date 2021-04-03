@@ -1,3 +1,4 @@
+-- TODO
 local cmd = vim.cmd
 local g = vim.g
 local wo = vim.wo
@@ -8,7 +9,6 @@ local normal_mode_silent = {silent = true, noremap = true}
 local normal_mode_echo = {silent = false, noremap = true}
 
 cmd('syntax on')
-
 g.mapleader = ' ' -- Space as a leader key
 -- Disable builtins plugins
 g.loaded_netrwPlugin = 1 -- Disable netrw it has problem with symlinks and I am on nixos
@@ -27,7 +27,7 @@ g.loaded_node_provider = 0 -- disable the node health checks
 ---------------------------
 o.scrolloff = 15 -- minimal number of lines to keep above and below the cursor
 o.lazyredraw = true -- don't redraw screen when using macros
-o.laststatus = 1 -- only show the statusline when a split exists
+o.laststatus = 2 -- only show the statusline when a split exists
 o.hidden = true -- allow us to switch buffers easily
 o.termguicolors = true -- 24-bit RGB in terminal
 o.guicursor = '' -- disable the line cursor
@@ -50,10 +50,16 @@ bo.formatoptions = 'jql' -- disable the autocommenting
 wo.foldenable = false -- no folding
 wo.wrap = false -- dont wrap the lines
 
-
 -- Plugins
 cmd('packadd! modus-theme-vim')
-cmd('colorscheme modus-vivendi') -- set my colorscheme
+cmd('colorscheme modus-operandi') -- set my colorscheme
+
+cmd('packadd! nvim-solarized-lua')
+-- o.bg = 'light'
+-- g.solarized_visibility = 'high'
+-- g.solarized_statusline = 'flat'
+-- cmd('colorscheme solarized-flat')
+
 cmd('packadd! nvim-toggleterm.lua')
 require"toggleterm".setup{
     size = 15,
@@ -70,6 +76,7 @@ cmd('packadd! vim-dirvish')
 cmd('packadd! vim-nix')
 cmd('packadd! vim-repeat')
 cmd('packadd! vim-surround')
+cmd('packadd! vim-startuptime')
 
 -- Toggle Line Numbers
 function _G.toggleLineNumbers()
