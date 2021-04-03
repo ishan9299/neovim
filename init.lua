@@ -32,6 +32,9 @@ o.hidden = true -- allow us to switch buffers easily
 o.termguicolors = true -- 24-bit RGB in terminal
 o.guicursor = '' -- disable the line cursor
 o.fillchars = 'diff:∙,fold:·,vert:│,eob: ' -- characters used to fill statuslines and seperators
+o.tabstop = 4 -- 4 spaces equals to one tab
+o.shiftwidth = 4 -- number of spaces for each step of autoindent
+o.expandtab = false
 -- Ignore these files
 local ignore = o.wildignore
 ignore = ignore .. '*.o,*.obj,*.bin,*.dll,*.exe,'
@@ -44,31 +47,29 @@ o.wildignore = ignore -- Ignore certain files and folders when globbing
 bo.synmaxcol = 500 -- syntax highlighting for 500 colums only
 bo.tabstop = 4 -- 4 spaces equals to one tab
 bo.shiftwidth = 4 -- number of spaces for each step of autoindent
-bo.expandtab = true
+bo.expandtab = false
 bo.textwidth = 120 -- Maximum width of text that is being inserted
-bo.formatoptions = 'jql' -- disable the autocommenting
 wo.foldenable = false -- no folding
 wo.wrap = false -- dont wrap the lines
 
 -- Plugins
 cmd('packadd! modus-theme-vim')
-cmd('colorscheme modus-operandi') -- set my colorscheme
-
 cmd('packadd! nvim-solarized-lua')
--- o.bg = 'light'
+-- cmd('colorscheme modus-operandi') -- set my colorscheme
+o.bg = 'dark'
 -- g.solarized_visibility = 'high'
 -- g.solarized_statusline = 'flat'
--- cmd('colorscheme solarized-flat')
+cmd('colorscheme solarized')
 
 cmd('packadd! nvim-toggleterm.lua')
 require"toggleterm".setup{
-    size = 15,
-    open_mapping = [[<M-t>]],
-    shade_filetypes = {},
-    shade_terminals = false,
-    start_in_insert = true,
-    persist_size = true,
-    direction = 'horizontal',
+	size = 15,
+	open_mapping = [[<M-t>]],
+	shade_filetypes = {},
+	shade_terminals = false,
+	start_in_insert = true,
+	persist_size = true,
+	direction = 'horizontal',
 }
 cmd('packadd! tabular')
 cmd('packadd! vim-commentary')
@@ -80,30 +81,29 @@ cmd('packadd! vim-startuptime')
 
 -- Toggle Line Numbers
 function _G.toggleLineNumbers()
-    local relativeNumbers = (wo.rnu and wo.nu)
-    local numbers = wo.nu
-    if (numbers == false) then
-        wo.nu = true -- move to normal lineNumbers
-    elseif(numbers == true and relativeNumbers == false) then
-        wo.rnu = true -- move to relativeNumbers
-    elseif(relativeNumbers == true) then
-        wo.nu = false -- hide the numbering
-        wo.rnu = false -- hide the relative numbering
-    end
+	local relativeNumbers = (wo.rnu and wo.nu)
+	local numbers = wo.nu
+	if (numbers == false) then
+		wo.nu = true -- move to normal lineNumbers
+	elseif(numbers == true and relativeNumbers == false) then
+		wo.rnu = true -- move to relativeNumbers
+	elseif(relativeNumbers == true) then
+		wo.nu = false -- hide the numbering
+		wo.rnu = false -- hide the relative numbering
+	end
 end
 map('n', '<f7>', [[<cmd>lua toggleLineNumbers()<cr>]], normal_mode_silent) -- toggle line numbers [f7]
 
 -- Completion Binding
 local function t(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
+	return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
 function _G.smart_tab()
-    return vim.fn.pumvisible() == 1 and t'<C-n>' or t'<Tab>'
+	return vim.fn.pumvisible() == 1 and t'<C-n>' or t'<Tab>'
 end
 
 map('i', '<Tab>', 'v:lua.smart_tab()', {expr = true, noremap = true})
-
 
 -- Keybindings
 map('n', '<leader><leader>', '<C-^>', normal_mode_silent) -- move to alternate buffers [<space><space>]
@@ -121,3 +121,19 @@ map('n', '<leader>ew', ':e    <C-R>=expand("%:p:h") . "/" <CR>' , normal_mode_ec
 map('n', '<leader>es', ':sp   <C-R>=expand("%:p:h") . "/" <CR>' , normal_mode_echo) -- open a new file in a horizontal split [<space>es]
 map('n', '<leader>ev', ':vsp  <C-R>=expand("%:p:h") . "/" <CR>' , normal_mode_echo) -- open a new file in a vertical split [<space>ev]
 map('n', '<leader>et', ':tabe <C-R>=expand("%:p:h") . "/" <CR>' , normal_mode_echo) -- open a new file in a new tab [<space>et]
+
+
+-- lspconfig
+local nvim_lsp = require('lspconfig')
+local on_attach = function(client, bufnr)
+	local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+	buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+end
+
+local servers = { "clangd" }
+for _, lsp in ipairs(servers) do
+	nvim_lsp[lsp].setup { on_attach = on_attach }
+end
+-- lspsaga
+local saga = require 'lspsaga'
+saga.init_lsp_saga()
