@@ -34,3 +34,9 @@
 [submodule "nvim-compe"]
 	path = pack/packages/opt/nvim-compe
 	url = https://github.com/hrsh7th/nvim-compe.git
+[submodule "vim-glsl"]
+	path = pack/packages/opt/vim-glsl
+	url = https://github.com/tikhomirov/vim-glsl
+[submodule "lspconfig"]
+	path = pack/packages/opt/lspconfig
+	url = https://github.com/neovim/nvim-lspconfig

@@ -33,8 +33,9 @@ o.hidden = true -- allow us to switch buffers easily
 o.termguicolors = true -- 24-bit RGB in terminal
 o.guicursor = '' -- disable the line cursor
 o.fillchars = 'diff:∙,fold:·,vert:│,eob: ' -- characters used to fill statuslines and seperators
-o.tabstop = 4 -- 4 spaces equals to one tab
-o.shiftwidth = 4 -- number of spaces for each step of autoindent
+o.tabstop = 2 -- 4 spaces equals to one tab
+o.shiftwidth = 2 -- number of spaces for each step of autoindent
+o.undofile = true
 o.expandtab = false
 -- Ignore these files
 local ignore = o.wildignore
@@ -46,8 +47,8 @@ ignore = ignore .. '*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.p
 o.wildignore = ignore -- Ignore certain files and folders when globbing
 ---------------------
 bo.synmaxcol = 500 -- syntax highlighting for 500 colums only
-bo.tabstop = 4 -- 4 spaces equals to one tab
-bo.shiftwidth = 4 -- number of spaces for each step of autoindent
+bo.tabstop = 2 -- 4 spaces equals to one tab
+bo.shiftwidth = 2 -- number of spaces for each step of autoindent
 bo.expandtab = false
 bo.textwidth = 120 -- Maximum width of text that is being inserted
 wo.foldenable = false -- no folding
@@ -55,13 +56,12 @@ wo.wrap = false -- dont wrap the lines
 
 ---------- Plugins ----------
 cmd('packadd! modus-theme-vim')
-cmd('colorscheme modus-vivendi')
+cmd('colorscheme modus-operandi')
 cmd('packadd! nvim-solarized-lua')
--- cmd('colorscheme modus-operandi') -- set my colorscheme
-o.bg = 'dark'
--- g.solarized_visibility = 'high'
+-- o.bg = 'light'
+-- g.solarized_visibility = 'normal'
 -- g.solarized_statusline = 'flat'
--- cmd('colorscheme solarized')
+-- cmd('colorscheme solarized-flat')
 
 cmd('packadd! nvim-toggleterm.lua')
 require"toggleterm".setup{
@@ -73,6 +73,48 @@ require"toggleterm".setup{
 	persist_size = true,
 	direction = 'horizontal',
 }
+
+cmd('packadd! lspconfig')
+local nvim_lsp = require('lspconfig')
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  local opts = { noremap=true, silent=true }
+  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+
+  -- Set some keybinds conditional on server capabilities
+  if client.resolved_capabilities.document_formatting then
+    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  elseif client.resolved_capabilities.document_range_formatting then
+    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+  end
+end
+
+-- Use a loop to conveniently both setup defined servers 
+-- and map buffer local keybindings when the language server attaches
+local servers = { "ccls" }
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup { on_attach = on_attach }
+end
+
 cmd('packadd! tabular')
 cmd('packadd! vim-commentary')
 cmd('packadd! vim-dirvish')
@@ -80,6 +122,7 @@ cmd('packadd! vim-nix')
 cmd('packadd! vim-repeat')
 cmd('packadd! vim-surround')
 cmd('packadd! vim-startuptime')
+cmd('packadd! vim-glsl')
 cmd('packadd! nvim-compe')
 require'compe'.setup {
 	enabled = true;
@@ -99,7 +142,7 @@ require'compe'.setup {
 		path = true;
 		buffer = true;
 		calc = true;
-		nvim_lsp = false;
+		nvim_lsp = true;
 		nvim_lua = true;
 		vsnip = false;
 	};
