@@ -40,3 +40,6 @@
 [submodule "lspconfig"]
 	path = pack/packages/opt/lspconfig
 	url = https://github.com/neovim/nvim-lspconfig
+[submodule "nord.nvim"]
+	path = pack/packages/opt/nord.nvim
+	url = https://github.com/kunzaatko/nord.nvim
