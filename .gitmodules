@@ -1,0 +1,39 @@
+[submodule "modus-theme-vim"]
+	path = pack/packages/opt/modus-theme-vim
+	url = https://github.com/ishan9299/modus-theme-vim
+[submodule "nvim-solarized-lua"]
+	path = pack/packages/opt/nvim-solarized-lua
+	url = https://github.com/ishan9299/nvim-solarized-lua
+[submodule "nvim-toggleterm"]
+	path = pack/packages/opt/nvim-toggleterm
+	url = https://github.com/akinsho/nvim-toggleterm.lua
+[submodule "nvim-lspconfig"]
+	path = pack/packages/opt/lspconfig
+	url = https://github.com/neovim/nvim-lspconfig
+[submodule "tabular"]
+	path = pack/packages/opt/tabular
+	url = https://github.com/godlygeek/tabular
+[submodule "vim-commentary"]
+	path = pack/packages/opt/vim-commentary
+	url = https://github.com/tpope/vim-commentary
+[submodule "vim-dirvish"]
+	path = pack/packages/opt/vim-dirvish
+	url = https://github.com/justinmk/vim-dirvish
+[submodule "vim-nix"]
+	path = pack/packages/opt/vim-nix
+	url = https://github.com/LnL7/vim-nix
+[submodule "vim-repeat"]
+	path = pack/packages/opt/vim-repeat
+	url = https://github.com/tpope/vim-repeat
+[submodule "vim-surround"]
+	path = pack/packages/opt/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule "vim-startuptime"]
+	path = pack/packages/opt/vim-startuptime
+	url = https://github.com/dstein64/vim-startuptime
+[submodule "vim-glsl"]
+	path = pack/packages/opt/vim-glsl
+	url = https://github.com/tikhomirov/vim-glsl
+[submodule "nvim-compe"]
+	path = pack/packages/opt/nvim-compe
+	url = https://github.com/hrsh7th/nvim-compe

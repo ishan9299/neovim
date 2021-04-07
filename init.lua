@@ -32,7 +32,7 @@ o.laststatus = 2 -- only show the statusline when a split exists
 o.hidden = true -- allow us to switch buffers easily
 o.termguicolors = true -- 24-bit RGB in terminal
 o.guicursor = '' -- disable the line cursor
--- o.fillchars = 'diff:∙,fold:·,vert:│,eob: ' -- characters used to fill statuslines and seperators
+o.fillchars = 'diff:∙,fold:·,vert:│,eob: ' -- characters used to fill statuslines and seperators
 o.tabstop = 2 -- 4 spaces equals to one tab
 o.shiftwidth = 2 -- number of spaces for each step of autoindent
 o.undofile = true
@@ -63,7 +63,7 @@ cmd('colorscheme solarized')
 -- g.solarized_statusline = 'flat'
 -- cmd('colorscheme solarized-flat')
 
-cmd('packadd! nvim-toggleterm.lua')
+cmd('packadd! nvim-toggleterm')
 require"toggleterm".setup{
 	size = 15,
 	open_mapping = [[<M-t>]],
