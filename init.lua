@@ -57,7 +57,7 @@ wo.wrap = false -- dont wrap the lines
 ---------- Plugins ----------
 cmd('packadd! modus-theme-vim')
 cmd('packadd! nvim-solarized-lua')
-cmd('colorscheme solarized')
+cmd('colorscheme modus-operandi')
 -- o.bg = 'light'
 -- g.solarized_visibility = 'normal'
 -- g.solarized_statusline = 'flat'
@@ -147,6 +147,13 @@ require'compe'.setup {
 		vsnip = false;
 	};
 }
+cmd('packadd! nvim-telescope')
+cmd('packadd! plenary')
+cmd('packadd! popup')
+map('n','<leader>ff',"<cmd>lua require('telescope.builtin').find_files()<cr>",normal_mode_silent)
+map('n','<leader>lg',"<cmd>lua require('telescope.builtin').live_grep()<cr>",normal_mode_silent)
+map('n','<leader>bb',"<cmd>lua require('telescope.builtin').buffers()<cr>",normal_mode_silent)
+map('n','<leader>ht',"<cmd>lua require('telescope.builtin').help_tags()<cr>",normal_mode_silent)
 
 local t = function(str)
 	return vim.api.nvim_replace_termcodes(str, true, true, true)

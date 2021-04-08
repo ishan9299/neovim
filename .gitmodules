@@ -37,3 +37,12 @@
 [submodule "nvim-compe"]
 	path = pack/packages/opt/nvim-compe
 	url = https://github.com/hrsh7th/nvim-compe
+[submodule "nvim-telescope"]
+	path = pack/packages/opt/nvim-telescope
+	url = https://github.com/nvim-telescope/telescope.nvim
+[submodule "popup"]
+	path = pack/packages/opt/popup
+	url = https://github.com/nvim-lua/popup.nvim
+[submodule "plenary"]
+	path = pack/packages/opt/plenary
+	url = https://github.com/nvim-lua/plenary.nvim
