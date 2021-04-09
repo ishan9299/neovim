@@ -46,3 +46,27 @@
 [submodule "plenary"]
 	path = pack/packages/opt/plenary
 	url = https://github.com/nvim-lua/plenary.nvim
+[submodule "vim-cpp"]
+	path = pack/packages/opt/vim-cpp
+	url = https://github.com/vim-jp/vim-cpp
+[submodule "vim-cmake-syntax"]
+	path = pack/packages/opt/vim-cmake-syntax
+	url = https://github.com/pboettch/vim-cmake-syntax
+[submodule "vim-fish"]
+	path = pack/packages/opt/vim-fish
+	url = https://github.com/blankname/vim-fish
+[submodule "vim-go"]
+	path = pack/packages/opt/vim-go
+	url = https://github.com/fatih/vim-go
+[submodule "one-nvim"]
+	path = pack/packages/opt/one-nvim
+	url = https://github.com/Th3Whit3Wolf/one-nvim
+[submodule "zephyr-nvim"]
+	path = pack/packages/opt/zephyr-nvim
+	url = https://github.com/glepnir/zephyr-nvim
+[submodule "galaxyline"]
+	path = pack/packages/opt/galaxyline
+	url = https://github.com/glepnir/galaxyline.nvim.git
+[submodule "nvim-web-devicons"]
+	path = pack/packages/opt/nvim-web-devicons
+	url = https://github.com/kyazdani42/nvim-web-devicons
