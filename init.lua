@@ -55,12 +55,24 @@ wo.foldenable = false -- no folding
 wo.wrap = false -- dont wrap the lines
 
 ---------- Plugins ----------
+cmd('packadd! tabular')
+cmd('packadd! vim-commentary')
+cmd('packadd! vim-dirvish')
+cmd('packadd! vim-repeat')
+cmd('packadd! vim-surround')
+cmd('packadd! vim-startuptime')
+cmd('packadd! nvim-web-devicons')
+cmd('packadd! galaxyline')
+--------- ColorsScheme -------
 cmd('packadd! modus-theme-vim')
 cmd('packadd! nvim-solarized-lua')
-cmd('colorscheme modus-operandi')
--- o.bg = 'light'
+cmd('packadd! zephyr-nvim')
+cmd('packadd! one-nvim')
+o.bg = 'dark'
+g.modus_moody_line = 1
 -- g.solarized_visibility = 'normal'
 -- g.solarized_statusline = 'flat'
+cmd('colorscheme modus-vivendi')
 -- cmd('colorscheme solarized-flat')
 
 cmd('packadd! nvim-toggleterm')
@@ -115,14 +127,23 @@ for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
 
-cmd('packadd! tabular')
-cmd('packadd! vim-commentary')
-cmd('packadd! vim-dirvish')
+----- Syntax Plugins ------
 cmd('packadd! vim-nix')
-cmd('packadd! vim-repeat')
-cmd('packadd! vim-surround')
-cmd('packadd! vim-startuptime')
+cmd('packadd! vim-cpp')
+cmd('packadd! vim-go')
+cmd('packadd! vim-fish')
+cmd('packadd! vim-cmake-syntax')
 cmd('packadd! vim-glsl')
+----------- Telescope -----------
+cmd('packadd! nvim-telescope')
+cmd('packadd! plenary')
+cmd('packadd! popup')
+map('n','<leader>ff',"<cmd>lua require('telescope.builtin').find_files()<cr>",normal_mode_silent)
+map('n','<leader>lg',"<cmd>lua require('telescope.builtin').live_grep()<cr>",normal_mode_silent)
+map('n','<leader>lb',"<cmd>lua require('telescope.builtin').buffers()<cr>",normal_mode_silent)
+map('n','<leader>hh',"<cmd>lua require('telescope.builtin').help_tags()<cr>",normal_mode_silent)
+map('n','<leader>tc',"<cmd>lua require('telescope.builtin').colorscheme()<cr>",normal_mode_silent)
+--------------------------------
 cmd('packadd! nvim-compe')
 require'compe'.setup {
 	enabled = true;
@@ -147,14 +168,6 @@ require'compe'.setup {
 		vsnip = false;
 	};
 }
-cmd('packadd! nvim-telescope')
-cmd('packadd! plenary')
-cmd('packadd! popup')
-map('n','<leader>ff',"<cmd>lua require('telescope.builtin').find_files()<cr>",normal_mode_silent)
-map('n','<leader>lg',"<cmd>lua require('telescope.builtin').live_grep()<cr>",normal_mode_silent)
-map('n','<leader>lb',"<cmd>lua require('telescope.builtin').buffers()<cr>",normal_mode_silent)
-map('n','<leader>hh',"<cmd>lua require('telescope.builtin').help_tags()<cr>",normal_mode_silent)
-map('n','<leader>tc',"<cmd>lua require('telescope.builtin').colorscheme()<cr>",normal_mode_silent)
 
 local t = function(str)
 	return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -196,6 +209,7 @@ map("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 map("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 map("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 ----------------------------
+
 
 -- Toggle Line Numbers
 function _G.toggleLineNumbers()
