@@ -129,7 +129,7 @@ end
 
 ----- Syntax Plugins ------
 cmd('packadd! vim-nix')
-cmd('packadd! vim-cpp')
+cmd('packadd! vim-cpp-modern')
 cmd('packadd! vim-go')
 cmd('packadd! vim-fish')
 cmd('packadd! vim-cmake-syntax')
