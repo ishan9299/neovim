@@ -3,6 +3,8 @@ augroup disable_autocomments
     autocmd BufNewFile,BufRead,FileType,OptionSet * set formatoptions-=cro
     autocmd BufNewFile,BufRead,FileType,OptionSet * setlocal formatoptions-=cro
     autocmd BufNewFile,BufRead *.vs,*.fs set ft=glsl
+    autocmd BufNewFile,BufRead *.nix set ft=nix
+    autocmd BufNewFile,BufRead *.lock set ft=json
 augroup end
 
 nmap <f10> :call <SID>SynStack()<CR>
