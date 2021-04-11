@@ -73,3 +73,6 @@
 [submodule "vim-cpp-modern"]
 	path = pack/packages/opt/vim-cpp-modern
 	url = https://github.com/bfrg/vim-cpp-modern
+[submodule "nvim-treesitter"]
+	path = pack/packages/opt/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter
