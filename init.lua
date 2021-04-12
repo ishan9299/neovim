@@ -122,6 +122,7 @@ cmd('packadd! vim-cpp-modern')
 cmd('packadd! vim-cmake-syntax')
 cmd('packadd! vim-glsl')
 cmd('packadd! vim-go')
+cmd('packadd! BetterLua')
 ----------- Telescope -----------
 cmd('packadd! nvim-telescope')
 cmd('packadd! plenary')

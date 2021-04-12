@@ -76,3 +76,6 @@
 [submodule "nvim-treesitter"]
 	path = pack/packages/opt/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter
+[submodule "BetterLua"]
+	path = pack/packages/opt/BetterLua
+	url = https://github.com/euclidianAce/BetterLua.vim
