@@ -70,9 +70,9 @@ cmd('packadd! modus-theme-vim')
 cmd('packadd! nvim-solarized-lua')
 cmd('packadd! zephyr-nvim')
 cmd('packadd! one-nvim')
-o.bg = 'dark'
+o.bg = 'light'
 -- g.modus_moody_line = 1
-cmd('colorscheme modus-vivendi')
+cmd('colorscheme solarized-flat')
 -- g.solarized_visibility = 'normal'
 -- g.solarized_statusline = 'flat'
 -- cmd('colorscheme solarized-flat')
