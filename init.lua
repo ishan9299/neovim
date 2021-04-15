@@ -28,7 +28,7 @@ g.loaded_node_provider = 0 -- disable the node health checks
 ---------------------------
 o.scrolloff = 15 -- minimal number of lines to keep above and below the cursor
 o.lazyredraw = true -- don't redraw screen when using macros
-o.laststatus = 2 -- only show the statusline when a split exists
+o.laststatus = 1 -- only show the statusline when a split exists
 o.hidden = true -- allow us to switch buffers easily
 o.termguicolors = true -- 24-bit RGB in terminal
 o.guicursor = '' -- disable the line cursor
@@ -37,6 +37,8 @@ o.tabstop = 2 -- 4 spaces equals to one tab
 o.shiftwidth = 2 -- number of spaces for each step of autoindent
 o.undofile = true
 o.expandtab = false
+o.showbreak = "↳  "
+o.listchars = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←"
 -- Ignore these files
 local ignore = o.wildignore
 ignore = ignore .. '*.o,*.obj,*.bin,*.dll,*.exe,'
@@ -69,7 +71,7 @@ cmd('packadd! nvim-solarized-lua')
 cmd('packadd! zephyr-nvim')
 cmd('packadd! one-nvim')
 o.bg = 'dark'
-g.modus_moody_line = 1
+-- g.modus_moody_line = 1
 cmd('colorscheme modus-vivendi')
 -- g.solarized_visibility = 'normal'
 -- g.solarized_statusline = 'flat'
@@ -110,7 +112,7 @@ end
 
 -- Use a loop to conveniently both setup defined servers 
 -- and map buffer local keybindings when the language server attaches
-local servers = { "clangd" }
+local servers = { "ccls", "rust_analyzer" }
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup { on_attach = on_attach }
 end
