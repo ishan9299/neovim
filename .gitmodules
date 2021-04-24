@@ -91,3 +91,6 @@
 [submodule "neorg"]
 	path = pack/packages/opt/neorg
 	url = https://github.com/Vhyrro/neorg
+[submodule "glow"]
+	path = pack/packages/opt/glow
+	url = https://github.com/npxbr/glow.nvim
