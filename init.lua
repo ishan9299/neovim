@@ -14,12 +14,10 @@ g.mapleader = ' ' -- Space as a leader key
 -- Disable builtins plugins
 g.loaded_netrwPlugin = 1 -- Disable netrw it has problem with symlinks and I am on nixos
 g.loaded_2html_plugin = 1 -- converts lines or the entire buffer to html code
-g.loaded_matchit = 1 -- extends matching when using % not really needed though
 g.loaded_gzip = 1 -- disable editing compressed files
 g.loaded_tarPlugin = 1 -- disable navigating tar files
 g.loaded_zipPlugin = 1 -- disable navigating zip files
 g.loaded_tutor_mode_plugin = 1 -- disable vim tutor
-g.loaded_matchparen = 1 -- disable the match paren plugin it is causing extreme slow downs
 g.loaded_python_provider = 0 -- disable the python 2 health checks
 g.loaded_python3_provider = 0 -- disable the python 3 health checks
 g.loaded_ruby_provider = 0 -- disable the ruby health checks
@@ -28,7 +26,7 @@ g.loaded_node_provider = 0 -- disable the node health checks
 ---------------------------
 o.scrolloff = 15 -- minimal number of lines to keep above and below the cursor
 o.lazyredraw = true -- don't redraw screen when using macros
-o.laststatus = 1 -- only show the statusline when a split exists
+o.laststatus = 0 -- only show the statusline when a split exists
 o.hidden = true -- allow us to switch buffers easily
 o.termguicolors = true -- 24-bit RGB in terminal
 o.guicursor = '' -- disable the line cursor
@@ -38,7 +36,7 @@ o.shiftwidth = 2 -- number of spaces for each step of autoindent
 o.undofile = true
 o.expandtab = false
 o.showbreak = "↳  "
-o.listchars = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←"
+o.listchars = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←,eol:¬"
 -- Ignore these files
 local ignore = o.wildignore
 ignore = ignore .. '*.o,*.obj,*.bin,*.dll,*.exe,'
@@ -55,6 +53,7 @@ bo.expandtab = false
 bo.textwidth = 120 -- Maximum width of text that is being inserted
 wo.foldenable = false -- no folding
 wo.wrap = false -- dont wrap the lines
+wo.list = true
 
 ---------- Plugins ----------
 cmd('packadd! tabular')
@@ -69,11 +68,13 @@ cmd('packadd! galaxyline')
 cmd('packadd! modus-theme-vim')
 cmd('packadd! nvim-solarized-lua')
 cmd('packadd! zephyr-nvim')
+cmd('packadd! nvcode-color-scheme')
+cmd('packadd! tokyonight')
 cmd('packadd! one-nvim')
 o.bg = 'light'
--- g.modus_moody_line = 1
-cmd('colorscheme solarized-flat')
+g.modus_moody_line = 1
 -- g.solarized_visibility = 'normal'
+cmd('colorscheme modus-vivendi')
 -- g.solarized_statusline = 'flat'
 -- cmd('colorscheme solarized-flat')
 
@@ -114,7 +115,22 @@ end
 -- and map buffer local keybindings when the language server attaches
 local servers = { "ccls", "rust_analyzer" }
 for _, lsp in ipairs(servers) do
-	nvim_lsp[lsp].setup { on_attach = on_attach }
+	nvim_lsp[lsp].setup {
+		on_attach = on_attach,
+		settings = {
+			["rust-analyzer"] = {
+				assist = {
+					importMergeBehavior = "last",
+					importPrefix = "by_self",
+				},
+				cargo = {
+					loadOutDirsFromCheck = true
+				},
+				procMacro = {
+					enable = true
+				},
+			}}
+	}
 end
 
 ----- Syntax Plugins ------
