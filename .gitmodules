@@ -79,3 +79,15 @@
 [submodule "BetterLua"]
 	path = pack/packages/opt/BetterLua
 	url = https://github.com/euclidianAce/BetterLua.vim
+[submodule "indent-guide"]
+	path = pack/packages/opt/indent-guide
+	url = https://github.com/glepnir/indent-guides.nvim
+[submodule "nvcode"]
+	path = pack/packages/opt/nvcode-color-scheme
+	url = https://github.com/ChristianChiarulli/nvcode-color-schemes.vim
+[submodule "tokyonight.nvim"]
+	path = pack/packages/opt/tokyonight
+	url = https://github.com/folke/tokyonight.nvim
+[submodule "neorg"]
+	path = pack/packages/opt/neorg
+	url = https://github.com/Vhyrro/neorg
