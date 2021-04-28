@@ -94,3 +94,15 @@
 [submodule "glow"]
 	path = pack/packages/opt/glow
 	url = https://github.com/npxbr/glow.nvim
+[submodule "material.nvim"]
+	path = pack/packages/opt/material
+	url = https://github.com/marko-cerovac/material.nvim/
+[submodule "melange"]
+	path = pack/packages/opt/melange
+	url = https://github.com/savq/melange
+[submodule "lush"]
+	path = pack/packages/opt/lush
+	url = https://github.com/rktjmp/lush.nvim
+[submodule "gruvbox"]
+	path = pack/packages/opt/gruvbox
+	url = https://github.com/npxbr/gruvbox.nvim

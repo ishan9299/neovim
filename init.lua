@@ -24,9 +24,9 @@ g.loaded_ruby_provider = 0 -- disable the ruby health checks
 g.loaded_perl_provider = 0 -- disable the perl health checks
 g.loaded_node_provider = 0 -- disable the node health checks
 ---------------------------
-o.scrolloff = 15 -- minimal number of lines to keep above and below the cursor
+o.scrolloff = 7 -- minimal number of lines to keep above and below the cursor
 o.lazyredraw = true -- don't redraw screen when using macros
-o.laststatus = 0 -- only show the statusline when a split exists
+o.laststatus = 2 -- only show the statusline when a split exists
 o.hidden = true -- allow us to switch buffers easily
 o.termguicolors = true -- 24-bit RGB in terminal
 o.guicursor = '' -- disable the line cursor
@@ -67,12 +67,16 @@ cmd('packadd! nvim-web-devicons')
 cmd('packadd! galaxyline')
 cmd('packadd! glow')
 --------- ColorsScheme -------
+cmd('packadd! lush')
 cmd('packadd! modus-theme-vim')
 cmd('packadd! nvim-solarized-lua')
 cmd('packadd! zephyr-nvim')
 cmd('packadd! nvcode-color-scheme')
 cmd('packadd! tokyonight')
+cmd('packadd! material')
 cmd('packadd! one-nvim')
+cmd('packadd! melange')
+cmd('packadd! gruvbox')
 o.bg = 'light'
 g.modus_moody_line = 1
 -- g.solarized_visibility = 'normal'
