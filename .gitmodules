@@ -106,3 +106,12 @@
 [submodule "gruvbox"]
 	path = pack/packages/opt/gruvbox
 	url = https://github.com/npxbr/gruvbox.nvim
+[submodule "lir"]
+	path = pack/packages/opt/lir
+	url = https://github.com/tamago324/lir.nvim
+[submodule "lir-bookmarks"]
+	path = pack/packages/opt/lir-bookmarks
+	url = https://github.com/tamago324/lir-bookmark.nvim
+[submodule "lir-mmv"]
+	path = pack/packages/opt/lir-mmv
+	url = https://github.com/tamago324/lir-mmv.nvim
