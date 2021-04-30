@@ -91,6 +91,7 @@ require'lir'.setup {
         ['R'] = actions.rename,
         ['@'] = actions.cd,
         ['Y'] = actions.yank_path,
+        ['D'] = actions.delete,
         ['.'] = actions.toggle_show_hidden,
 
         ['J'] = function()
@@ -258,6 +259,18 @@ map('n', '<leader>hh', "<cmd>lua require('telescope.builtin').help_tags()<cr>",
 map('n', '<leader>tc',
     "<cmd>lua require('telescope.builtin').colorscheme()<cr>",
     normal_mode_silent)
+cmd([[packadd! telescope-bookmarks]])
+require('telescope').load_extension('bookmarks')
+require('telescope').setup {
+  extensions = {
+    bookmarks = {
+      -- Available: 'brave', 'google_chrome', 'safari', 'firefox', 'firefox_dev'
+      selected_browser = 'brave',
+      url_open_command = 'open',
+      firefox_profile_name = nil,
+    },
+  }
+}
 --------------------------------
 cmd('packadd! nvim-compe')
 require'compe'.setup {
