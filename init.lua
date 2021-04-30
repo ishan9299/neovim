@@ -56,6 +56,10 @@ wo.foldenable = false -- no folding
 wo.wrap = false -- dont wrap the lines
 wo.list = true
 
+if fn.executable('nvr') == 1 then
+  vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
+end
+
 ---------- Plugins ----------
 cmd('packadd! tabular')
 cmd('packadd! vim-commentary')
