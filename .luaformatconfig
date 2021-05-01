@@ -1,0 +1,3 @@
+column_limit: 80
+use_tab: true
+tab_width: 2
