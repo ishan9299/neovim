@@ -44,7 +44,7 @@ ignore = ignore .. '*/.git/*,*/.svn/*,*/__pycache__/*,*/build/**,'
 ignore = ignore .. '*.pyc,*.out,'
 ignore = ignore .. '*.DS_Store,'
 ignore = ignore ..
-             '*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.pdf,'
+         				'*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.pdf,'
 o.wildignore = ignore -- Ignore certain files and folders when globbing
 ---------------------
 bo.synmaxcol = 500 -- syntax highlighting for 500 colums only
@@ -54,13 +54,13 @@ bo.expandtab = false
 bo.textwidth = 120 -- Maximum width of text that is being inserted
 wo.foldenable = false -- no folding
 wo.wrap = false -- dont wrap the lines
-wo.list = true
+-- wo.list = true
 
 if fn.executable('nvr') == 1 then
-  vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
+				vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
 end
 
----------- Plugins ----------
+-- -------- Plugins ----------
 cmd('packadd! tabular')
 cmd('packadd! vim-commentary')
 -- cmd('packadd! vim-dirvish')
@@ -78,75 +78,75 @@ local mmv_actions = require 'lir.mmv.actions'
 local bookmark_actions = require 'lir.bookmark.actions'
 
 require'lir'.setup {
-    show_hidden_files = false,
-    devicons_enable = true,
-    mappings = {
-        ['l'] = actions.edit,
-        ['<C-s>'] = actions.split,
-        ['<C-v>'] = actions.vsplit,
-        ['<C-t>'] = actions.tabedit,
+				show_hidden_files = false,
+				devicons_enable = true,
+				mappings = {
+								['l'] = actions.edit,
+								['<C-s>'] = actions.split,
+								['<C-v>'] = actions.vsplit,
+								['<C-t>'] = actions.tabedit,
 
-        ['h'] = actions.up,
-        ['q'] = actions.quit,
-        ['<C-[>'] = actions.quit,
+								['h'] = actions.up,
+								['q'] = actions.quit,
+								['<C-[>'] = actions.quit,
 
-        ['K'] = actions.mkdir,
-        ['N'] = actions.newfile,
-        ['R'] = actions.rename,
-        ['@'] = actions.cd,
-        ['Y'] = actions.yank_path,
-        ['D'] = actions.delete,
-        ['.'] = actions.toggle_show_hidden,
+								['K'] = actions.mkdir,
+								['N'] = actions.newfile,
+								['R'] = actions.rename,
+								['@'] = actions.cd,
+								['Y'] = actions.yank_path,
+								['D'] = actions.delete,
+								['.'] = actions.toggle_show_hidden,
 
-        ['J'] = function()
-            mark_actions.toggle_mark()
-            vim.cmd('normal! j')
-        end,
-        ['C'] = clipboard_actions.copy,
-        ['X'] = clipboard_actions.cut,
-        ['P'] = clipboard_actions.paste,
+								['J'] = function()
+												mark_actions.toggle_mark()
+												vim.cmd('normal! j')
+								end,
+								['C'] = clipboard_actions.copy,
+								['X'] = clipboard_actions.cut,
+								['P'] = clipboard_actions.paste,
 
-        ['M'] = mmv_actions.mmv,
+								['M'] = mmv_actions.mmv,
 
-        ['B'] = bookmark_actions.list,
-        ['ba'] = bookmark_actions.add
-    },
-    hide_cursor = true
+								['B'] = bookmark_actions.list,
+								['ba'] = bookmark_actions.add
+				},
+				hide_cursor = true
 }
 
 local b_actions = require 'lir.bookmark.actions'
 require'lir.bookmark'.setup {
-    bookmark_path = '~/.lir_bookmark',
-    mappings = {
-        ['l'] = b_actions.edit,
-        ['<C-s>'] = b_actions.split,
-        ['<C-v>'] = b_actions.vsplit,
-        ['<C-t>'] = b_actions.tabedit,
-        ['<C-e>'] = b_actions.open_lir,
-        ['B'] = b_actions.open_lir,
-        ['q'] = b_actions.open_lir
-    }
+				bookmark_path = '~/.lir_bookmark',
+				mappings = {
+								['l'] = b_actions.edit,
+								['<C-s>'] = b_actions.split,
+								['<C-v>'] = b_actions.vsplit,
+								['<C-t>'] = b_actions.tabedit,
+								['<C-e>'] = b_actions.open_lir,
+								['B'] = b_actions.open_lir,
+								['q'] = b_actions.open_lir
+				}
 }
 
 -- custom folder icon
 require'nvim-web-devicons'.setup({
-    override = {
-        lir_folder_icon = {
-            icon = "",
-            color = "#7ebae4",
-            name = "LirFolderNode"
-        }
-    }
+				override = {
+								lir_folder_icon = {
+												icon = "",
+												color = "#7ebae4",
+												name = "LirFolderNode"
+								}
+				}
 })
 
 -- use visual mode
 function _G.LirSettings()
-    vim.api.nvim_buf_set_keymap(0, 'x', 'J',
-                                ':<C-u>lua require"lir.mark.actions".toggle_mark("v")<CR>',
-                                {noremap = true, silent = true})
+				vim.api.nvim_buf_set_keymap(0, 'x', 'J',
+                            				':<C-u>lua require"lir.mark.actions".toggle_mark("v")<CR>',
+                            				{noremap = true, silent = true})
 
-    -- echo cwd
-    vim.api.nvim_echo({{vim.fn.expand('%:p'), 'Normal'}}, false, {})
+				-- echo cwd
+				vim.api.nvim_echo({{vim.fn.expand('%:p'), 'Normal'}}, false, {})
 end
 
 vim.cmd [[augroup lir-settings]]
@@ -181,65 +181,65 @@ cmd('colorscheme modus-vivendi')
 
 cmd('packadd! nvim-toggleterm')
 require"toggleterm".setup {
-    size = o.columns / 2,
-    open_mapping = [[<M-t>]],
-    shade_filetypes = {},
-    shade_terminals = false,
-    start_in_insert = true,
-    persist_size = true,
-    direction = 'vertical'
+				size = o.columns / 2,
+				open_mapping = [[<M-t>]],
+				shade_filetypes = {},
+				shade_terminals = false,
+				start_in_insert = true,
+				persist_size = true,
+				direction = 'vertical'
 }
 
 cmd('packadd! lspconfig')
 local nvim_lsp = require('lspconfig')
 local on_attach = function(client, bufnr)
-    local function buf_set_keymap(...)
-        vim.api.nvim_buf_set_keymap(bufnr, ...)
-    end
-    local function buf_set_option(...)
-        vim.api.nvim_buf_set_option(bufnr, ...)
-    end
+				local function buf_set_keymap(...)
+								vim.api.nvim_buf_set_keymap(bufnr, ...)
+				end
+				local function buf_set_option(...)
+								vim.api.nvim_buf_set_option(bufnr, ...)
+				end
 
-    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+				buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-    -- Mappings.
-    local opts = {noremap = true, silent = true}
-    buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>',
-                   opts)
-    buf_set_keymap('n', '<space>D',
-                   '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    buf_set_keymap('n', '<space>e',
-                   '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
-                   opts)
-    buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',
-                   opts)
-    buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',
-                   opts)
-    buf_set_keymap('n', '<space>q',
-                   '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+				-- Mappings.
+				local opts = {noremap = true, silent = true}
+				buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+				buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+				buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>',
+               				opts)
+				buf_set_keymap('n', '<space>D',
+               				'<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+				buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+				buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+				buf_set_keymap('n', '<space>e',
+               				'<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
+               				opts)
+				buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',
+               				opts)
+				buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',
+               				opts)
+				buf_set_keymap('n', '<space>q',
+               				'<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 end
 
 -- Use a loop to conveniently both setup defined servers 
 -- and map buffer local keybindings when the language server attaches
 local servers = {"ccls", "rust_analyzer"}
 for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup {
-        on_attach = on_attach,
-        settings = {
-            ["rust-analyzer"] = {
-                assist = {
-                    importMergeBehavior = "last",
-                    importPrefix = "by_self"
-                },
-                cargo = {loadOutDirsFromCheck = true},
-                procMacro = {enable = true}
-            }
-        }
-    }
+				nvim_lsp[lsp].setup {
+								on_attach = on_attach,
+								settings = {
+												["rust-analyzer"] = {
+																assist = {
+																				importMergeBehavior = "last",
+																				importPrefix = "by_self"
+																},
+																cargo = {loadOutDirsFromCheck = true},
+																procMacro = {enable = true}
+												}
+								}
+				}
 end
 
 ----- Syntax Plugins ------
@@ -266,62 +266,62 @@ map('n', '<leader>tc',
 --------------------------------
 cmd('packadd! nvim-compe')
 require'compe'.setup {
-    enabled = true,
-    autocomplete = true,
-    debug = false,
-    min_length = 1,
-    preselect = 'enable',
-    throttle_time = 80,
-    source_timeout = 200,
-    incomplete_delay = 400,
-    max_abbr_width = 100,
-    max_kind_width = 100,
-    max_menu_width = 100,
-    documentation = true,
+				enabled = true,
+				autocomplete = true,
+				debug = false,
+				min_length = 1,
+				preselect = 'enable',
+				throttle_time = 80,
+				source_timeout = 200,
+				incomplete_delay = 400,
+				max_abbr_width = 100,
+				max_kind_width = 100,
+				max_menu_width = 100,
+				documentation = true,
 
-    source = {
-        path = true,
-        buffer = true,
-        calc = true,
-        nvim_lsp = true,
-        nvim_lua = true,
-        vsnip = false
-    }
+				source = {
+								path = true,
+								buffer = true,
+								calc = true,
+								nvim_lsp = true,
+								nvim_lua = true,
+								vsnip = false
+				}
 }
 
 local t = function(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
+				return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
 local check_back_space = function()
-    local col = fn.col('.') - 1
-    if col == 0 or fn.getline('.'):sub(col, col):match('%s') then
-        return true
-    else
-        return false
-    end
+				local col = fn.col('.') - 1
+				if col == 0 or fn.getline('.'):sub(col, col):match('%s') then
+								return true
+				else
+								return false
+				end
 end
 
 -- Use (s-)tab to:
---- move to prev/next item in completion menuone
---- jump to prev/next snippet's placeholder
+-- + move to prev/next item in completion menuone
+-- + jump to prev/next snippet's placeholder
 
 _G.tab_complete = function()
-    if fn.pumvisible() == 1 then
-        return t "<C-n>"
-    elseif check_back_space() then
-        return t "<Tab>"
-    else
-        return fn['compe#complete']()
-    end
+				if fn.pumvisible() == 1 then
+								return t "<C-n>"
+				elseif check_back_space() then
+								return t "<Tab>"
+				else
+								return fn['compe#complete']()
+				end
 end
 
 _G.s_tab_complete = function()
-    if fn.pumvisible() == 1 then
-        return t "<C-p>"
-    else
-        return t "<S-Tab>"
-    end
+				if fn.pumvisible() == 1 then
+								return t "<C-p>"
+				else
+								return t "<S-Tab>"
+				end
 end
 
 map("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
@@ -332,16 +332,16 @@ map("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 
 -- Toggle Line Numbers
 function _G.toggleLineNumbers()
-    local relativeNumbers = (wo.rnu and wo.nu)
-    local numbers = wo.nu
-    if (numbers == false) then
-        wo.nu = true -- move to normal lineNumbers
-    elseif (numbers == true and relativeNumbers == false) then
-        wo.rnu = true -- move to relativeNumbers
-    elseif (relativeNumbers == true) then
-        wo.nu = false -- hide the numbering
-        wo.rnu = false -- hide the relative numbering
-    end
+				local relativeNumbers = (wo.rnu and wo.nu)
+				local numbers = wo.nu
+				if (numbers == false) then
+								wo.nu = true -- move to normal lineNumbers
+				elseif (numbers == true and relativeNumbers == false) then
+								wo.rnu = true -- move to relativeNumbers
+				elseif (relativeNumbers == true) then
+								wo.nu = false -- hide the numbering
+								wo.rnu = false -- hide the relative numbering
+				end
 end
 map('n', '<f7>', [[<cmd>lua toggleLineNumbers()<cr>]], normal_mode_silent) -- toggle line numbers [f7]
 
