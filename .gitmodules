@@ -79,9 +79,6 @@
 [submodule "BetterLua"]
 	path = pack/packages/opt/BetterLua
 	url = https://github.com/euclidianAce/BetterLua.vim
-[submodule "indent-guide"]
-	path = pack/packages/opt/indent-guide
-	url = https://github.com/glepnir/indent-guides.nvim
 [submodule "nvcode"]
 	path = pack/packages/opt/nvcode-color-scheme
 	url = https://github.com/ChristianChiarulli/nvcode-color-schemes.vim
@@ -115,3 +112,6 @@
 [submodule "lir-mmv"]
 	path = pack/packages/opt/lir-mmv
 	url = https://github.com/tamago324/lir-mmv.nvim
+[submodule "truezen"]
+	path = pack/packages/opt/truezen
+	url = https://github.com/kdav5758/TrueZen.nvim
