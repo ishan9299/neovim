@@ -115,3 +115,6 @@
 [submodule "truezen"]
 	path = pack/packages/opt/truezen
 	url = https://github.com/kdav5758/TrueZen.nvim
+[submodule "fterm"]
+	path = pack/packages/opt/fterm
+	url = https://github.com/numtostr/FTerm.nvim

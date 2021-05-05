@@ -37,6 +37,7 @@ o.undofile = true
 o.expandtab = false
 o.showbreak = "↳  "
 o.listchars = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←,eol:¬"
+o.completeopt = 'menuone,noselect'
 -- Ignore these files
 local ignore = o.wildignore
 ignore = ignore .. '*.o,*.obj,*.bin,*.dll,*.exe,'
@@ -180,16 +181,18 @@ cmd('colorscheme modus-vivendi')
 -- cmd('colorscheme solarized-flat')
 
 -- ------- Extra Plugins ----------
-cmd('packadd! nvim-toggleterm')
-require"toggleterm".setup {
-    size = 10,
-    open_mapping = [[<M-t>]],
-    shade_filetypes = {},
-    shade_terminals = false,
-    start_in_insert = true,
-    persist_size = true,
-    direction = 'float'
-}
+cmd('packadd! fterm')
+require'FTerm'.setup({
+    dimensions  = {
+        height = 0.8,
+        width = 0.8,
+        x = 0.5,
+        y = 0.5
+    },
+    border = 'single' -- or 'double'
+})
+map('n', '<A-t>', '<CMD>lua require("FTerm").toggle()<CR>', normal_mode_silent)
+map('t', '<A-t>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', normal_mode_silent)
 
 cmd('packadd! lspconfig')
 local nvim_lsp = require('lspconfig')
@@ -415,14 +418,14 @@ map('n', '<leader><leader>', '<C-^>', normal_mode_silent) -- move to alternate b
 map('n', 'tn', '<cmd>tabnew<cr>', normal_mode_silent) -- open a new tab [tn]
 map('n', 'tc', '<cmd>tabclose<cr>', normal_mode_silent) -- close a tab [tc]
 
-map('n', '<A-k>', '<cmd>wincmd k<cr>', normal_mode_silent) -- move to split above [A-k]
-map('n', '<A-j>', '<cmd>wincmd j<cr>', normal_mode_silent) -- move to split below [A-j]
-map('n', '<A-l>', '<cmd>wincmd l<cr>', normal_mode_silent) -- move to split l [A-l]
-map('n', '<A-h>', '<cmd>wincmd h<cr>', normal_mode_silent) -- move to split h [A-h]
-map('t', '<A-h>', [[<C-\><C-N><C-w>h]], normal_mode_silent) -- move to split h when inside in terminal [A-h]
-map('t', '<A-j>', [[<C-\><C-N><C-w>j]], normal_mode_silent) -- move to split j when inside in terminal [A-j]
-map('t', '<A-k>', [[<C-\><C-N><C-w>k]], normal_mode_silent) -- move to split k when inside in terminal [A-k]
-map('t', '<A-l>', [[<C-\><C-N><C-w>l]], normal_mode_silent) -- move to split k when inside in terminal [A-l]
+map('n', '<leader>wk', '<cmd>wincmd k<cr>', normal_mode_silent) -- move to split above [A-k]
+map('n', '<leader>wj', '<cmd>wincmd j<cr>', normal_mode_silent) -- move to split below [A-j]
+map('n', '<leader>wl', '<cmd>wincmd l<cr>', normal_mode_silent) -- move to split l [A-l]
+map('n', '<leader>wh', '<cmd>wincmd h<cr>', normal_mode_silent) -- move to split h [A-h]
+map('t', '<leader>wk', [[<C-\><C-N><C-w>k]], normal_mode_silent) -- move to split k when inside in terminal [A-k]
+map('t', '<leader>wj', [[<C-\><C-N><C-w>j]], normal_mode_silent) -- move to split j when inside in terminal [A-j]
+map('t', '<leader>wl', [[<C-\><C-N><C-w>l]], normal_mode_silent) -- move to split k when inside in terminal [A-l]
+map('t', '<leader>wh', [[<C-\><C-N><C-w>h]], normal_mode_silent) -- move to split h when inside in terminal [A-h]
 
 map('n', '<leader>ew', ':e    <C-R>=expand("%:p:h") . "/" <CR>',
     normal_mode_echo) -- open a new file in a current window [<space>ew]
