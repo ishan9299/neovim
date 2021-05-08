@@ -56,10 +56,6 @@ wo.foldenable = false -- no folding
 wo.wrap = false -- dont wrap the lines
 -- wo.list = true
 
-if fn.executable('nvr') == 1 then
-    vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
-end
-
 require('globals')
 require('ishan')
 g.modus_moody_enable = 1
@@ -68,25 +64,27 @@ g.modus_yellow_comments = 1
 cmd('colorscheme modus-vivendi')
 
 -- Keybindings
-map('n', '<leader><leader>', '<C-^>', normal_mode_silent) -- move to alternate buffers [<space><space>]
-map('n', 'tn', '<cmd>tabnew<cr>', normal_mode_silent) -- open a new tab [tn]
-map('n', 'tc', '<cmd>tabclose<cr>', normal_mode_silent) -- close a tab [tc]
+vim.cmd([[
+  nnoremap <leader>wk <cmd>wincmd k<cr> " move to split above [A-k]
+  nnoremap <leader>wj <cmd>wincmd j<cr> " move to split below [A-j]
+  nnoremap <leader>wl <cmd>wincmd l<cr> " move to split l [A-l]
+  nnoremap <leader>wh <cmd>wincmd h<cr> " move to split h [A-h]
 
-map('n', '<leader>wk', '<cmd>wincmd k<cr>', normal_mode_silent) -- move to split above [A-k]
-map('n', '<leader>wj', '<cmd>wincmd j<cr>', normal_mode_silent) -- move to split below [A-j]
-map('n', '<leader>wl', '<cmd>wincmd l<cr>', normal_mode_silent) -- move to split l [A-l]
-map('n', '<leader>wh', '<cmd>wincmd h<cr>', normal_mode_silent) -- move to split h [A-h]
-map('t', '<leader>wk', [[<C-\><C-N><C-w>k]], normal_mode_silent) -- move to split k when inside in terminal [A-k]
-map('t', '<leader>wj', [[<C-\><C-N><C-w>j]], normal_mode_silent) -- move to split j when inside in terminal [A-j]
-map('t', '<leader>wl', [[<C-\><C-N><C-w>l]], normal_mode_silent) -- move to split k when inside in terminal [A-l]
-map('t', '<leader>wh', [[<C-\><C-N><C-w>h]], normal_mode_silent) -- move to split h when inside in terminal [A-h]
+  tnoremap <leader>wk <C-\><C-N><C-w>k  " move to split k when inside in terminal [A-k]
+  tnoremap <leader>wj <C-\><C-N><C-w>j  " move to split j when inside in terminal [A-j]
+  tnoremap <leader>wl <C-\><C-N><C-w>l  " move to split k when inside in terminal [A-l]
+  tnoremap <leader>wh <C-\><C-N><C-w>h  " move to split h when inside in terminal [A-h]
 
-map('n', '<leader>ew', ':e    <C-R>=expand("%:p:h") . "/" <CR>',
-    normal_mode_echo) -- open a new file in a current window [<space>ew]
-map('n', '<leader>es', ':sp   <C-R>=expand("%:p:h") . "/" <CR>',
-    normal_mode_echo) -- open a new file in a horizontal split [<space>es]
-map('n', '<leader>ev', ':vsp  <C-R>=expand("%:p:h") . "/" <CR>',
-    normal_mode_echo) -- open a new file in a vertical split [<space>ev]
-map('n', '<leader>et', ':tabe <C-R>=expand("%:p:h") . "/" <CR>',
-    normal_mode_echo) -- open a new file in a new tab [<space>et]
-map('n', '<f7>', [[<cmd>lua toggleLineNumbers()<cr>]], normal_mode_silent) -- toggle line numbers [f7]
+  nnoremap <leader><leader> <C-^> " move to alternate buffers [<space><space>]
+  nnoremap tn <cmd>tabnew<cr> " open a new tab [tn]
+  nnoremap tc <cmd>tabclose<cr> " close a tab [tc]
+
+	" got this from vim-screencasts.
+	nnoremap <leader>ew :e    <C-R>=expand("%:p:h") . "/" <CR>
+  nnoremap <leader>es :sp   <C-R>=expand("%:p:h") . "/" <CR>
+  nnoremap <leader>ev :vsp  <C-R>=expand("%:p:h") . "/" <CR>
+  nnoremap <leader>et :tabe <C-R>=expand("%:p:h") . "/" <CR>
+
+	" toggle line numbers
+  nnoremap <f7> <cmd>lua toggleLineNumbers()<cr> " toggle line numbers [f7]
+]])
