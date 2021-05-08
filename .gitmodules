@@ -118,3 +118,6 @@
 [submodule "fterm"]
 	path = pack/packages/opt/fterm
 	url = https://github.com/numtostr/FTerm.nvim
+[submodule "expressline"]
+	path = pack/packages/opt/expressline
+	url = https://github.com/tjdevries/express_line.nvim
