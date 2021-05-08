@@ -40,5 +40,6 @@ vim.cmd('packadd! vim-cmake-syntax')
 vim.cmd('packadd! vim-glsl')
 vim.cmd('packadd! vim-go')
 vim.cmd('packadd! BetterLua')
+vim.cmd('packadd! nvim-treesitter')
 
 require('ishan.plugins')
