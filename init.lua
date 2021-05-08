@@ -26,7 +26,7 @@ g.loaded_node_provider = 0 -- disable the node health checks
 ---------------------------
 o.scrolloff = 7 -- minimal number of lines to keep above and below the cursor
 o.lazyredraw = true -- don't redraw screen when using macros
-o.laststatus = 0 -- only show the statusline when a split exists
+o.laststatus = 2 -- only show the statusline when a split exists
 o.hidden = true -- allow us to switch buffers easily
 o.termguicolors = true -- 24-bit RGB in terminal
 o.guicursor = '' -- disable the line cursor
@@ -169,7 +169,6 @@ cmd('packadd! nvim-solarized-lua')
 cmd('packadd! zephyr-nvim')
 cmd('packadd! nvcode-color-scheme')
 cmd('packadd! tokyonight')
-cmd('packadd! material')
 cmd('packadd! one-nvim')
 cmd('packadd! melange')
 cmd('packadd! gruvbox')
