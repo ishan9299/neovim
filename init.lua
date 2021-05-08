@@ -60,6 +60,7 @@ if fn.executable('nvr') == 1 then
     vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
 end
 
+require('globals')
 require('ishan')
 g.modus_moody_enable = 1
 g.modus_faint_syntax = 1
@@ -88,3 +89,4 @@ map('n', '<leader>ev', ':vsp  <C-R>=expand("%:p:h") . "/" <CR>',
     normal_mode_echo) -- open a new file in a vertical split [<space>ev]
 map('n', '<leader>et', ':tabe <C-R>=expand("%:p:h") . "/" <CR>',
     normal_mode_echo) -- open a new file in a new tab [<space>et]
+map('n', '<f7>', [[<cmd>lua toggleLineNumbers()<cr>]], normal_mode_silent) -- toggle line numbers [f7]
