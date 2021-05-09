@@ -43,37 +43,36 @@ vim.bo.expandtab = false
 vim.bo.textwidth = 120 -- Maximum width of text that is being inserted
 vim.wo.foldenable = false -- no folding
 vim.wo.wrap = false -- dont wrap the lines
--- wo.list = true
+-- vim.wo.list = true
 
 require('globals')
 require('ishan')
-vim.g.modus_moody_enable = 1
 vim.g.modus_faint_syntax = 1
 vim.g.modus_yellow_comments = 1
 vim.cmd('colorscheme modus-vivendi')
 
 -- Keybindings
 vim.cmd([[
-  nnoremap <leader>wk <cmd>wincmd k<cr> " move to split above [A-k]
-  nnoremap <leader>wj <cmd>wincmd j<cr> " move to split below [A-j]
-  nnoremap <leader>wl <cmd>wincmd l<cr> " move to split l [A-l]
-  nnoremap <leader>wh <cmd>wincmd h<cr> " move to split h [A-h]
+nnoremap <leader>wk <cmd>wincmd k<cr> " move to split above [A-k]
+nnoremap <leader>wj <cmd>wincmd j<cr> " move to split below [A-j]
+nnoremap <leader>wl <cmd>wincmd l<cr> " move to split l [A-l]
+nnoremap <leader>wh <cmd>wincmd h<cr> " move to split h [A-h]
 
-  tnoremap <leader>wk <C-\><C-N><C-w>k  " move to split k when inside in terminal [A-k]
-  tnoremap <leader>wj <C-\><C-N><C-w>j  " move to split j when inside in terminal [A-j]
-  tnoremap <leader>wl <C-\><C-N><C-w>l  " move to split k when inside in terminal [A-l]
-  tnoremap <leader>wh <C-\><C-N><C-w>h  " move to split h when inside in terminal [A-h]
+tnoremap <leader>wk <C-\><C-N><C-w>k  " move to split k when inside in terminal [A-k]
+tnoremap <leader>wj <C-\><C-N><C-w>j  " move to split j when inside in terminal [A-j]
+tnoremap <leader>wl <C-\><C-N><C-w>l  " move to split k when inside in terminal [A-l]
+tnoremap <leader>wh <C-\><C-N><C-w>h  " move to split h when inside in terminal [A-h]
 
-  nnoremap <leader><leader> <C-^> " move to alternate buffers [<space><space>]
-  nnoremap tn <cmd>tabnew<cr> " open a new tab [tn]
-  nnoremap tc <cmd>tabclose<cr> " close a tab [tc]
+nnoremap <leader><leader> <C-^> " move to alternate buffers [<space><space>]
+nnoremap tn <cmd>tabnew<cr> " open a new tab [tn]
+nnoremap tc <cmd>tabclose<cr> " close a tab [tc]
 
-	" got this from vim-screencasts.
-	nnoremap <leader>ew :e    <C-R>=expand("%:p:h") . "/" <CR>
-  nnoremap <leader>es :sp   <C-R>=expand("%:p:h") . "/" <CR>
-  nnoremap <leader>ev :vsp  <C-R>=expand("%:p:h") . "/" <CR>
-  nnoremap <leader>et :tabe <C-R>=expand("%:p:h") . "/" <CR>
+" got this from vim-screencasts.
+nnoremap <leader>ew :e    <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap <leader>es :sp   <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap <leader>ev :vsp  <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap <leader>et :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
-	" toggle line numbers
-  nnoremap <f7> <cmd>lua toggleLineNumbers()<cr> " toggle line numbers [f7]
+" toggle line numbers
+nnoremap <f7> <cmd>lua toggleLineNumbers()<cr> " toggle line numbers [f7]
 ]])
