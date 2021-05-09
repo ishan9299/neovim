@@ -49,6 +49,7 @@ require('globals')
 require('ishan')
 vim.g.modus_faint_syntax = 1
 vim.g.modus_yellow_comments = 1
+vim.g.modus_green_strings = 1
 vim.cmd('colorscheme modus-vivendi')
 
 -- Keybindings
@@ -66,6 +67,8 @@ tnoremap <leader>wh <C-\><C-N><C-w>h  " move to split h when inside in terminal 
 nnoremap <leader><leader> <C-^> " move to alternate buffers [<space><space>]
 nnoremap tn <cmd>tabnew<cr> " open a new tab [tn]
 nnoremap tc <cmd>tabclose<cr> " close a tab [tc]
+nnoremap tj <cmd>tabNext<cr>
+nnoremap tk <cmd>tabprevious<cr>
 
 " got this from vim-screencasts.
 nnoremap <leader>ew :e    <C-R>=expand("%:p:h") . "/" <CR>
