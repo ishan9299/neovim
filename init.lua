@@ -47,9 +47,6 @@ vim.wo.wrap = false -- dont wrap the lines
 
 require('globals')
 require('ishan')
-vim.g.modus_faint_syntax = 1
-vim.g.modus_yellow_comments = 1
-vim.g.modus_green_strings = 1
 vim.cmd('colorscheme modus-vivendi')
 
 -- Keybindings

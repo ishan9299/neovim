@@ -19,7 +19,7 @@ vim.cmd('packadd! lspconfig')
 vim.cmd('packadd! nvim-telescope')
 vim.cmd('packadd! nvim-compe')
 vim.cmd('packadd! truezen')
--- vim.cmd('packadd! expressline')
+vim.cmd('packadd! expressline')
 
 -- ------- ColorsScheme -------
 vim.cmd('packadd! lush')
