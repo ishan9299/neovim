@@ -118,3 +118,6 @@
 [submodule "expressline"]
 	path = pack/packages/opt/expressline
 	url = https://github.com/tjdevries/express_line.nvim
+[submodule "treesitter"]
+	path = pack/packages/opt/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter
