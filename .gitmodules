@@ -121,3 +121,6 @@
 [submodule "treesitter"]
 	path = pack/packages/opt/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter
+[submodule "zig"]
+	path = pack/packages/opt/zig
+	url = https://github.com/ziglang/zig.vim
