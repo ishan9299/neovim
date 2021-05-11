@@ -6,6 +6,7 @@ augroup disable_autocomments
 	autocmd BufNewFile,BufRead *.nix set ft=nix
 	autocmd BufNewFile,BufRead *.lock set ft=json
 	autocmd BufNewFile,BufRead *.fish set ft=fish
+	autocmd BufNewFile,BufRead *.zig set ft=zig
 augroup end
 
 nmap <f10> :call <SID>SynStack()<CR>
