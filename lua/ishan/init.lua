@@ -35,6 +35,7 @@ vim.cmd('packadd! gruvbox')
 ----- Syntax Plugins ------
 vim.cmd('packadd! vim-nix')
 vim.cmd('packadd! vim-fish')
+vim.cmd('packadd! zig')
 vim.cmd('packadd! vim-cpp-modern')
 vim.cmd('packadd! vim-cmake-syntax')
 vim.cmd('packadd! vim-glsl')
