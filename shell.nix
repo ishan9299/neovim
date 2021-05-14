@@ -4,5 +4,6 @@ stdenv.mkDerivation {
   name = "programming";
   buildInputs = [
     gcc11
+    nodejs
   ];
 }

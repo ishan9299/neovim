@@ -1,3 +1,8 @@
+-- TODO
+--[[
+may be add something to toggle options with my colorschemes.
+Also if possible integrate it with telescope.
+]]
 vim.cmd('syntax on')
 vim.g.mapleader = ' ' -- Space as a leader key
 -- Disable builtins plugins
@@ -47,7 +52,7 @@ vim.wo.wrap = false -- dont wrap the lines
 
 require('globals')
 require('ishan')
-vim.g.modus_termtrans_enable = 1
+-- vim.g.modus_termtrans_enable = 1
 vim.g.modus_faint_syntax = 1
 vim.cmd('colorscheme modus-operandi')
 -- vim.g.solarized_statusline = 'flat'
