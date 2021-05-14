@@ -124,3 +124,9 @@
 [submodule "zig"]
 	path = pack/packages/opt/zig
 	url = https://github.com/ziglang/zig.vim
+[submodule "gitsigns"]
+	path = pack/packages/opt/gitsigns
+	url = https://github.com/lewis6991/gitsigns.nvim
+[submodule "todo-comments"]
+	path = pack/packages/opt/todo-comments
+	url = https://github.com/folke/todo-comments.nvim

@@ -47,7 +47,13 @@ vim.wo.wrap = false -- dont wrap the lines
 
 require('globals')
 require('ishan')
-vim.cmd('colorscheme modus-vivendi')
+vim.g.modus_termtrans_enable = 1
+vim.g.modus_faint_syntax = 1
+vim.cmd('colorscheme modus-operandi')
+-- vim.g.solarized_statusline = 'flat'
+-- vim.g.solarized_termtrans = 1
+-- vim.g.solarized_diffmode = 'high'
+-- vim.cmd('colorscheme solarized-high')
 
 -- Keybindings
 vim.cmd([[

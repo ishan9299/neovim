@@ -20,6 +20,8 @@ vim.cmd('packadd! nvim-telescope')
 vim.cmd('packadd! nvim-compe')
 vim.cmd('packadd! truezen')
 vim.cmd('packadd! expressline')
+vim.cmd('packadd! gitsigns')
+vim.cmd('packadd! todo-comments')
 
 -- ------- ColorsScheme -------
 vim.cmd('packadd! lush')
