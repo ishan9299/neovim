@@ -29,6 +29,7 @@ vim.o.shiftwidth = 2 -- number of spaces for each step of autoindent
 vim.o.undofile = true
 vim.o.expandtab = false
 vim.o.showbreak = "↳  "
+vim.o.timeoutlen = 500
 vim.o.listchars = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←,eol:¬"
 vim.o.completeopt = 'menuone,noselect'
 -- Ignore these files
@@ -54,7 +55,7 @@ require('globals')
 require('ishan')
 -- vim.g.modus_termtrans_enable = 1
 vim.g.modus_faint_syntax = 1
-vim.cmd('colorscheme modus-operandi')
+vim.cmd('colorscheme modus-vivendi')
 -- vim.g.solarized_statusline = 'flat'
 -- vim.g.solarized_termtrans = 1
 -- vim.g.solarized_diffmode = 'high'

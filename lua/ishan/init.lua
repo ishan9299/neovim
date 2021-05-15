@@ -44,5 +44,7 @@ vim.cmd('packadd! vim-glsl')
 vim.cmd('packadd! vim-go')
 vim.cmd('packadd! BetterLua')
 vim.cmd('packadd! nvim-treesitter')
+vim.cmd('packadd! vim-startify')
+vim.cmd('packadd! which-key')
 
 require('ishan.plugins')
