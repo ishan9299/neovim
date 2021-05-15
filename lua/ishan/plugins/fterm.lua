@@ -22,6 +22,8 @@ function _G.__fterm_gitui()
 	gitui:toggle()
 end
 
+vim.cmd('command! Gitui lua __fterm_gitui()')
+
 local musikcube = term:new():setup({
 	cmd = "musikcube",
 	dimensions = {
@@ -34,9 +36,9 @@ function _G.__fterm_musikcube()
 	musikcube:toggle()
 end
 
+vim.cmd('command! Musikcube lua __fterm_musikcube()')
+
 vim.cmd([[
-nnoremap <A-t> <CMD>lua require("FTerm").toggle()<CR>
-tnoremap <A-t> <C-\><C-n><CMD>lua require("FTerm").toggle()<CR>
-nnoremap <leader>tg <cmd>lua __fterm_gitui()<cr>
-nnoremap <leader>tm <cmd>lua __fterm_musikcube()<cr>
+nnoremap <f5> <cmd>lua require("FTerm").toggle()<cr>
+tnoremap <f5> <c-\><c-n><cmd>lua require("FTerm").toggle()<cr>
 ]])
