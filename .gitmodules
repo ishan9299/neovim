@@ -133,3 +133,6 @@
 [submodule "which-key"]
 	path = pack/packages/opt/which-key
 	url = https://github.com/folke/which-key.nvim
+[submodule "vim-startify"]
+	path = pack/packages/opt/vim-startify
+	url = https://github.com/mhinz/vim-startify
