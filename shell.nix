@@ -6,6 +6,8 @@ stdenv.mkDerivation {
     gcc11
     go
     gnumake
+    lua
+    sumneko-lua-language-server
     nodejs
   ];
 }
