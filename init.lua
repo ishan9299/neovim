@@ -49,11 +49,13 @@ vim.bo.expandtab = false
 vim.bo.textwidth = 120 -- Maximum width of text that is being inserted
 vim.wo.foldenable = false -- no folding
 vim.wo.wrap = false -- dont wrap the lines
+vim.wo.cursorline = true
 -- vim.wo.list = true
 
 require('globals')
 require('ishan')
 -- vim.g.modus_termtrans_enable = 1
+vim.g.modus_cursorline_intense = 1
 vim.g.modus_faint_syntax = 1
 vim.cmd('colorscheme modus-vivendi')
 -- vim.g.solarized_statusline = 'flat'
