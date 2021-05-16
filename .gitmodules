@@ -136,3 +136,6 @@
 [submodule "vim-startify"]
 	path = pack/packages/opt/vim-startify
 	url = https://github.com/mhinz/vim-startify
+[submodule "vim-hexokinase"]
+	path = pack/packages/opt/vim-hexokinase
+	url = https://github.com/RRethy/vim-hexokinase

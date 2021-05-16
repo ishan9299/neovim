@@ -22,6 +22,7 @@ vim.cmd('packadd! truezen')
 vim.cmd('packadd! expressline')
 vim.cmd('packadd! gitsigns')
 vim.cmd('packadd! todo-comments')
+vim.cmd('packadd! vim-hexokinase')
 
 -- ------- ColorsScheme -------
 vim.cmd('packadd! lush')
