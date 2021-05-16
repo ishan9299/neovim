@@ -139,3 +139,6 @@
 [submodule "vim-hexokinase"]
 	path = pack/packages/opt/vim-hexokinase
 	url = https://github.com/RRethy/vim-hexokinase
+[submodule "playground"]
+	path = pack/packages/opt/playground
+	url = https://github.com/nvim-treesitter/playground
