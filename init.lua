@@ -55,6 +55,7 @@ vim.wo.cursorline = true
 require('globals')
 require('ishan')
 -- vim.g.modus_termtrans_enable = 1
+vim.g.modus_italic_strings = 1
 vim.g.modus_cursorline_intense = 1
 vim.g.modus_faint_syntax = 1
 vim.cmd('colorscheme modus-vivendi')
