@@ -36,15 +36,27 @@ local servers = {"ccls", "rust_analyzer"}
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
-        settings = {
-            ["rust-analyzer"] = {
-                assist = {
-                    importMergeBehavior = "last",
-                    importPrefix = "by_self"
-                },
-                cargo = {loadOutDirsFromCheck = true},
-                procMacro = {enable = true}
-            }
-        }
     }
 end
+
+nvim_lsp.sumneko_lua.setup {
+  cmd = {"lua-language-server"};
+  on_attach = on_attach,
+  settings = {
+      Lua = {
+          runtime = {
+              version = 'LuaJIT',
+              path = vim.split(package.path, ';'),
+          },
+          diagnostics = {
+              globals = {'vim'},
+          },
+          workspace = {
+              library = {
+                  [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+                  [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+              },
+          },
+      },
+  },
+}
