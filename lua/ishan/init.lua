@@ -34,6 +34,7 @@ vim.cmd('packadd! tokyonight')
 vim.cmd('packadd! one-nvim')
 vim.cmd('packadd! melange')
 vim.cmd('packadd! gruvbox')
+vim.cmd('packadd! nord')
 
 ----- Syntax Plugins ------
 vim.cmd('packadd! vim-nix')
