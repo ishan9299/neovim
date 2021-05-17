@@ -142,3 +142,6 @@
 [submodule "playground"]
 	path = pack/packages/opt/playground
 	url = https://github.com/nvim-treesitter/playground
+[submodule "nord"]
+	path = pack/packages/opt/nord
+	url = https://github.com/shaunsingh/nord.nvim
