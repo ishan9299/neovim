@@ -9,6 +9,12 @@ augroup disable_autocomments
 	autocmd BufNewFile,BufRead *.zig set ft=zig
 augroup end
 
+augroup vimrc-incsearch-highlight
+	autocmd!
+	autocmd CmdlineEnter /,\? :set hlsearch
+	autocmd CmdlineLeave /,\? :set nohlsearch
+augroup END
+
 nmap <f10> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
 	if !exists("*synstack")
@@ -16,3 +22,6 @@ function! <SID>SynStack()
 	endif
 	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
