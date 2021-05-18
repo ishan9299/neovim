@@ -145,3 +145,12 @@
 [submodule "nord"]
 	path = pack/packages/opt/nord
 	url = https://github.com/shaunsingh/nord.nvim
+[submodule "solarized8"]
+	path = pack/packages/opt/solarized8
+	url = https://github.com/lifepillar/vim-solarized8
+[submodule "vgit"]
+	path = pack/packages/opt/vgit
+	url = https://github.com/tanvirtin/vgit.nvim
+[submodule "kommentary"]
+	path = pack/packages/opt/kommentary
+	url = https://github.com/b3nj5m1n/kommentary
