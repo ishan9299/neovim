@@ -2,6 +2,7 @@
 --[[
 may be add something to toggle options with my colorschemes.
 Also if possible integrate it with telescope.
+improve treesitter highlights in modus-themes
 ]]
 vim.cmd('syntax on')
 vim.g.mapleader = ' ' -- Space as a leader key
@@ -28,6 +29,7 @@ vim.o.tabstop = 2 -- 4 spaces equals to one tab
 vim.o.shiftwidth = 2 -- number of spaces for each step of autoindent
 vim.o.undofile = true
 vim.o.expandtab = false
+vim.o.updatetime = 100
 vim.o.showbreak = "↳  "
 vim.o.timeoutlen = 500
 vim.o.listchars = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←,eol:¬"
@@ -54,15 +56,17 @@ vim.wo.cursorline = true
 
 require('globals')
 require('ishan')
--- vim.g.modus_termtrans_enable = 1
+vim.g.modus_termtrans_enable = 1
 vim.g.modus_italic_strings = 1
 vim.g.modus_cursorline_intense = 1
-vim.g.modus_faint_syntax = 1
 vim.cmd('colorscheme modus-vivendi')
 -- vim.g.solarized_statusline = 'flat'
 -- vim.g.solarized_termtrans = 1
--- vim.g.solarized_diffmode = 'high'
--- vim.cmd('colorscheme solarized-high')
+-- vim.g.solarized_diffmode = 'low'
+-- vim.g.solarized_visibility = 'low'
+-- vim.cmd('colorscheme solarized')
+-- vim.g.solarized_visibility = 'low'
+-- vim.cmd('colorscheme solarized8')
 
 -- Keybindings
 vim.cmd([[
