@@ -52,19 +52,19 @@ vim.bo.textwidth = 120 -- Maximum width of text that is being inserted
 vim.wo.foldenable = false -- no folding
 vim.wo.wrap = false -- dont wrap the lines
 vim.wo.cursorline = true
--- vim.wo.list = true
+vim.wo.list = true
 
 require('globals')
 require('ishan')
-vim.g.modus_termtrans_enable = 1
 vim.g.modus_italic_strings = 1
 vim.g.modus_cursorline_intense = 1
 vim.cmd('colorscheme modus-vivendi')
 -- vim.g.solarized_statusline = 'flat'
--- vim.g.solarized_termtrans = 1
+-- vim.g.solarized_termtrans = 0
 -- vim.g.solarized_diffmode = 'low'
 -- vim.g.solarized_visibility = 'low'
 -- vim.cmd('colorscheme solarized')
+-- vim.cmd('hi NonText guifg=#25454D guibg=NONE gui=bold cterm=bold')
 -- vim.g.solarized_visibility = 'low'
 -- vim.cmd('colorscheme solarized8')
 
