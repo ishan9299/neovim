@@ -157,3 +157,9 @@
 [submodule "rooter"]
 	path = pack/packages/opt/rooter
 	url = https://github.com/ahmedkhalf/lsp-rooter.nvim
+[submodule "neogit"]
+	path = pack/packages/opt/neogit
+	url = https://github.com/TimUntersberger/neogit
+[submodule "ayu"]
+	path = pack/packages/opt/ayu
+	url = https://github.com/Shatur95/neovim-ayu
