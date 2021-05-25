@@ -52,7 +52,7 @@ vim.bo.textwidth = 120 -- Maximum width of text that is being inserted
 vim.wo.foldenable = false -- no folding
 vim.wo.wrap = false -- dont wrap the lines
 vim.wo.cursorline = true
-vim.wo.list = true
+-- vim.wo.list = true
 
 require('globals')
 require('ishan')
@@ -75,12 +75,26 @@ nnoremap <leader>wj <cmd>wincmd j<cr> " move to split below [A-j]
 nnoremap <leader>wl <cmd>wincmd l<cr> " move to split l [A-l]
 nnoremap <leader>wh <cmd>wincmd h<cr> " move to split h [A-h]
 
+nnoremap <leader>ws <cmd>split<cr>
+nnoremap <leader>wv <cmd>vs<cr>
+
+nnoremap <leader>wd <cmd>q<cr>
+nnoremap <leader>ws <cmd>w<cr>
+nnoremap <leader>wS <cmd>wa<cr>
+
 tnoremap <leader>wk <C-\><C-N><C-w>k  " move to split k when inside in terminal [A-k]
 tnoremap <leader>wj <C-\><C-N><C-w>j  " move to split j when inside in terminal [A-j]
 tnoremap <leader>wl <C-\><C-N><C-w>l  " move to split k when inside in terminal [A-l]
 tnoremap <leader>wh <C-\><C-N><C-w>h  " move to split h when inside in terminal [A-h]
 
 nnoremap <leader><leader> <C-^> " move to alternate buffers [<space><space>]
+nnoremap <leader>b[ <cmd>bprevious<cr>
+nnoremap <leader>b] <cmd>bnext<cr>
+nnoremap <leader>bn <cmd>bnext<cr>
+nnoremap <leader>bp <cmd>bprevious<cr>
+nnoremap <leader>bd <cmd>bd<cr>
+
+
 nnoremap tn <cmd>tabnew<cr> " open a new tab [tn]
 nnoremap tc <cmd>tabclose<cr> " close a tab [tc]
 nnoremap tj <cmd>tabNext<cr>
@@ -93,5 +107,5 @@ nnoremap <leader>ev :vsp  <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <leader>et :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 " toggle line numbers
-nnoremap <f7> <cmd>lua toggleLineNumbers()<cr> " toggle line numbers [f7]
+nnoremap <leader>tl <cmd>lua toggleLineNumbers()<cr> " toggle line numbers [f7]
 ]])
