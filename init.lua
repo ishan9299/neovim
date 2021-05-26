@@ -51,7 +51,7 @@ vim.bo.expandtab = false
 vim.bo.textwidth = 120 -- Maximum width of text that is being inserted
 vim.wo.foldenable = false -- no folding
 vim.wo.wrap = false -- dont wrap the lines
-vim.wo.cursorline = true
+-- vim.wo.cursorline = true
 -- vim.wo.list = true
 
 require('globals')
@@ -64,16 +64,14 @@ vim.cmd('colorscheme modus-vivendi')
 -- vim.g.solarized_diffmode = 'low'
 -- vim.g.solarized_visibility = 'low'
 -- vim.cmd('colorscheme solarized')
--- vim.cmd('hi NonText guifg=#25454D guibg=NONE gui=bold cterm=bold')
--- vim.g.solarized_visibility = 'low'
--- vim.cmd('colorscheme solarized8')
 
 -- Keybindings
 vim.cmd([[
-nnoremap <leader>wk <cmd>wincmd k<cr> " move to split above [A-k]
-nnoremap <leader>wj <cmd>wincmd j<cr> " move to split below [A-j]
-nnoremap <leader>wl <cmd>wincmd l<cr> " move to split l [A-l]
-nnoremap <leader>wh <cmd>wincmd h<cr> " move to split h [A-h]
+" move windows up, down, right, left
+nnoremap <leader>wk <cmd>wincmd k<cr>
+nnoremap <leader>wj <cmd>wincmd j<cr>
+nnoremap <leader>wl <cmd>wincmd l<cr>
+nnoremap <leader>wh <cmd>wincmd h<cr>
 
 nnoremap <leader>ws <cmd>split<cr>
 nnoremap <leader>wv <cmd>vs<cr>
@@ -81,11 +79,6 @@ nnoremap <leader>wv <cmd>vs<cr>
 nnoremap <leader>wd <cmd>q<cr>
 nnoremap <leader>ws <cmd>w<cr>
 nnoremap <leader>wS <cmd>wa<cr>
-
-tnoremap <leader>wk <C-\><C-N><C-w>k  " move to split k when inside in terminal [A-k]
-tnoremap <leader>wj <C-\><C-N><C-w>j  " move to split j when inside in terminal [A-j]
-tnoremap <leader>wl <C-\><C-N><C-w>l  " move to split k when inside in terminal [A-l]
-tnoremap <leader>wh <C-\><C-N><C-w>h  " move to split h when inside in terminal [A-h]
 
 nnoremap <leader><leader> <C-^> " move to alternate buffers [<space><space>]
 nnoremap <leader>b[ <cmd>bprevious<cr>

@@ -7,6 +7,7 @@ augroup disable_autocomments
 	autocmd BufNewFile,BufRead *.lock set ft=json
 	autocmd BufNewFile,BufRead *.fish set ft=fish
 	autocmd BufNewFile,BufRead *.zig set ft=zig
+	autocmd BufWinEnter,WinEnter term://* startinsert
 augroup end
 
 augroup vimrc-incsearch-highlight

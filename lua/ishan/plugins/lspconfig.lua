@@ -30,9 +30,10 @@ local on_attach = function(client, bufnr)
                    '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 end
 
--- Use a loop to conveniently both setup defined servers 
+-- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
-local servers = {"ccls", "rust_analyzer"}
+local servers = {"ccls", "sumneko_lua"}
+local cmd = {"lua-language-server"};
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
